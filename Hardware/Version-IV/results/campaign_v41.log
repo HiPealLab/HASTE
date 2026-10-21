@@ -1,0 +1,359 @@
+Fri Oct  9 20:28:03 +0330 2026
+[verilator] lif_10: 1000 images in 7 s -> rtl_results.txt
+[verilator] lif_64x10: 1000 images in 10 s -> rtl_results.txt
+[verilator] lif_64x64x10: 1000 images in 15 s -> rtl_results.txt
+[verilator] lif_64x10_b4: 1000 images in 11 s -> rtl_results.txt
+[verilator] lif_64x10_b16: 1000 images in 10 s -> rtl_results.txt
+[verilator] izh_10: 1000 images in 10 s -> rtl_results.txt
+[verilator] izh_64x10: 1000 images in 36 s -> rtl_results.txt
+[verilator] izh_64x64x10: 1000 images in 53 s -> rtl_results.txt
+[verilator] izh_64x10_b4: 1000 images in 31 s -> rtl_results.txt
+[verilator] izh_64x10_b16: 1000 images in 30 s -> rtl_results.txt
+[verilator] hh_10: 1000 images in 164 s -> rtl_results.txt
+[verilator] hh_64x10: 1000 images in 2085 s -> rtl_results.txt
+Fri Oct  9 21:09:43 +0330 2026
+[verilator] hh_10_b4: 1000 images in 162 s -> rtl_results.txt
+[verilator] hh_10_b16: 1000 images in 164 s -> rtl_results.txt
+[verilator] hh_64x64x10: 1000 images in 2191 s -> rtl_results.txt
+wrote ./Hardware/Version-IV/build/lif_10/ref_fixed.txt
+[ref fixed] lif_10 done
+wrote ./Hardware/Version-IV/build/lif_64x10/ref_fixed.txt
+[ref fixed] lif_64x10 done
+wrote ./Hardware/Version-IV/build/lif_64x64x10/ref_fixed.txt
+[ref fixed] lif_64x64x10 done
+wrote ./Hardware/Version-IV/build/lif_64x10_b4/ref_fixed.txt
+[ref fixed] lif_64x10_b4 done
+wrote ./Hardware/Version-IV/build/lif_64x10_b16/ref_fixed.txt
+[ref fixed] lif_64x10_b16 done
+wrote ./Hardware/Version-IV/build/izh_10/ref_fixed.txt
+[ref fixed] izh_10 done
+wrote ./Hardware/Version-IV/build/izh_64x10/ref_fixed.txt
+[ref fixed] izh_64x10 done
+wrote ./Hardware/Version-IV/build/izh_64x64x10/ref_fixed.txt
+[ref fixed] izh_64x64x10 done
+wrote ./Hardware/Version-IV/build/izh_64x10_b4/ref_fixed.txt
+[ref fixed] izh_64x10_b4 done
+wrote ./Hardware/Version-IV/build/izh_64x10_b16/ref_fixed.txt
+[ref fixed] izh_64x10_b16 done
+wrote ./Hardware/Version-IV/build/hh_10/ref_fixed.txt
+[ref fixed] hh_10 done
+wrote ./Hardware/Version-IV/build/hh_64x10/ref_fixed.txt
+[ref fixed] hh_64x10 done
+wrote ./Hardware/Version-IV/build/hh_10_b4/ref_fixed.txt
+[ref fixed] hh_10_b4 done
+wrote ./Hardware/Version-IV/build/hh_10_b16/ref_fixed.txt
+[ref fixed] hh_10_b16 done
+wrote ./Hardware/Version-IV/build/hh_64x64x10/ref_fixed.txt
+[ref fixed] hh_64x64x10 done
+wrote ./Hardware/Version-IV/build/lif_10/ref_float.txt
+[ref float] lif_10 done
+wrote ./Hardware/Version-IV/build/lif_64x10/ref_float.txt
+[ref float] lif_64x10 done
+wrote ./Hardware/Version-IV/build/lif_64x64x10/ref_float.txt
+[ref float] lif_64x64x10 done
+wrote ./Hardware/Version-IV/build/izh_10/ref_float.txt
+[ref float] izh_10 done
+wrote ./Hardware/Version-IV/build/izh_64x10/ref_float.txt
+[ref float] izh_64x10 done
+wrote ./Hardware/Version-IV/build/izh_64x64x10/ref_float.txt
+[ref float] izh_64x64x10 done
+wrote ./Hardware/Version-IV/build/hh_10/ref_float.txt
+[ref float] hh_10 done
+wrote ./Hardware/Version-IV/build/hh_64x10/ref_float.txt
+[ref float] hh_64x10 done
+wrote ./Hardware/Version-IV/build/hh_64x64x10/ref_float.txt
+[ref float] hh_64x64x10 done
+# RTL results (verilator), T=100, MNIST test images
+
+Agreement columns: class-agreement %% / exact-spike-train %% (accuracy of the reference)
+
+| config | images | acc % | no-spike | cycles/img | ms @50MHz | FIFO ovf | vs fixed model | vs float model | vs Brian2 |
+|---|---|---|---|---|---|---|---|---|---|
+| lif_10 | 1000 | 86.5 | 0 | 22348 | 0.45 | 0 | 100.0 / 100.0 (acc 86.5) | 99.6 / 10.8 (acc 86.4) | - |
+| lif_64x10 | 1000 | 92.7 | 3 | 149648 | 2.99 | 0 | 100.0 / 100.0 (acc 92.7) | 99.3 / 0.9 (acc 92.7) | - |
+| lif_64x64x10 | 1000 | 93.7 | 0 | 293615 | 5.87 | 0 | 100.0 / 100.0 (acc 93.7) | 99.1 / 0.0 (acc 93.7) | - |
+| izh_10 | 1000 | 86.1 | 0 | 149348 | 2.99 | 0 | 100.0 / 100.0 (acc 86.1) | 99.2 / 1.6 (acc 86.4) | - |
+| izh_64x10 | 1000 | 90.0 | 0 | 1069065 | 21.38 | 0 | 100.0 / 100.0 (acc 90.0) | 97.2 / 0.0 (acc 90.4) | - |
+| izh_64x64x10 | 1000 | 88.3 | 0 | 1993192 | 39.86 | 0 | 100.0 / 100.0 (acc 88.3) | 95.1 / 0.0 (acc 87.6) | - |
+| hh_10 | 1000 | 83.1 | 0 | 6348148 | 126.96 | 0 | 100.0 / 100.0 (acc 83.1) | 95.1 / 0.0 (acc 83.8) | - |
+| hh_64x10 | 1000 | 30.4 | 0 | 46772748 | 935.45 | 0 | 100.0 / 100.0 (acc 30.4) | 61.7 / 0.0 (acc 30.2) | - |
+| hh_64x64x10 | 1000 | 18.8 | 0 | 87244995 | 1744.90 | 0 | 100.0 / 100.0 (acc 18.8) | 46.1 / 0.0 (acc 17.0) | - |
+| lif_64x10_b4 | 1000 | 89.5 | 1 | 150187 | 3.00 | 0 | 100.0 / 100.0 (acc 89.5) | - | - |
+| lif_64x10_b16 | 1000 | 92.6 | 4 | 149658 | 2.99 | 0 | 100.0 / 100.0 (acc 92.6) | - | - |
+| izh_64x10_b4 | 1000 | 85.1 | 0 | 1069400 | 21.39 | 0 | 100.0 / 100.0 (acc 85.1) | - | - |
+| izh_64x10_b16 | 1000 | 90.8 | 0 | 1069069 | 21.38 | 0 | 100.0 / 100.0 (acc 90.8) | - | - |
+| hh_10_b4 | 1000 | 84.3 | 0 | 6348148 | 126.96 | 0 | 100.0 / 100.0 (acc 84.3) | - | - |
+| hh_10_b16 | 1000 | 82.8 | 0 | 6348148 | 126.96 | 0 | 100.0 / 100.0 (acc 82.8) | - | - |
+
+brian2: images 0..99 done
+brian2: images 100..199 done
+brian2: images 200..299 done
+brian2: images 300..399 done
+brian2: images 400..499 done
+brian2: images 500..599 done
+brian2: images 600..699 done
+brian2: images 700..799 done
+brian2: images 800..899 done
+brian2: images 900..999 done
+wrote ./Hardware/Version-IV/build/lif_10/ref_brian2.txt
+[ref brian2] lif_10 done
+brian2: images 0..99 done
+brian2: images 100..199 done
+brian2: images 200..299 done
+brian2: images 300..399 done
+brian2: images 400..499 done
+brian2: images 500..599 done
+brian2: images 600..699 done
+brian2: images 700..799 done
+brian2: images 800..899 done
+brian2: images 900..999 done
+wrote ./Hardware/Version-IV/build/lif_64x10/ref_brian2.txt
+[ref brian2] lif_64x10 done
+brian2: images 0..99 done
+brian2: images 100..199 done
+brian2: images 200..299 done
+brian2: images 300..399 done
+brian2: images 400..499 done
+brian2: images 500..599 done
+brian2: images 600..699 done
+brian2: images 700..799 done
+brian2: images 800..899 done
+brian2: images 900..999 done
+wrote ./Hardware/Version-IV/build/lif_64x64x10/ref_brian2.txt
+[ref brian2] lif_64x64x10 done
+WARNING    The name "vmin" refers to different objects in different namespaces used for resolving names in the context of group "neurongroup". Will use the object from the group-specific namespace with the value -150. * mvolt, but the name also refers to a variable in the run namespace with value '-150'. [brian2.groups.group.Group.resolve.resolution_conflict]
+WARNING    The name "vmin" refers to different objects in different namespaces used for resolving names in the context of group "synapses". Will use the object from the group-specific namespace with the value -150. * mvolt, but the name also refers to a variable in the run namespace with value '-150'. [brian2.groups.group.Group.resolve.resolution_conflict]
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+INFO       Failed to vectorise code, falling back on Python loop: note that this will be very slow! Switch to another code generation target for best performance (e.g. cython). First line is: v_post = clip(v_post + w, vmin, _lio_1) [brian2.codegen.generators.numpy_generator]
+brian2: images 0..99 done
+WARNING    The name "vmin" refers to different objects in different namespaces used for resolving names in the context of group "neurongroup_1". Will use the object from the group-specific namespace with the value -150. * mvolt, but the name also refers to a variable in the run namespace with value '-150'. [brian2.groups.group.Group.resolve.resolution_conflict]
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+brian2: images 100..199 done
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+brian2: images 200..299 done
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+brian2: images 300..399 done
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+brian2: images 400..499 done
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+brian2: images 500..599 done
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+brian2: images 600..699 done
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+brian2: images 700..799 done
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+brian2: images 800..899 done
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+brian2: images 900..999 done
+wrote ./Hardware/Version-IV/build/izh_10/ref_brian2.txt
+[ref brian2] izh_10 done
+WARNING    The name "vmin" refers to different objects in different namespaces used for resolving names in the context of group "neurongroup_1". Will use the object from the group-specific namespace with the value -150. * mvolt, but the name also refers to a variable in the run namespace with value '-150'. [brian2.groups.group.Group.resolve.resolution_conflict]
+WARNING    The name "vmin" refers to different objects in different namespaces used for resolving names in the context of group "neurongroup". Will use the object from the group-specific namespace with the value -150. * mvolt, but the name also refers to a variable in the run namespace with value '-150'. [brian2.groups.group.Group.resolve.resolution_conflict]
+WARNING    The name "vmin" refers to different objects in different namespaces used for resolving names in the context of group "synapses_1". Will use the object from the group-specific namespace with the value -150. * mvolt, but the name also refers to a variable in the run namespace with value '-150'. [brian2.groups.group.Group.resolve.resolution_conflict]
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+INFO       Failed to vectorise code, falling back on Python loop: note that this will be very slow! Switch to another code generation target for best performance (e.g. cython). First line is: v_post = clip(v_post + w, vmin, _lio_1) [brian2.codegen.generators.numpy_generator]
+WARNING    The name "vmin" refers to different objects in different namespaces used for resolving names in the context of group "synapses". Will use the object from the group-specific namespace with the value -150. * mvolt, but the name also refers to a variable in the run namespace with value '-150'. [brian2.groups.group.Group.resolve.resolution_conflict]
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+brian2: images 0..99 done
+WARNING    The name "vmin" refers to different objects in different namespaces used for resolving names in the context of group "neurongroup_2". Will use the object from the group-specific namespace with the value -150. * mvolt, but the name also refers to a variable in the run namespace with value '-150'. [brian2.groups.group.Group.resolve.resolution_conflict]
+WARNING    The name "vmin" refers to different objects in different namespaces used for resolving names in the context of group "neurongroup_3". Will use the object from the group-specific namespace with the value -150. * mvolt, but the name also refers to a variable in the run namespace with value '-150'. [brian2.groups.group.Group.resolve.resolution_conflict]
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+brian2: images 100..199 done
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+brian2: images 200..299 done
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+brian2: images 300..399 done
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+brian2: images 400..499 done
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+brian2: images 500..599 done
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+brian2: images 600..699 done
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+brian2: images 700..799 done
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+brian2: images 800..899 done
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+brian2: images 900..999 done
+wrote ./Hardware/Version-IV/build/izh_64x10/ref_brian2.txt
+[ref brian2] izh_64x10 done
+WARNING    The name "vmin" refers to different objects in different namespaces used for resolving names in the context of group "neurongroup_1". Will use the object from the group-specific namespace with the value -150. * mvolt, but the name also refers to a variable in the run namespace with value '-150'. [brian2.groups.group.Group.resolve.resolution_conflict]
+WARNING    The name "vmin" refers to different objects in different namespaces used for resolving names in the context of group "neurongroup_2". Will use the object from the group-specific namespace with the value -150. * mvolt, but the name also refers to a variable in the run namespace with value '-150'. [brian2.groups.group.Group.resolve.resolution_conflict]
+WARNING    The name "vmin" refers to different objects in different namespaces used for resolving names in the context of group "neurongroup". Will use the object from the group-specific namespace with the value -150. * mvolt, but the name also refers to a variable in the run namespace with value '-150'. [brian2.groups.group.Group.resolve.resolution_conflict]
+WARNING    The name "vmin" refers to different objects in different namespaces used for resolving names in the context of group "synapses_1". Will use the object from the group-specific namespace with the value -150. * mvolt, but the name also refers to a variable in the run namespace with value '-150'. [brian2.groups.group.Group.resolve.resolution_conflict]
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+INFO       Failed to vectorise code, falling back on Python loop: note that this will be very slow! Switch to another code generation target for best performance (e.g. cython). First line is: v_post = clip(v_post + w, vmin, _lio_1) [brian2.codegen.generators.numpy_generator]
+WARNING    The name "vmin" refers to different objects in different namespaces used for resolving names in the context of group "synapses_2". Will use the object from the group-specific namespace with the value -150. * mvolt, but the name also refers to a variable in the run namespace with value '-150'. [brian2.groups.group.Group.resolve.resolution_conflict]
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+WARNING    The name "vmin" refers to different objects in different namespaces used for resolving names in the context of group "synapses". Will use the object from the group-specific namespace with the value -150. * mvolt, but the name also refers to a variable in the run namespace with value '-150'. [brian2.groups.group.Group.resolve.resolution_conflict]
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+brian2: images 0..99 done
+WARNING    The name "vmin" refers to different objects in different namespaces used for resolving names in the context of group "neurongroup_3". Will use the object from the group-specific namespace with the value -150. * mvolt, but the name also refers to a variable in the run namespace with value '-150'. [brian2.groups.group.Group.resolve.resolution_conflict]
+WARNING    The name "vmin" refers to different objects in different namespaces used for resolving names in the context of group "neurongroup_4". Will use the object from the group-specific namespace with the value -150. * mvolt, but the name also refers to a variable in the run namespace with value '-150'. [brian2.groups.group.Group.resolve.resolution_conflict]
+WARNING    The name "vmin" refers to different objects in different namespaces used for resolving names in the context of group "neurongroup_5". Will use the object from the group-specific namespace with the value -150. * mvolt, but the name also refers to a variable in the run namespace with value '-150'. [brian2.groups.group.Group.resolve.resolution_conflict]
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+brian2: images 100..199 done
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+brian2: images 200..299 done
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+brian2: images 300..399 done
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+brian2: images 400..499 done
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+brian2: images 500..599 done
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+brian2: images 600..699 done
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+brian2: images 700..799 done
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+brian2: images 800..899 done
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+brian2: images 900..999 done
+wrote ./Hardware/Version-IV/build/izh_64x64x10/ref_brian2.txt
+[ref brian2] izh_64x64x10 done
+WARNING    The name "vmin" refers to different objects in different namespaces used for resolving names in the context of group "neurongroup". Will use the object from the group-specific namespace with the value -72. * mvolt, but the name also refers to a variable in the run namespace with value '-72'. [brian2.groups.group.Group.resolve.resolution_conflict]
+WARNING    The name "vmin" refers to different objects in different namespaces used for resolving names in the context of group "synapses". Will use the object from the group-specific namespace with the value -72. * mvolt, but the name also refers to a variable in the run namespace with value '-72'. [brian2.groups.group.Group.resolve.resolution_conflict]
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+INFO       Failed to vectorise code, falling back on Python loop: note that this will be very slow! Switch to another code generation target for best performance (e.g. cython). First line is: v_post = clip(v_post + w, vmin, _lio_1) [brian2.codegen.generators.numpy_generator]
+brian2: images 0..99 done
+WARNING    The name "vmin" refers to different objects in different namespaces used for resolving names in the context of group "neurongroup_1". Will use the object from the group-specific namespace with the value -72. * mvolt, but the name also refers to a variable in the run namespace with value '-72'. [brian2.groups.group.Group.resolve.resolution_conflict]
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+brian2: images 100..199 done
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+brian2: images 200..299 done
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+brian2: images 300..399 done
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+brian2: images 400..499 done
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+brian2: images 500..599 done
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+brian2: images 600..699 done
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+brian2: images 700..799 done
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+brian2: images 800..899 done
+WARNING    Came across an abstract code block that may not be well-defined: the outcome may depend on the order of execution. You can ignore this warning if you are sure that the order of operations does not matter. Abstract code: 'v_post = clip(v_post + w, vmin, _lio_1)'
+ [brian2.codegen.generators.base]
+brian2: images 900..999 done
+wrote ./Hardware/Version-IV/build/hh_10/ref_brian2.txt
+[ref brian2] hh_10 done
+# RTL results (verilator), T=100, MNIST test images
+
+Agreement columns: class-agreement %% / exact-spike-train %% (accuracy of the reference)
+
+| config | images | acc % | no-spike | cycles/img | ms @50MHz | FIFO ovf | vs fixed model | vs float model | vs Brian2 |
+|---|---|---|---|---|---|---|---|---|---|
+| lif_10 | 1000 | 86.5 | 0 | 22348 | 0.45 | 0 | 100.0 / 100.0 (acc 86.5) | 99.6 / 10.8 (acc 86.4) | 98.9 / 0.0 (acc 86.4) |
+| lif_64x10 | 1000 | 92.7 | 3 | 149648 | 2.99 | 0 | 100.0 / 100.0 (acc 92.7) | 99.3 / 0.9 (acc 92.7) | 98.4 / 0.3 (acc 92.2) |
+| lif_64x64x10 | 1000 | 93.7 | 0 | 293615 | 5.87 | 0 | 100.0 / 100.0 (acc 93.7) | 99.1 / 0.0 (acc 93.7) | 98.2 / 0.0 (acc 93.8) |
+| izh_10 | 1000 | 86.1 | 0 | 149348 | 2.99 | 0 | 100.0 / 100.0 (acc 86.1) | 99.2 / 1.6 (acc 86.4) | 98.7 / 0.0 (acc 86.8) |
+| izh_64x10 | 1000 | 90.0 | 0 | 1069065 | 21.38 | 0 | 100.0 / 100.0 (acc 90.0) | 97.2 / 0.0 (acc 90.4) | 96.4 / 0.0 (acc 90.6) |
+| izh_64x64x10 | 1000 | 88.3 | 0 | 1993192 | 39.86 | 0 | 100.0 / 100.0 (acc 88.3) | 95.1 / 0.0 (acc 87.6) | 93.0 / 0.0 (acc 86.7) |
+| hh_10 | 1000 | 83.1 | 0 | 6348148 | 126.96 | 0 | 100.0 / 100.0 (acc 83.1) | 95.1 / 0.0 (acc 83.8) | 95.2 / 0.0 (acc 84.3) |
+| hh_64x10 | 1000 | 30.4 | 0 | 46772748 | 935.45 | 0 | 100.0 / 100.0 (acc 30.4) | 61.7 / 0.0 (acc 30.2) | - |
+| hh_64x64x10 | 1000 | 18.8 | 0 | 87244995 | 1744.90 | 0 | 100.0 / 100.0 (acc 18.8) | 46.1 / 0.0 (acc 17.0) | - |
+| lif_64x10_b4 | 1000 | 89.5 | 1 | 150187 | 3.00 | 0 | 100.0 / 100.0 (acc 89.5) | - | - |
+| lif_64x10_b16 | 1000 | 92.6 | 4 | 149658 | 2.99 | 0 | 100.0 / 100.0 (acc 92.6) | - | - |
+| izh_64x10_b4 | 1000 | 85.1 | 0 | 1069400 | 21.39 | 0 | 100.0 / 100.0 (acc 85.1) | - | - |
+| izh_64x10_b16 | 1000 | 90.8 | 0 | 1069069 | 21.38 | 0 | 100.0 / 100.0 (acc 90.8) | - | - |
+| hh_10_b4 | 1000 | 84.3 | 0 | 6348148 | 126.96 | 0 | 100.0 / 100.0 (acc 84.3) | - | - |
+| hh_10_b16 | 1000 | 82.8 | 0 | 6348148 | 126.96 | 0 | 100.0 / 100.0 (acc 82.8) | - | - |
+
+Sat Oct 10 10:24:35 +0330 2026

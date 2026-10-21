@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Verilator / simulator build output
+obj_dir/
+part_*.txt
+run_*.log
+sim_*.log
+build.log
+build_verilator.log
+work/
+transcript
+*.wlf
+
+# Vivado / Vitis output (keep the summary reports that ship in vivado/out/)
+*.jou
+.Xil/
+*.dcp
+netlist_funcsim.v
+netlist_sim/
+Hardware/Version-IV/board/vivado/out/
+Hardware/Version-IV/board/sim/
+Hardware/Version-IV/board/data/*.bin
+
+# Datasets (downloaded automatically by torchvision)
+Train/datasets/
+
+# GUI
+App/SNN/logs/
+App/versions/
+*.pyproject.user
+
+# OS / editors
+.DS_Store
+.vscode/
+.dvt/

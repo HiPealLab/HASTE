@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "HASTE: A Hardware-Aware End-to-End ANN-to-SNN Toolchain With HDL Co-Simulation"
+type: software
+license: MIT
+repository-code: "https://github.com/HiPealLab/HASTE"
+authors:
+  - family-names: "Reyhani Showkatabad"
+    given-names: "Amirhosein"
+    affiliation: "University of Tehran"
+  - family-names: "Namazi"
+    given-names: "Mohammad"
+    affiliation: "University of Tehran"
+  - family-names: "Firoozi"
+    given-names: "Arian"
+    affiliation: "University of Tehran"
+  - family-names: "Abolghasemi Dehaqani"
+    given-names: "Mohammadreza"
+    affiliation: "University of Tehran"
+  - family-names: "Safari"
+    given-names: "Saeed"
+    affiliation: "University of Tehran"

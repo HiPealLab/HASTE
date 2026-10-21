@@ -1,0 +1,10 @@
+PySide6
+numpy
+spikingjelly
+matplotlib
+torch
+torchvision
+brian2
+scikit-learn
+Pillow
+# optional, only for the 'adam8b' optimizer (CUDA): bitsandbytes

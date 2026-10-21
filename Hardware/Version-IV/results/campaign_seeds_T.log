@@ -1,0 +1,249 @@
+Sat Oct 10 10:25:36 +0330 2026
+[verilator] lif_10: 1000 images in 1 s -> rtl_results_s1.txt
+[verilator] lif_64x10: 1000 images in 4 s -> rtl_results_s1.txt
+[verilator] lif_64x64x10: 1000 images in 6 s -> rtl_results_s1.txt
+[verilator] lif_64x10_b4: 1000 images in 4 s -> rtl_results_s1.txt
+[verilator] lif_64x10_b16: 1000 images in 4 s -> rtl_results_s1.txt
+[verilator] izh_10: 1000 images in 4 s -> rtl_results_s1.txt
+[verilator] izh_64x10: 1000 images in 22 s -> rtl_results_s1.txt
+[verilator] izh_64x64x10: 1000 images in 41 s -> rtl_results_s1.txt
+[verilator] izh_64x10_b4: 1000 images in 22 s -> rtl_results_s1.txt
+[verilator] izh_64x10_b16: 1000 images in 22 s -> rtl_results_s1.txt
+[verilator] hh_10: 1000 images in 136 s -> rtl_results_s1.txt
+[verilator] hh_10_b4: 1000 images in 137 s -> rtl_results_s1.txt
+[verilator] hh_10_b16: 1000 images in 135 s -> rtl_results_s1.txt
+wrote ./Hardware/Version-IV/build/lif_10/ref_fixed_s1.txt
+[ref fixed] lif_10 done
+wrote ./Hardware/Version-IV/build/lif_64x10/ref_fixed_s1.txt
+[ref fixed] lif_64x10 done
+wrote ./Hardware/Version-IV/build/lif_64x64x10/ref_fixed_s1.txt
+[ref fixed] lif_64x64x10 done
+wrote ./Hardware/Version-IV/build/lif_64x10_b4/ref_fixed_s1.txt
+[ref fixed] lif_64x10_b4 done
+wrote ./Hardware/Version-IV/build/lif_64x10_b16/ref_fixed_s1.txt
+[ref fixed] lif_64x10_b16 done
+wrote ./Hardware/Version-IV/build/izh_10/ref_fixed_s1.txt
+[ref fixed] izh_10 done
+wrote ./Hardware/Version-IV/build/izh_64x10/ref_fixed_s1.txt
+[ref fixed] izh_64x10 done
+wrote ./Hardware/Version-IV/build/izh_64x64x10/ref_fixed_s1.txt
+[ref fixed] izh_64x64x10 done
+wrote ./Hardware/Version-IV/build/izh_64x10_b4/ref_fixed_s1.txt
+[ref fixed] izh_64x10_b4 done
+wrote ./Hardware/Version-IV/build/izh_64x10_b16/ref_fixed_s1.txt
+[ref fixed] izh_64x10_b16 done
+wrote ./Hardware/Version-IV/build/hh_10/ref_fixed_s1.txt
+[ref fixed] hh_10 done
+wrote ./Hardware/Version-IV/build/hh_10_b4/ref_fixed_s1.txt
+[ref fixed] hh_10_b4 done
+wrote ./Hardware/Version-IV/build/hh_10_b16/ref_fixed_s1.txt
+[ref fixed] hh_10_b16 done
+[verilator] lif_10: 1000 images in 1 s -> rtl_results_s2.txt
+[verilator] lif_64x10: 1000 images in 4 s -> rtl_results_s2.txt
+[verilator] lif_64x64x10: 1000 images in 8 s -> rtl_results_s2.txt
+[verilator] lif_64x10_b4: 1000 images in 4 s -> rtl_results_s2.txt
+[verilator] lif_64x10_b16: 1000 images in 4 s -> rtl_results_s2.txt
+[verilator] izh_10: 1000 images in 4 s -> rtl_results_s2.txt
+[verilator] izh_64x10: 1000 images in 26 s -> rtl_results_s2.txt
+[verilator] izh_64x64x10: 1000 images in 46 s -> rtl_results_s2.txt
+[verilator] izh_64x10_b4: 1000 images in 26 s -> rtl_results_s2.txt
+[verilator] izh_64x10_b16: 1000 images in 25 s -> rtl_results_s2.txt
+[verilator] hh_10: 1000 images in 151 s -> rtl_results_s2.txt
+[verilator] hh_10_b4: 1000 images in 154 s -> rtl_results_s2.txt
+[verilator] hh_10_b16: 1000 images in 152 s -> rtl_results_s2.txt
+wrote ./Hardware/Version-IV/build/lif_10/ref_fixed_s2.txt
+[ref fixed] lif_10 done
+wrote ./Hardware/Version-IV/build/lif_64x10/ref_fixed_s2.txt
+[ref fixed] lif_64x10 done
+wrote ./Hardware/Version-IV/build/lif_64x64x10/ref_fixed_s2.txt
+[ref fixed] lif_64x64x10 done
+wrote ./Hardware/Version-IV/build/lif_64x10_b4/ref_fixed_s2.txt
+[ref fixed] lif_64x10_b4 done
+wrote ./Hardware/Version-IV/build/lif_64x10_b16/ref_fixed_s2.txt
+[ref fixed] lif_64x10_b16 done
+wrote ./Hardware/Version-IV/build/izh_10/ref_fixed_s2.txt
+[ref fixed] izh_10 done
+wrote ./Hardware/Version-IV/build/izh_64x10/ref_fixed_s2.txt
+[ref fixed] izh_64x10 done
+wrote ./Hardware/Version-IV/build/izh_64x64x10/ref_fixed_s2.txt
+[ref fixed] izh_64x64x10 done
+wrote ./Hardware/Version-IV/build/izh_64x10_b4/ref_fixed_s2.txt
+[ref fixed] izh_64x10_b4 done
+wrote ./Hardware/Version-IV/build/izh_64x10_b16/ref_fixed_s2.txt
+[ref fixed] izh_64x10_b16 done
+wrote ./Hardware/Version-IV/build/hh_10/ref_fixed_s2.txt
+[ref fixed] hh_10 done
+wrote ./Hardware/Version-IV/build/hh_10_b4/ref_fixed_s2.txt
+[ref fixed] hh_10_b4 done
+wrote ./Hardware/Version-IV/build/hh_10_b16/ref_fixed_s2.txt
+[ref fixed] hh_10_b16 done
+[verilator] lif_10: 1000 images in 1 s -> rtl_results_s3.txt
+[verilator] lif_64x10: 1000 images in 4 s -> rtl_results_s3.txt
+[verilator] lif_64x64x10: 1000 images in 8 s -> rtl_results_s3.txt
+[verilator] lif_64x10_b4: 1000 images in 4 s -> rtl_results_s3.txt
+[verilator] lif_64x10_b16: 1000 images in 4 s -> rtl_results_s3.txt
+[verilator] izh_10: 1000 images in 4 s -> rtl_results_s3.txt
+[verilator] izh_64x10: 1000 images in 25 s -> rtl_results_s3.txt
+[verilator] izh_64x64x10: 1000 images in 47 s -> rtl_results_s3.txt
+[verilator] izh_64x10_b4: 1000 images in 25 s -> rtl_results_s3.txt
+[verilator] izh_64x10_b16: 1000 images in 25 s -> rtl_results_s3.txt
+[verilator] hh_10: 1000 images in 147 s -> rtl_results_s3.txt
+[verilator] hh_10_b4: 1000 images in 145 s -> rtl_results_s3.txt
+[verilator] hh_10_b16: 1000 images in 143 s -> rtl_results_s3.txt
+wrote ./Hardware/Version-IV/build/lif_10/ref_fixed_s3.txt
+[ref fixed] lif_10 done
+wrote ./Hardware/Version-IV/build/lif_64x10/ref_fixed_s3.txt
+[ref fixed] lif_64x10 done
+wrote ./Hardware/Version-IV/build/lif_64x64x10/ref_fixed_s3.txt
+[ref fixed] lif_64x64x10 done
+wrote ./Hardware/Version-IV/build/lif_64x10_b4/ref_fixed_s3.txt
+[ref fixed] lif_64x10_b4 done
+wrote ./Hardware/Version-IV/build/lif_64x10_b16/ref_fixed_s3.txt
+[ref fixed] lif_64x10_b16 done
+wrote ./Hardware/Version-IV/build/izh_10/ref_fixed_s3.txt
+[ref fixed] izh_10 done
+wrote ./Hardware/Version-IV/build/izh_64x10/ref_fixed_s3.txt
+[ref fixed] izh_64x10 done
+wrote ./Hardware/Version-IV/build/izh_64x64x10/ref_fixed_s3.txt
+[ref fixed] izh_64x64x10 done
+wrote ./Hardware/Version-IV/build/izh_64x10_b4/ref_fixed_s3.txt
+[ref fixed] izh_64x10_b4 done
+wrote ./Hardware/Version-IV/build/izh_64x10_b16/ref_fixed_s3.txt
+[ref fixed] izh_64x10_b16 done
+wrote ./Hardware/Version-IV/build/hh_10/ref_fixed_s3.txt
+[ref fixed] hh_10 done
+wrote ./Hardware/Version-IV/build/hh_10_b4/ref_fixed_s3.txt
+[ref fixed] hh_10_b4 done
+wrote ./Hardware/Version-IV/build/hh_10_b16/ref_fixed_s3.txt
+[ref fixed] hh_10_b16 done
+[verilator] lif_10: 1000 images in 1 s -> rtl_results_s4.txt
+[verilator] lif_64x10: 1000 images in 4 s -> rtl_results_s4.txt
+[verilator] lif_64x64x10: 1000 images in 7 s -> rtl_results_s4.txt
+[verilator] lif_64x10_b4: 1000 images in 4 s -> rtl_results_s4.txt
+[verilator] lif_64x10_b16: 1000 images in 4 s -> rtl_results_s4.txt
+[verilator] izh_10: 1000 images in 4 s -> rtl_results_s4.txt
+[verilator] izh_64x10: 1000 images in 25 s -> rtl_results_s4.txt
+[verilator] izh_64x64x10: 1000 images in 47 s -> rtl_results_s4.txt
+[verilator] izh_64x10_b4: 1000 images in 25 s -> rtl_results_s4.txt
+[verilator] izh_64x10_b16: 1000 images in 25 s -> rtl_results_s4.txt
+[verilator] hh_10: 1000 images in 145 s -> rtl_results_s4.txt
+[verilator] hh_10_b4: 1000 images in 147 s -> rtl_results_s4.txt
+[verilator] hh_10_b16: 1000 images in 144 s -> rtl_results_s4.txt
+wrote ./Hardware/Version-IV/build/lif_10/ref_fixed_s4.txt
+[ref fixed] lif_10 done
+wrote ./Hardware/Version-IV/build/lif_64x10/ref_fixed_s4.txt
+[ref fixed] lif_64x10 done
+wrote ./Hardware/Version-IV/build/lif_64x64x10/ref_fixed_s4.txt
+[ref fixed] lif_64x64x10 done
+wrote ./Hardware/Version-IV/build/lif_64x10_b4/ref_fixed_s4.txt
+[ref fixed] lif_64x10_b4 done
+wrote ./Hardware/Version-IV/build/lif_64x10_b16/ref_fixed_s4.txt
+[ref fixed] lif_64x10_b16 done
+wrote ./Hardware/Version-IV/build/izh_10/ref_fixed_s4.txt
+[ref fixed] izh_10 done
+wrote ./Hardware/Version-IV/build/izh_64x10/ref_fixed_s4.txt
+[ref fixed] izh_64x10 done
+wrote ./Hardware/Version-IV/build/izh_64x64x10/ref_fixed_s4.txt
+[ref fixed] izh_64x64x10 done
+wrote ./Hardware/Version-IV/build/izh_64x10_b4/ref_fixed_s4.txt
+[ref fixed] izh_64x10_b4 done
+wrote ./Hardware/Version-IV/build/izh_64x10_b16/ref_fixed_s4.txt
+[ref fixed] izh_64x10_b16 done
+wrote ./Hardware/Version-IV/build/hh_10/ref_fixed_s4.txt
+[ref fixed] hh_10 done
+wrote ./Hardware/Version-IV/build/hh_10_b4/ref_fixed_s4.txt
+[ref fixed] hh_10_b4 done
+wrote ./Hardware/Version-IV/build/hh_10_b16/ref_fixed_s4.txt
+[ref fixed] hh_10_b16 done
+[verilator] lif_10: 1000 images in 1 s -> rtl_results_s5.txt
+[verilator] lif_64x10: 1000 images in 4 s -> rtl_results_s5.txt
+[verilator] lif_64x64x10: 1000 images in 7 s -> rtl_results_s5.txt
+[verilator] lif_64x10_b4: 1000 images in 4 s -> rtl_results_s5.txt
+[verilator] lif_64x10_b16: 1000 images in 4 s -> rtl_results_s5.txt
+[verilator] izh_10: 1000 images in 4 s -> rtl_results_s5.txt
+[verilator] izh_64x10: 1000 images in 24 s -> rtl_results_s5.txt
+[verilator] izh_64x64x10: 1000 images in 46 s -> rtl_results_s5.txt
+[verilator] izh_64x10_b4: 1000 images in 25 s -> rtl_results_s5.txt
+[verilator] izh_64x10_b16: 1000 images in 25 s -> rtl_results_s5.txt
+[verilator] hh_10: 1000 images in 145 s -> rtl_results_s5.txt
+[verilator] hh_10_b4: 1000 images in 147 s -> rtl_results_s5.txt
+[verilator] hh_10_b16: 1000 images in 144 s -> rtl_results_s5.txt
+wrote ./Hardware/Version-IV/build/lif_10/ref_fixed_s5.txt
+[ref fixed] lif_10 done
+wrote ./Hardware/Version-IV/build/lif_64x10/ref_fixed_s5.txt
+[ref fixed] lif_64x10 done
+wrote ./Hardware/Version-IV/build/lif_64x64x10/ref_fixed_s5.txt
+[ref fixed] lif_64x64x10 done
+wrote ./Hardware/Version-IV/build/lif_64x10_b4/ref_fixed_s5.txt
+[ref fixed] lif_64x10_b4 done
+wrote ./Hardware/Version-IV/build/lif_64x10_b16/ref_fixed_s5.txt
+[ref fixed] lif_64x10_b16 done
+wrote ./Hardware/Version-IV/build/izh_10/ref_fixed_s5.txt
+[ref fixed] izh_10 done
+wrote ./Hardware/Version-IV/build/izh_64x10/ref_fixed_s5.txt
+[ref fixed] izh_64x10 done
+wrote ./Hardware/Version-IV/build/izh_64x64x10/ref_fixed_s5.txt
+[ref fixed] izh_64x64x10 done
+wrote ./Hardware/Version-IV/build/izh_64x10_b4/ref_fixed_s5.txt
+[ref fixed] izh_64x10_b4 done
+wrote ./Hardware/Version-IV/build/izh_64x10_b16/ref_fixed_s5.txt
+[ref fixed] izh_64x10_b16 done
+wrote ./Hardware/Version-IV/build/hh_10/ref_fixed_s5.txt
+[ref fixed] hh_10 done
+wrote ./Hardware/Version-IV/build/hh_10_b4/ref_fixed_s5.txt
+[ref fixed] hh_10_b4 done
+wrote ./Hardware/Version-IV/build/hh_10_b16/ref_fixed_s5.txt
+[ref fixed] hh_10_b16 done
+[verilator] lif_10: 1000 images in 2 s -> rtl_results_s1_T200_T20.txt
+[verilator] lif_64x10: 1000 images in 2 s -> rtl_results_s1_T200_T20.txt
+[verilator] lif_64x64x10: 1000 images in 3 s -> rtl_results_s1_T200_T20.txt
+[verilator] izh_10: 1000 images in 2 s -> rtl_results_s1_T200_T20.txt
+[verilator] izh_64x10: 1000 images in 7 s -> rtl_results_s1_T200_T20.txt
+[verilator] izh_64x64x10: 1000 images in 11 s -> rtl_results_s1_T200_T20.txt
+[verilator] hh_10: 1000 images in 34 s -> rtl_results_s1_T200_T20.txt
+wrote ./Hardware/Version-IV/build/lif_64x10/ref_fixed_s1_T200_T20.txt
+[ref fixed] lif_64x10 done
+wrote ./Hardware/Version-IV/build/izh_64x10/ref_fixed_s1_T200_T20.txt
+[ref fixed] izh_64x10 done
+wrote ./Hardware/Version-IV/build/hh_10/ref_fixed_s1_T200_T20.txt
+[ref fixed] hh_10 done
+[verilator] lif_10: 1000 images in 2 s -> rtl_results_s1_T200_T50.txt
+[verilator] lif_64x10: 1000 images in 4 s -> rtl_results_s1_T200_T50.txt
+[verilator] lif_64x64x10: 1000 images in 5 s -> rtl_results_s1_T200_T50.txt
+[verilator] izh_10: 1000 images in 4 s -> rtl_results_s1_T200_T50.txt
+[verilator] izh_64x10: 1000 images in 14 s -> rtl_results_s1_T200_T50.txt
+[verilator] izh_64x64x10: 1000 images in 25 s -> rtl_results_s1_T200_T50.txt
+[verilator] hh_10: 1000 images in 78 s -> rtl_results_s1_T200_T50.txt
+wrote ./Hardware/Version-IV/build/lif_64x10/ref_fixed_s1_T200_T50.txt
+[ref fixed] lif_64x10 done
+wrote ./Hardware/Version-IV/build/izh_64x10/ref_fixed_s1_T200_T50.txt
+[ref fixed] izh_64x10 done
+wrote ./Hardware/Version-IV/build/hh_10/ref_fixed_s1_T200_T50.txt
+[ref fixed] hh_10 done
+[verilator] lif_10: 1000 images in 2 s -> rtl_results_s1_T200_T100.txt
+[verilator] lif_64x10: 1000 images in 5 s -> rtl_results_s1_T200_T100.txt
+[verilator] lif_64x64x10: 1000 images in 9 s -> rtl_results_s1_T200_T100.txt
+[verilator] izh_10: 1000 images in 5 s -> rtl_results_s1_T200_T100.txt
+[verilator] izh_64x10: 1000 images in 26 s -> rtl_results_s1_T200_T100.txt
+[verilator] izh_64x64x10: 1000 images in 47 s -> rtl_results_s1_T200_T100.txt
+[verilator] hh_10: 1000 images in 155 s -> rtl_results_s1_T200_T100.txt
+wrote ./Hardware/Version-IV/build/lif_64x10/ref_fixed_s1_T200_T100.txt
+[ref fixed] lif_64x10 done
+wrote ./Hardware/Version-IV/build/izh_64x10/ref_fixed_s1_T200_T100.txt
+[ref fixed] izh_64x10 done
+wrote ./Hardware/Version-IV/build/hh_10/ref_fixed_s1_T200_T100.txt
+[ref fixed] hh_10 done
+[verilator] lif_10: 1000 images in 3 s -> rtl_results_s1_T200_T200.txt
+[verilator] lif_64x10: 1000 images in 8 s -> rtl_results_s1_T200_T200.txt
+[verilator] lif_64x64x10: 1000 images in 14 s -> rtl_results_s1_T200_T200.txt
+[verilator] izh_10: 1000 images in 8 s -> rtl_results_s1_T200_T200.txt
+[verilator] izh_64x10: 1000 images in 47 s -> rtl_results_s1_T200_T200.txt
+[verilator] izh_64x64x10: 1000 images in 84 s -> rtl_results_s1_T200_T200.txt
+[verilator] hh_10: 1000 images in 273 s -> rtl_results_s1_T200_T200.txt
+wrote ./Hardware/Version-IV/build/lif_64x10/ref_fixed_s1_T200_T200.txt
+[ref fixed] lif_64x10 done
+wrote ./Hardware/Version-IV/build/izh_64x10/ref_fixed_s1_T200_T200.txt
+[ref fixed] izh_64x10 done
+wrote ./Hardware/Version-IV/build/hh_10/ref_fixed_s1_T200_T200.txt
+[ref fixed] hh_10 done
+Sat Oct 10 14:00:08 +0330 2026

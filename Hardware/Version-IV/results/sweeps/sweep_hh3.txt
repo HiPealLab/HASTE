@@ -1,0 +1,23 @@
+## hh 64x10 (96 img, data_val) hidden G_SCALE x output G_SCALE_OUT
+G_SCALE=5 G_SCALE_OUT=28                 acc=15.6% ties=42 nospike=0 hid/img=26 out/img=20.5  float acc=13.5% agree=35.4%
+G_SCALE=5 G_SCALE_OUT=40                 acc=16.7% ties=46 nospike=0 hid/img=26 out/img=36.7  float acc=13.5% agree=34.4%
+G_SCALE=5 G_SCALE_OUT=56                 acc=20.8% ties=47 nospike=0 hid/img=26 out/img=50.6  float acc=16.7% agree=22.9%
+G_SCALE=7 G_SCALE_OUT=28                 acc=18.8% ties=45 nospike=0 hid/img=116 out/img=65.6  float acc=22.9% agree=30.2%
+G_SCALE=7 G_SCALE_OUT=40                 acc=25.0% ties=39 nospike=0 hid/img=116 out/img=84.4  float acc=20.8% agree=38.5%
+G_SCALE=7 G_SCALE_OUT=56                 acc=27.1% ties=39 nospike=0 hid/img=116 out/img=98.3  float acc=28.1% agree=45.8%
+G_SCALE=10 G_SCALE_OUT=28                acc=21.9% ties=46 nospike=0 hid/img=301 out/img=98.5  float acc=26.0% agree=40.6%
+G_SCALE=10 G_SCALE_OUT=40                acc=30.2% ties=37 nospike=0 hid/img=301 out/img=111.1  float acc=20.8% agree=34.4%
+G_SCALE=10 G_SCALE_OUT=56                acc=35.4% ties=39 nospike=0 hid/img=301 out/img=122.1  float acc=21.9% agree=37.5%
+G_SCALE=14 G_SCALE_OUT=28                acc=33.3% ties=39 nospike=0 hid/img=506 out/img=111.0  float acc=21.9% agree=42.7%
+G_SCALE=14 G_SCALE_OUT=40                acc=25.0% ties=38 nospike=0 hid/img=506 out/img=122.1  float acc=19.8% agree=42.7%
+G_SCALE=14 G_SCALE_OUT=56                acc=28.1% ties=34 nospike=0 hid/img=506 out/img=132.2  float acc=26.0% agree=49.0%
+## hh 64x64x10 (96 img, data_val)
+G_SCALE=7 G_SCALE_OUT=28                 acc=16.7% ties=43 nospike=1 hid/img=214 out/img=40.5  float acc=15.6% agree=25.0%
+G_SCALE=7 G_SCALE_OUT=40                 acc=14.6% ties=49 nospike=1 hid/img=214 out/img=52.8  float acc=9.4% agree=24.0%
+G_SCALE=7 G_SCALE_OUT=56                 acc=17.7% ties=45 nospike=1 hid/img=214 out/img=63.4  float acc=10.4% agree=12.5%
+G_SCALE=10 G_SCALE_OUT=28                acc=17.7% ties=34 nospike=0 hid/img=727 out/img=103.1  float acc=18.8% agree=21.9%
+G_SCALE=10 G_SCALE_OUT=40                acc=22.9% ties=33 nospike=0 hid/img=727 out/img=114.7  float acc=12.5% agree=21.9%
+G_SCALE=10 G_SCALE_OUT=56                acc=14.6% ties=31 nospike=0 hid/img=727 out/img=125.3  float acc=12.5% agree=32.3%
+G_SCALE=14 G_SCALE_OUT=28                acc=12.5% ties=45 nospike=0 hid/img=1175 out/img=120.9  float acc=15.6% agree=31.2%
+G_SCALE=14 G_SCALE_OUT=40                acc=11.5% ties=42 nospike=0 hid/img=1175 out/img=130.9  float acc=13.5% agree=41.7%
+G_SCALE=14 G_SCALE_OUT=56                acc=17.7% ties=21 nospike=0 hid/img=1175 out/img=141.4  float acc=12.5% agree=37.5%

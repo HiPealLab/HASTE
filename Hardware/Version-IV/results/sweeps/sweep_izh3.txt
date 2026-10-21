@@ -1,0 +1,18 @@
+## izh 64x10
+A_Q8=5 D_MV=2 G_SCALE=40.0 VMIN_MV=-150  acc=89.7% ties=9 nospike=0 hid/img=969 out/img=29.5  float acc=90.3% agree=98.3%
+A_Q8=5 D_MV=2 G_SCALE=80.0 VMIN_MV=-150  acc=88.7% ties=5 nospike=0 hid/img=1678 out/img=92.1  float acc=89.3% agree=99.3%
+A_Q8=5 D_MV=8 G_SCALE=40.0 VMIN_MV=-150  acc=81.3% ties=35 nospike=0 hid/img=519 out/img=17.4  float acc=83.0% agree=91.7%
+A_Q8=5 D_MV=8 G_SCALE=80.0 VMIN_MV=-150  acc=84.3% ties=9 nospike=0 hid/img=1000 out/img=59.4  float acc=83.0% agree=95.0%
+A_Q8=26 D_MV=2 G_SCALE=40.0 VMIN_MV=-150 acc=90.7% ties=7 nospike=0 hid/img=1061 out/img=32.7  float acc=90.0% agree=97.0%
+A_Q8=26 D_MV=2 G_SCALE=80.0 VMIN_MV=-150 acc=90.3% ties=0 nospike=0 hid/img=1820 out/img=100.9  float acc=90.0% agree=99.0%
+A_Q8=26 D_MV=8 G_SCALE=40.0 VMIN_MV=-150 acc=89.0% ties=12 nospike=0 hid/img=723 out/img=22.8  float acc=86.7% agree=94.7%
+A_Q8=26 D_MV=8 G_SCALE=80.0 VMIN_MV=-150 acc=87.3% ties=7 nospike=0 hid/img=1321 out/img=75.7  float acc=87.0% agree=96.3%
+## izh 64x64x10
+A_Q8=5 D_MV=2 G_SCALE=40.0 VMIN_MV=-150  acc=86.7% ties=5 nospike=0 hid/img=2240 out/img=46.6  float acc=84.7% agree=94.7%
+A_Q8=5 D_MV=2 G_SCALE=80.0 VMIN_MV=-150  acc=81.0% ties=1 nospike=0 hid/img=5112 out/img=258.8  float acc=81.3% agree=95.0%
+A_Q8=5 D_MV=8 G_SCALE=40.0 VMIN_MV=-150  acc=68.0% ties=81 nospike=0 hid/img=986 out/img=22.7  float acc=69.0% agree=76.3%
+A_Q8=5 D_MV=8 G_SCALE=80.0 VMIN_MV=-150  acc=65.0% ties=11 nospike=0 hid/img=2484 out/img=120.5  float acc=62.7% agree=87.7%
+A_Q8=26 D_MV=2 G_SCALE=40.0 VMIN_MV=-150 acc=88.3% ties=3 nospike=0 hid/img=2554 out/img=51.9  float acc=88.0% agree=96.0%
+A_Q8=26 D_MV=2 G_SCALE=80.0 VMIN_MV=-150 acc=82.3% ties=0 nospike=0 hid/img=5798 out/img=296.8  float acc=81.3% agree=97.7%
+A_Q8=26 D_MV=8 G_SCALE=40.0 VMIN_MV=-150 acc=77.7% ties=30 nospike=0 hid/img=1520 out/img=36.8  float acc=77.7% agree=89.7%
+A_Q8=26 D_MV=8 G_SCALE=80.0 VMIN_MV=-150 acc=72.0% ties=4 nospike=0 hid/img=3666 out/img=188.5  float acc=70.0% agree=95.0%

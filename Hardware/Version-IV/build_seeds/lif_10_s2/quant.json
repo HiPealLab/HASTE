@@ -1,0 +1,40 @@
+{
+ "model": "lif",
+ "topology": "weights-10-s2",
+ "n_in": 64,
+ "sizes": [
+  10
+ ],
+ "fanins": [
+  64
+ ],
+ "n_neu": 10,
+ "fanin": 64,
+ "nw": 8,
+ "starts": [
+  0
+ ],
+ "ends": [
+  9
+ ],
+ "gains_q24": [
+  3698914
+ ],
+ "alphas": [
+  0.03625420322568398
+ ],
+ "G_layers": [
+  6.081293238536548
+ ],
+ "cfg": {
+  "NORM": "layer",
+  "G_SCALE": 28.0,
+  "SUBSTEPS": 2,
+  "THRESH_MV": 50.0,
+  "LEAK_SHIFT": 6,
+  "REFR": 0,
+  "WEIGHT_BITS": 8
+ },
+ "weight_bits": 8,
+ "weight_rounding": "round-half-even, clip +-(2^(B-1)-1)"
+}

@@ -1,0 +1,46 @@
+{
+ "model": "hh",
+ "topology": "weights-10-s1",
+ "n_in": 64,
+ "sizes": [
+  10
+ ],
+ "fanins": [
+  64
+ ],
+ "n_neu": 10,
+ "fanin": 64,
+ "nw": 8,
+ "starts": [
+  0
+ ],
+ "ends": [
+  9
+ ],
+ "gains_q24": [
+  3698914
+ ],
+ "alphas": [
+  0.03655379588209738
+ ],
+ "G_layers": [
+  6.03145133424736
+ ],
+ "cfg": {
+  "NORM": "layer",
+  "G_SCALE": 28.0,
+  "SUBSTEPS": 300,
+  "UPPER_MV": 80,
+  "LOWER_MV": 0,
+  "GK_Q8": 9216,
+  "GNA_Q8": 30720,
+  "GL_Q8": 76,
+  "VMIN_MV": -72,
+  "WEIGHT_BITS": 8,
+  "N_INIT": 4987,
+  "M_INIT": 849,
+  "H_INIT": 9040
+ },
+ "weight_bits": 8,
+ "weight_rounding": "round-half-even, clip +-(2^(B-1)-1)"
+}

@@ -1,0 +1,32 @@
+epoch 1  MNIST-test(8x8) acc 86.41%
+epoch 2  MNIST-test(8x8) acc 88.93%
+epoch 3  MNIST-test(8x8) acc 90.35%
+epoch 4  MNIST-test(8x8) acc 90.82%
+epoch 5  MNIST-test(8x8) acc 91.50%
+epoch 6  MNIST-test(8x8) acc 91.74%
+epoch 7  MNIST-test(8x8) acc 92.40%
+epoch 8  MNIST-test(8x8) acc 92.83%
+epoch 9  MNIST-test(8x8) acc 93.31%
+epoch 10  MNIST-test(8x8) acc 93.49%
+epoch 11  MNIST-test(8x8) acc 93.70%
+epoch 12  MNIST-test(8x8) acc 93.91%
+epoch 13  MNIST-test(8x8) acc 94.05%
+epoch 14  MNIST-test(8x8) acc 94.11%
+epoch 15  MNIST-test(8x8) acc 94.25%
+epoch 16  MNIST-test(8x8) acc 94.40%
+epoch 17  MNIST-test(8x8) acc 94.56%
+epoch 18  MNIST-test(8x8) acc 94.63%
+epoch 19  MNIST-test(8x8) acc 94.80%
+epoch 20  MNIST-test(8x8) acc 94.80%
+epoch 21  MNIST-test(8x8) acc 94.78%
+epoch 22  MNIST-test(8x8) acc 94.83%
+epoch 23  MNIST-test(8x8) acc 94.88%
+epoch 24  MNIST-test(8x8) acc 94.92%
+epoch 25  MNIST-test(8x8) acc 94.91%
+epoch 26  MNIST-test(8x8) acc 95.06%
+epoch 27  MNIST-test(8x8) acc 95.00%
+epoch 28  MNIST-test(8x8) acc 95.01%
+epoch 29  MNIST-test(8x8) acc 95.01%
+epoch 30  MNIST-test(8x8) acc 95.00%
+saved weights-64x10.npz  topology 64x10
+ANN acc: MNIST test (8x8) 95.00%, 1000 hardware images (rate input) 93.00%

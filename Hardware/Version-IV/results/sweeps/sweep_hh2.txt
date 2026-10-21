@@ -1,0 +1,8 @@
+## hh 64x10 (96 img)
+G_SCALE=28.0                             acc=29.2% ties=39 nospike=0 hid/img=843 out/img=120.2  float acc=21.9% agree=44.8%
+G_SCALE=40.0                             acc=30.2% ties=33 nospike=0 hid/img=990 out/img=132.9  float acc=34.4% agree=62.5%
+G_SCALE=56.0                             acc=26.0% ties=17 nospike=0 hid/img=1135 out/img=150.8  float acc=31.2% agree=65.6%
+## hh 64x64x10 (96 img)
+G_SCALE=28.0                             acc=14.6% ties=44 nospike=0 hid/img=1843 out/img=141.6  float acc=16.7% agree=37.5%
+G_SCALE=40.0                             acc=15.6% ties=41 nospike=0 hid/img=2171 out/img=162.2  float acc=19.8% agree=32.3%
+G_SCALE=56.0                             acc=20.8% ties=32 nospike=0 hid/img=2516 out/img=187.4  float acc=18.8% agree=43.8%

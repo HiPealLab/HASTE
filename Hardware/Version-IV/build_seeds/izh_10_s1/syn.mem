@@ -1,0 +1,11 @@
+// synMem: int8 weights, addr = neuron*64 + slot
+03 e3 d5 d5 c5 b9 c6 df d9 dc da f8 21 0e e6 b3 d8 d6 de 10 24 2b 11 ca cd f9 15 ff 9b fa 38 27 d3 0f 38 b5 93 01 29 16 c4 03 34 e5 de 15 fc eb c3 fc 1a 31 1a e4 da e1 cc c3 c9 da ca b7 bd e1
+03 ee d6 04 dd ad ef db 00 e1 c4 09 f3 03 21 d3 eb d4 ad d5 33 da cf a1 f6 e8 9e da 62 a7 b7 b8 ee c5 93 2a 37 87 cd d9 c3 c4 db 40 04 ae e9 ee e9 13 0f dd 15 fc e8 f3 e5 0a c5 84 d1 f3 e6 fa
+f0 07 16 24 1f e8 c0 f4 02 20 2f 35 30 08 ce ae 04 13 09 f4 ff 08 e4 a6 e6 ab 9d 98 c2 f7 d5 ec 08 fc f3 1b 10 f2 eb 40 12 33 30 31 17 18 3a 57 0d 1c 18 e9 d7 27 33 37 dc c1 b1 c3 cf d5 f8 0a
+0d 14 13 13 04 f0 cf b2 2a 38 3a 2c 18 f5 c8 a2 25 35 f0 cf 1d 1d ef a2 0c d3 a5 fd 33 fa c8 b4 37 f0 cf e9 f3 21 fb db 57 41 d0 a1 f0 39 11 c7 46 44 2b 0d 13 0d de b8 28 37 34 24 01 eb e0 db
+f6 d7 9f 91 ae b7 da f3 01 08 f3 c2 ba 02 34 1d d8 e0 f6 cd a3 07 f3 cf d0 f0 40 24 00 21 cf c4 e9 29 4c 36 47 39 03 e6 c5 c1 b5 e2 1f db c1 bb c2 9f ad d1 ee 05 f3 e5 d5 cd ce b6 b9 cf e4 f1
+f3 db d7 d6 ea ef 05 12 b7 cf f5 f7 f2 15 33 52 a3 cd 0a 1b ed ec 46 7f db 02 3c 53 e2 a6 a8 2e f7 dd e1 ee d2 03 ec d9 f1 2d fe d2 f8 1c 1b 05 e0 ff 25 26 16 1b 1a 05 f5 d2 e8 0b ff e8 fd 06
+09 26 46 4f 51 69 5f 27 ea ed fd e2 10 24 11 fd cd de dc da b7 97 b1 ab ca 00 11 23 ce d7 2e 14 ac ea 23 25 ef 16 2e fe ac b3 27 46 27 30 08 c5 b9 aa c6 fd fe e0 c9 c3 d7 b2 9a 94 91 9b a8 d2
+f8 c7 ad b0 b9 ba c9 db 18 1c 05 b5 9f aa c4 b2 35 36 38 36 40 34 01 ba 43 32 07 bf 10 38 04 cc 27 00 c3 94 ff 2a 02 f7 e1 ca c1 fd 12 cc bf ce d8 e5 e8 03 e8 bf aa c0 11 39 44 3b 4c 28 f8 df
+eb ce bf a7 a7 9e b0 e5 c2 c3 dd 07 2a 16 fc ef dc ff 2a 11 cc 04 25 f2 ef 11 fb 1c f6 0a 2d 14 c0 c3 c4 33 07 c7 ce e2 b6 d4 27 00 cb f0 f2 dc b8 e4 02 15 22 1c 00 d0 bb b3 d2 10 1a 03 f5 e3
+f0 d6 b4 9a 91 95 9f cb af 9a a8 d8 03 d7 a3 91 aa be f4 2b 25 10 ce 93 dd 27 3a ee fe 41 14 b0 01 12 1f 0c 26 14 bd a2 d7 cb c4 c6 f9 cf c9 c8 d8 d7 d0 dd d2 f4 10 0b fd 18 33 34 26 44 3e 18

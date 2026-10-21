@@ -1,0 +1,14 @@
+{
+    "files": [
+        "networkGraphics.py",
+        "main.py",
+        "mainwindow.ui",
+        "uiCtrl.py",
+        "utils.py",
+        "inference.py",
+        "brian2Sim.py",
+        "hardwareController.py",
+        "inferenceWorker.py",
+        "snnTrainer.py"
+    ]
+}

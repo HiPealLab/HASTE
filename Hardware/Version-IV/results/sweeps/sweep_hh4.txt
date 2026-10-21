@@ -1,0 +1,7 @@
+## hh 64x10 (96 img, data_val) leak GL_Q8 (default 76)
+G_SCALE=10 G_SCALE_OUT=56 GL_Q8=152      acc=26.0% ties=33 nospike=0 hid/img=285 out/img=131.6  float acc=19.8% agree=37.5%
+G_SCALE=10 G_SCALE_OUT=56 GL_Q8=304      acc=21.9% ties=45 nospike=0 hid/img=198 out/img=109.4  float acc=14.6% agree=27.1%
+G_SCALE=10 G_SCALE_OUT=56 GL_Q8=608      acc=10.4% ties=35 nospike=0 hid/img=88 out/img=26.4  float acc=11.5% agree=34.4%
+G_SCALE=28 G_SCALE_OUT=56 GL_Q8=152      acc=24.0% ties=26 nospike=0 hid/img=861 out/img=168.0  float acc=19.8% agree=50.0%
+G_SCALE=28 G_SCALE_OUT=56 GL_Q8=304      acc=26.0% ties=35 nospike=0 hid/img=814 out/img=171.9  float acc=18.8% agree=34.4%
+G_SCALE=28 G_SCALE_OUT=56 GL_Q8=608      acc=15.6% ties=36 nospike=0 hid/img=489 out/img=135.5  float acc=17.7% agree=34.4%

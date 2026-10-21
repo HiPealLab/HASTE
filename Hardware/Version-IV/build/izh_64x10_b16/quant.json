@@ -1,0 +1,52 @@
+{
+ "model": "izh",
+ "topology": "64x10",
+ "n_in": 64,
+ "sizes": [
+  64,
+  10
+ ],
+ "fanins": [
+  64,
+  64
+ ],
+ "n_neu": 74,
+ "fanin": 64,
+ "nw": 8,
+ "starts": [
+  0,
+  64
+ ],
+ "ends": [
+  63,
+  73
+ ],
+ "gains_q24": [
+  14336,
+  14336
+ ],
+ "alphas": [
+  7.468417787564978e-05,
+  9.240497874686828e-05
+ ],
+ "G_layers": [
+  11.441757673903924,
+  9.247534893858543
+ ],
+ "cfg": {
+  "NORM": "layer",
+  "G_SCALE": 28.0,
+  "SUBSTEPS": 32,
+  "A_Q8": 26,
+  "B_Q8": 50,
+  "C_MV": -65,
+  "D_MV": 2,
+  "VPEAK_MV": 30,
+  "DT_SHIFT": 7,
+  "VMIN_MV": -150,
+  "WEIGHT_BITS": 16,
+  "U_INIT": -832000
+ },
+ "weight_bits": 16,
+ "weight_rounding": "round-half-even, clip +-(2^(B-1)-1)"
+}

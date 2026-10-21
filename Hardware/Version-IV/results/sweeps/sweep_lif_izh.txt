@@ -1,0 +1,66 @@
+## lif 10
+G_SCALE=14.0 LEAK_SHIFT=4                acc=89.0% ties=4 nospike=0 hid/img=0 out/img=22.7  float acc=89.0% agree=100.0%
+G_SCALE=14.0 LEAK_SHIFT=6                acc=89.0% ties=7 nospike=0 hid/img=0 out/img=29.3  float acc=89.0% agree=100.0%
+G_SCALE=14.0 LEAK_SHIFT=8                acc=88.7% ties=4 nospike=0 hid/img=0 out/img=30.7  float acc=89.7% agree=99.0%
+G_SCALE=20.0 LEAK_SHIFT=4                acc=89.3% ties=5 nospike=0 hid/img=0 out/img=38.5  float acc=89.3% agree=99.7%
+G_SCALE=20.0 LEAK_SHIFT=6                acc=90.0% ties=3 nospike=0 hid/img=0 out/img=43.3  float acc=89.3% agree=99.3%
+G_SCALE=20.0 LEAK_SHIFT=8                acc=89.0% ties=6 nospike=0 hid/img=0 out/img=44.1  float acc=89.0% agree=100.0%
+G_SCALE=28.0 LEAK_SHIFT=4                acc=89.7% ties=3 nospike=0 hid/img=0 out/img=59.6  float acc=89.7% agree=100.0%
+G_SCALE=28.0 LEAK_SHIFT=6                acc=89.0% ties=1 nospike=0 hid/img=0 out/img=61.3  float acc=88.7% agree=99.7%
+G_SCALE=28.0 LEAK_SHIFT=8                acc=88.7% ties=2 nospike=0 hid/img=0 out/img=61.3  float acc=88.7% agree=100.0%
+G_SCALE=40.0 LEAK_SHIFT=4                acc=89.3% ties=2 nospike=0 hid/img=0 out/img=89.9  float acc=89.7% agree=99.0%
+G_SCALE=40.0 LEAK_SHIFT=6                acc=88.7% ties=4 nospike=0 hid/img=0 out/img=86.9  float acc=88.7% agree=100.0%
+G_SCALE=40.0 LEAK_SHIFT=8                acc=88.3% ties=2 nospike=0 hid/img=0 out/img=85.9  float acc=88.7% agree=99.3%
+## lif 64x10
+G_SCALE=14.0 LEAK_SHIFT=4                acc=2.3% ties=0 nospike=293 hid/img=204 out/img=0.0  float acc=2.7% agree=99.7%
+G_SCALE=14.0 LEAK_SHIFT=6                acc=86.0% ties=6 nospike=23 hid/img=392 out/img=3.8  float acc=87.0% agree=99.0%
+G_SCALE=14.0 LEAK_SHIFT=8                acc=91.7% ties=11 nospike=5 hid/img=439 out/img=5.3  float acc=91.7% agree=99.7%
+G_SCALE=20.0 LEAK_SHIFT=4                acc=69.3% ties=0 nospike=71 hid/img=415 out/img=4.1  float acc=69.3% agree=94.0%
+G_SCALE=20.0 LEAK_SHIFT=6                acc=92.3% ties=8 nospike=2 hid/img=596 out/img=10.5  float acc=91.7% agree=98.7%
+G_SCALE=20.0 LEAK_SHIFT=8                acc=92.0% ties=6 nospike=1 hid/img=639 out/img=11.9  float acc=92.0% agree=99.3%
+G_SCALE=28.0 LEAK_SHIFT=4                acc=91.0% ties=3 nospike=3 hid/img=700 out/img=17.2  float acc=91.0% agree=99.0%
+G_SCALE=28.0 LEAK_SHIFT=6                acc=92.0% ties=6 nospike=0 hid/img=861 out/img=22.8  float acc=92.0% agree=99.3%
+G_SCALE=28.0 LEAK_SHIFT=8                acc=92.0% ties=4 nospike=0 hid/img=898 out/img=24.0  float acc=92.3% agree=99.3%
+G_SCALE=40.0 LEAK_SHIFT=4                acc=91.3% ties=2 nospike=0 hid/img=1114 out/img=44.4  float acc=91.3% agree=99.7%
+G_SCALE=40.0 LEAK_SHIFT=6                acc=92.3% ties=4 nospike=0 hid/img=1245 out/img=47.5  float acc=92.0% agree=99.7%
+G_SCALE=40.0 LEAK_SHIFT=8                acc=92.3% ties=2 nospike=0 hid/img=1274 out/img=48.3  float acc=92.3% agree=99.3%
+## lif 64x64x10
+G_SCALE=14.0 LEAK_SHIFT=4                acc=0.0% ties=0 nospike=300 hid/img=253 out/img=0.0  float acc=0.0% agree=100.0%
+G_SCALE=14.0 LEAK_SHIFT=6                acc=80.0% ties=6 nospike=45 hid/img=632 out/img=2.3  float acc=78.7% agree=97.0%
+G_SCALE=14.0 LEAK_SHIFT=8                acc=93.0% ties=8 nospike=5 hid/img=746 out/img=4.4  float acc=92.7% agree=97.7%
+G_SCALE=20.0 LEAK_SHIFT=4                acc=58.3% ties=7 nospike=107 hid/img=715 out/img=3.1  float acc=58.0% agree=93.7%
+G_SCALE=20.0 LEAK_SHIFT=6                acc=94.0% ties=10 nospike=0 hid/img=1174 out/img=13.0  float acc=92.7% agree=98.7%
+G_SCALE=20.0 LEAK_SHIFT=8                acc=94.0% ties=7 nospike=0 hid/img=1285 out/img=15.3  float acc=93.7% agree=99.7%
+G_SCALE=28.0 LEAK_SHIFT=4                acc=91.0% ties=4 nospike=2 hid/img=1599 out/img=30.0  float acc=91.3% agree=97.0%
+G_SCALE=28.0 LEAK_SHIFT=6                acc=93.7% ties=1 nospike=0 hid/img=2052 out/img=40.8  float acc=93.3% agree=99.7%
+G_SCALE=28.0 LEAK_SHIFT=8                acc=93.3% ties=1 nospike=0 hid/img=2157 out/img=43.2  float acc=93.3% agree=100.0%
+G_SCALE=40.0 LEAK_SHIFT=4                acc=92.3% ties=0 nospike=0 hid/img=3269 out/img=109.3  float acc=92.7% agree=99.7%
+G_SCALE=40.0 LEAK_SHIFT=6                acc=93.7% ties=0 nospike=0 hid/img=3662 out/img=117.5  float acc=93.7% agree=99.3%
+G_SCALE=40.0 LEAK_SHIFT=8                acc=93.7% ties=0 nospike=0 hid/img=3750 out/img=120.0  float acc=94.0% agree=99.7%
+## izh 10
+G_SCALE=20.0 VMIN_MV=-80                 acc=88.3% ties=7 nospike=0 hid/img=0 out/img=29.1  float acc=88.0% agree=99.3%
+G_SCALE=20.0 VMIN_MV=-100                acc=89.0% ties=10 nospike=0 hid/img=0 out/img=23.7  float acc=89.0% agree=100.0%
+G_SCALE=28.0 VMIN_MV=-80                 acc=88.0% ties=9 nospike=0 hid/img=0 out/img=45.7  float acc=87.7% agree=99.7%
+G_SCALE=28.0 VMIN_MV=-100                acc=88.3% ties=7 nospike=0 hid/img=0 out/img=35.7  float acc=87.3% agree=99.0%
+G_SCALE=40.0 VMIN_MV=-80                 acc=84.7% ties=9 nospike=0 hid/img=0 out/img=75.7  float acc=85.7% agree=98.3%
+G_SCALE=40.0 VMIN_MV=-100                acc=88.7% ties=6 nospike=0 hid/img=0 out/img=56.7  float acc=89.0% agree=99.7%
+G_SCALE=56.0 VMIN_MV=-80                 acc=81.0% ties=9 nospike=0 hid/img=0 out/img=129.6  float acc=81.0% agree=98.7%
+G_SCALE=56.0 VMIN_MV=-100                acc=86.7% ties=2 nospike=0 hid/img=0 out/img=93.8  float acc=86.7% agree=100.0%
+## izh 64x10
+G_SCALE=20.0 VMIN_MV=-80                 acc=66.7% ties=113 nospike=0 hid/img=269 out/img=4.7  float acc=66.3% agree=85.3%
+G_SCALE=20.0 VMIN_MV=-100                acc=70.0% ties=104 nospike=0 hid/img=258 out/img=4.3  float acc=72.3% agree=91.0%
+G_SCALE=28.0 VMIN_MV=-80                 acc=73.7% ties=66 nospike=0 hid/img=393 out/img=10.9  float acc=73.0% agree=88.0%
+G_SCALE=28.0 VMIN_MV=-100                acc=76.0% ties=55 nospike=0 hid/img=366 out/img=9.1  float acc=77.0% agree=90.0%
+G_SCALE=40.0 VMIN_MV=-80                 acc=72.7% ties=51 nospike=0 hid/img=587 out/img=24.6  float acc=72.7% agree=89.3%
+G_SCALE=40.0 VMIN_MV=-100                acc=79.0% ties=36 nospike=0 hid/img=526 out/img=18.4  float acc=79.7% agree=92.7%
+G_SCALE=56.0 VMIN_MV=-80                 acc=67.7% ties=16 nospike=0 hid/img=857 out/img=51.0  float acc=70.0% agree=91.7%
+G_SCALE=56.0 VMIN_MV=-100                acc=78.0% ties=27 nospike=0 hid/img=743 out/img=35.8  float acc=78.3% agree=91.0%
+## izh 64x64x10
+G_SCALE=20.0 VMIN_MV=-80                 acc=52.0% ties=177 nospike=0 hid/img=426 out/img=4.5  float acc=52.3% agree=77.0%
+G_SCALE=20.0 VMIN_MV=-100                acc=56.0% ties=188 nospike=0 hid/img=405 out/img=3.7  float acc=56.0% agree=81.7%
+G_SCALE=28.0 VMIN_MV=-80                 acc=53.3% ties=123 nospike=0 hid/img=692 out/img=12.2  float acc=53.7% agree=67.0%
+G_SCALE=28.0 VMIN_MV=-100                acc=64.0% ties=104 nospike=0 hid/img=626 out/img=9.9  float acc=65.3% agree=72.7%
+G_SCALE=40.0 VMIN_MV=-80                 acc=47.0% ties=78 nospike=0 hid/img=1181 out/img=32.0  float acc=46.0% agree=70.3%
+G_SCALE=40.0 VMIN_MV=-100                acc=64.0% ties=75 nospike=0 hid/img=1010 out/img=24.1  float acc=62.7% agree=78.3%
+G_SCALE=56.0 VMIN_MV=-80                 acc=41.7% ties=48 nospike=0 hid/img=2000 out/img=83.2  float acc=41.7% agree=75.7%
+G_SCALE=56.0 VMIN_MV=-100                acc=57.0% ties=42 nospike=0 hid/img=1635 out/img=57.0  float acc=58.7% agree=82.0%
