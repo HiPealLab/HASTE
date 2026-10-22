@@ -5,11 +5,31 @@
   "license": "MIT",
   "access_right": "open",
   "creators": [
-    {"name": "Reyhani Showkatabad, Amirhosein", "affiliation": "University of Tehran"},
-    {"name": "Namazi, Mohammad", "affiliation": "University of Tehran"},
-    {"name": "Firoozi, Arian", "affiliation": "University of Tehran"},
-    {"name": "Abolghasemi Dehaqani, Mohammadreza", "affiliation": "University of Tehran"},
-    {"name": "Safari, Saeed", "affiliation": "University of Tehran"}
+    {
+      "name": "Reyhani Showkatabad, Amirhosein",
+      "affiliation": "University of Tehran"
+    },
+    {
+      "name": "Namazi, Mohammad",
+      "affiliation": "University of Tehran"
+    },
+    {
+      "name": "Firoozi, Arian",
+      "affiliation": "University of Tehran"
+    },
+    {
+      "name": "Fatemi, Bardia",
+      "affiliation": "University of Tehran",
+      "orcid": "0009-0009-2189-2371"
+    },
+    {
+      "name": "Abolghasemi Dehaqani, Mohammadreza",
+      "affiliation": "University of Tehran"
+    },
+    {
+      "name": "Safari, Saeed",
+      "affiliation": "University of Tehran"
+    }
   ],
   "keywords": [
     "spiking neural networks",

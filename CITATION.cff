@@ -4,6 +4,7 @@ title: "HASTE: A Hardware-Aware End-to-End ANN-to-SNN Toolchain With HDL Co-Simu
 type: software
 license: MIT
 repository-code: "https://github.com/HiPealLab/HASTE"
+doi: "10.5281/zenodo.23575095"
 authors:
   - family-names: "Reyhani Showkatabad"
     given-names: "Amirhosein"
@@ -14,6 +15,10 @@ authors:
   - family-names: "Firoozi"
     given-names: "Arian"
     affiliation: "University of Tehran"
+  - family-names: "Fatemi"
+    given-names: "Bardia"
+    affiliation: "University of Tehran"
+    orcid: "https://orcid.org/0009-0009-2189-2371"
   - family-names: "Abolghasemi Dehaqani"
     given-names: "Mohammadreza"
     affiliation: "University of Tehran"
