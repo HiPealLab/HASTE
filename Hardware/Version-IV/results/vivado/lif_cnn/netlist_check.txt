@@ -1,0 +1,1 @@
+lif_cnn: PASS (prefix) -- post-route netlist == Verilator RTL on image 0, timesteps 0..19, 13 SPK lines

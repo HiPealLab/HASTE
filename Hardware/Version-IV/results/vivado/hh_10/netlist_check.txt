@@ -1,0 +1,1 @@
+hh_10: PASS -- post-route netlist == Verilator RTL on 1 image(s), 100 IMG/SPK lines

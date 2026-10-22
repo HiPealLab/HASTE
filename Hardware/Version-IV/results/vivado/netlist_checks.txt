@@ -1,0 +1,16 @@
+hh_10: PASS -- post-route netlist == Verilator RTL on 1 image(s), 100 IMG/SPK lines
+hh_10_b16: PASS -- post-route netlist == Verilator RTL on 1 image(s), 99 IMG/SPK lines
+hh_10_b4: PASS -- post-route netlist == Verilator RTL on 1 image(s), 101 IMG/SPK lines
+hh_64x10: PASS (prefix) -- post-route netlist == Verilator RTL on image 0, timesteps 0..9, 16 SPK lines
+hh_64x64x10: PASS (prefix) -- post-route netlist == Verilator RTL on image 0, timesteps 0..9, 22 SPK lines
+izh_10: PASS -- post-route netlist == Verilator RTL on 3 image(s), 233 IMG/SPK lines
+izh_64x10: PASS -- post-route netlist == Verilator RTL on 3 image(s), 80 IMG/SPK lines
+izh_64x10_b16: PASS -- post-route netlist == Verilator RTL on 3 image(s), 79 IMG/SPK lines
+izh_64x10_b4: PASS -- post-route netlist == Verilator RTL on 3 image(s), 92 IMG/SPK lines
+izh_64x64x10: PASS -- post-route netlist == Verilator RTL on 3 image(s), 96 IMG/SPK lines
+lif_10: PASS -- post-route netlist == Verilator RTL on 3 image(s), 262 IMG/SPK lines
+lif_64x10: PASS -- post-route netlist == Verilator RTL on 3 image(s), 94 IMG/SPK lines
+lif_64x10_b16: PASS -- post-route netlist == Verilator RTL on 3 image(s), 95 IMG/SPK lines
+lif_64x10_b4: PASS -- post-route netlist == Verilator RTL on 3 image(s), 109 IMG/SPK lines
+lif_64x64x10: PASS -- post-route netlist == Verilator RTL on 3 image(s), 159 IMG/SPK lines
+lif_cnn: PASS (prefix) -- post-route netlist == Verilator RTL on image 0, timesteps 0..19, 13 SPK lines

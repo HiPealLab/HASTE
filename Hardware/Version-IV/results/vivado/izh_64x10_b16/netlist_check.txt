@@ -1,0 +1,1 @@
+izh_64x10_b16: PASS -- post-route netlist == Verilator RTL on 3 image(s), 79 IMG/SPK lines

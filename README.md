@@ -78,9 +78,9 @@ ones that were simulated and implemented, so do not regenerate them
 | Weight precision B = 4 / 8 / 16 | part of `scripts/run_all.sh` (`build/*_b4`, `*_b16`) |
 | Convolutional network | `tools/train_cnn.py`; RTL with `scripts/run_rtl.sh lif cnn` |
 | Deep-HH limitation (ablation, operating-point sweeps) | `tools/ablate_binary.py`, `tools/sweep.py` |
-| Resources, F<sub>max</sub>, SAIF power (Vivado) | `vivado -mode batch -source vivado/run_all.tcl -tclargs saif` |
-| Post-route netlist vs RTL (gate level) | `vivado -mode batch -source vivado/netlist_sim.tcl -tclargs <model> <topo>` |
-| On-board latency | `board/README.md` and `board/MANUAL_BOARD.md` |
+| Resources, F<sub>max</sub>, SAIF power (Vivado) | `vivado -mode batch -source vivado/run_all.tcl -tclargs saif`; published reports in `results/vivado/`, table with `python3 tools/hw_report.py` |
+| Post-route netlist vs RTL (gate level) | `vivado -mode batch -source vivado/netlist_sim.tcl -tclargs <model> <topo> [<n_img> <t_prefix>]` → `results/vivado/netlist_checks.txt` |
+| On-board latency | `board/README.md` and `board/MANUAL_BOARD.md`; the published run is in `results/board/` |
 | Source ANNs | `tools/train_ann.py` (weights in `Train/outputs/`) |
 
 Questa instead of Verilator: `python scripts/campaign.py all --sim questa`.

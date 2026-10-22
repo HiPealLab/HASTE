@@ -1,0 +1,11 @@
+LATENCY  images=1000  FCLK measured=50000001 Hz
+  CYCLES/img mean=149648.2 min=62679 max=303881  -> 2.9930 ms @ 50 MHz nominal
+  wall-clock (XTime, START write -> DONE seen) mean=2993.406 us  min=1254.140  max=6078.122
+  CYCLES / f_measured                          mean=2992.964 us
+  XTime - CYCLES/f (software/AXI overhead)     mean=442 ns  min=317  max=566
+VIVADO (board design):
+  FCLK_CLK0 requested=50MHz actual=50.000000MHz
+  timing: WNS=6.973ns WHS=0.010ns MET
+  utilization: SliceLUTs=1756 FF=1280 BRAM_tiles=5.5 DSP=1
+  power vectorless: total=1.402W dynamic=1.290W static=0.113W confidence=Medium
+  power SAIF (./board/vivado/out/lif_64x10_50MHz/activity_board.saif): total=1.402W dynamic=1.290W confidence=Medium

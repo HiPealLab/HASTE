@@ -7,7 +7,7 @@ import numpy as np
 V4 = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(V4, "tools"))
 import score
-P = dict(lif_10=92, lif_64x10=93, lif_64x64x10=94, izh_10=97, izh_64x10=97, izh_64x64x10=98, hh_10=95)
+P = dict(lif_10=92, lif_64x10=93, lif_64x64x10=93, izh_10=98, izh_64x10=98, izh_64x64x10=98, hh_10=95)  # P_total [mW], results/vivado (tab:hw)
 for c in P:
     accs, cyc, used = {}, {}, []
     for s in range(1, 6):

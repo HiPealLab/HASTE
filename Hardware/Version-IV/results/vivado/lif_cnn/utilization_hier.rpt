@@ -1,0 +1,31 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2022.2 (lin64) Build 3671981 Fri Oct 14 04:59:54 MDT 2022
+| Date         : Thu Oct 22 00:42:11 2026
+| Host         : ASUS running 64-bit Ubuntu 22.04.5 LTS
+| Command      : report_utilization -hierarchical -file ./vivado/out/lif_cnn/utilization_hier.rpt
+| Design       : snn_lif
+| Device       : xc7z010clg400-1
+| Speed File   : -1
+| Design State : Routed
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++-------------+----------+------------+------------+---------+------+-----+--------+--------+------------+
+|   Instance  |  Module  | Total LUTs | Logic LUTs | LUTRAMs | SRLs | FFs | RAMB36 | RAMB18 | DSP Blocks |
++-------------+----------+------------+------------+---------+------+-----+--------+--------+------------+
+| snn_lif     |    (top) |      11098 |      11050 |      48 |    0 |  65 |      0 |      2 |          1 |
+|   (snn_lif) |    (top) |      10964 |      10964 |       0 |    0 |  39 |      0 |      2 |          1 |
+|   fifo      | snn_fifo |        136 |         88 |      48 |    0 |  26 |      0 |      0 |          0 |
++-------------+----------+------------+------------+---------+------+-----+--------+--------+------------+
+* Note: The sum of lower-level cells may be larger than their parent cells total, due to cross-hierarchy LUT combining
+
+

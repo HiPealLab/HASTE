@@ -49,6 +49,7 @@ module tb_snn;
     if (active && out_valid) begin
       counts[out_idx] <= counts[out_idx] + 1;
       $fdisplay(fd, "SPK %0d %0d %0d", img_cur, t_cur, out_idx);
+      $fflush(fd);  // so a time-limited gate-level run (netlist_sim.tcl T_PREFIX) keeps its lines
     end
     if (active && hid_valid) hid <= hid + 1;
   end
