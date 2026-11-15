@@ -1,0 +1,23 @@
+wb|10 G=7 val=89.3
+wb|10 G=14 val=89.7 test=86.5
+hh|64x10 G=224 val=17.3
+hh|64x10 G=112 val=49.0 test=47.8
+hh_cur|64x10 G=224 val=7.0
+hh_cur|64x10 G=112 val=32.3 test=26.7
+wb|64x10 G=7 val=91.0
+wb|64x10 G=3.5 val=83.3
+wb|64x10 G=7 val=91.0 test=91.4
+wb_cur|64x10 G=7 val=91.0
+wb_cur|64x10 G=14 val=91.7 test=90.7
+hh_data|64x10 G=224 val=17.7
+hh_data|64x10 G=112 val=47.7 test=47.8
+hh|64x64x10 G=224 val=8.0
+hh|64x64x10 G=112 val=33.0 test=28.3
+wb|64x64x10 G=7 val=90.3
+wb|64x64x10 G=3.5 val=70.7
+wb|64x64x10 G=7 val=90.3 test=89.8
+wb_cur|64x64x10 G=7 val=91.7
+wb_cur|64x64x10 G=3.5 val=66.7
+wb_cur|64x64x10 G=7 val=91.7 test=91.4
+hh_data|64x64x10 G=224 val=8.3
+hh_data|64x64x10 G=112 val=34.7 test=28.4

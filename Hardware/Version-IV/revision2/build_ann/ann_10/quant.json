@@ -1,0 +1,25 @@
+{
+ "topology": "10",
+ "sizes": [
+  10
+ ],
+ "fanins": [
+  64
+ ],
+ "starts": [
+  0
+ ],
+ "RQ_M": [
+  1
+ ],
+ "RQ_SH": [
+  1
+ ],
+ "act_scales": [
+  0.00392156862745098
+ ],
+ "w_scales": [
+  0.036285986111858695
+ ],
+ "calib": "max ReLU activation, 2000 MNIST train images"
+}

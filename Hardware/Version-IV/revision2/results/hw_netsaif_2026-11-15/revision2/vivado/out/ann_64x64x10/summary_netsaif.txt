@@ -1,0 +1,1 @@
+64x64x10 P_total=0.1090W P_dyn=0.0190W P_static=0.0900W nets_matched=100%   (4555/4559) confidence=High check="10 images == Verilator"

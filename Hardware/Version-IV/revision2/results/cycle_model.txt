@@ -1,0 +1,12 @@
+lif: n_ops=2.000  visits=2.000  sweeps=1.000  subs=1.005  upd=2.005  n_neu=0.010
+   lif_10         n=200  max|err|=0.000%  mean err=-0.0000%
+   lif_64x10      n=200  max|err|=0.000%  mean err=-0.0000%
+   lif_64x64x10   n=200  max|err|=0.000%  mean err=-0.0000%
+izh: n_ops=2.000  visits=2.000  sweeps=1.000  subs=1.000  upd=4.000  n_neu=0.001
+   izh_10         n=200  max|err|=0.000%  mean err=-0.0000%
+   izh_64x10      n=200  max|err|=0.000%  mean err=-0.0000%
+   izh_64x64x10   n=200  max|err|=0.000%  mean err=-0.0000%
+hh: n_ops=2.000  visits=2.000  sweeps=1.000  subs=1.000  upd=21.000  n_neu=0.001
+   hh_10          n= 48  max|err|=0.000%  mean err=-0.0000%
+   hh_64x10       n= 48  max|err|=0.000%  mean err=-0.0000%
+   hh_64x64x10    n= 48  max|err|=0.000%  mean err=+0.0000%

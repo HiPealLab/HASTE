@@ -1,0 +1,1 @@
+ann 64x10 LUTcells=2191 FF=686 LUTRAMcells=15 BRAM36=0 BRAM18=0 (BRAM=0.0) DSP=2 WNS=6.324ns Fmax=73.1MHz P_total=0.102W P_dyn=0.012W P_static=0.090W power_src=vectorless confidence=Medium

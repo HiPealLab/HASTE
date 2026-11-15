@@ -1,0 +1,17 @@
+variant  topo          G   val  test   ties  vs hh (b, c, p)            spikes/layer/image
+hh       10          28   87.7  83.8     54  (baseline)                 111
+hh_cur   10          56   86.3  82.7     58  b=34 c=45 p=0.26           88
+wb       10          14+  89.7  86.5     15  b=50 c=23 p=0.0021         92
+wb_cur   10          28   89.7  86.3     13  b=53 c=28 p=0.0073         117
+hh_data  10          28   87.7  83.8     54  b=0 c=0 p=1                111
+hh       64x10      112+  49.0  47.8    110  (baseline)                 1754 269
+hh_cur   64x10      112+  32.3  26.7    155  b=57 c=268 p=7.4e-34       1023 93
+wb       64x10        7+  91.0  91.4     36  b=444 c=8 p=7.1e-120       658 13
+wb_cur   64x10       14+  91.7  90.7     15  b=440 c=11 p=1.2e-114      1064 28
+hh_data  64x10      112+  47.7  47.8    110  b=23 c=23 p=1              1754 265
+hh       64x64x10   112+  33.0  28.3     76  (baseline)                 1796 2755 405
+hh_cur   64x64x10    56   17.3  17.4    381  b=65 c=174 p=1.1e-12       862 1011 125
+wb       64x64x10     7+  90.3  89.8     46  b=622 c=7 p=6.8e-174       675 680 15
+wb_cur   64x64x10     7+  91.7  91.4     44  b=636 c=5 p=2e-181         643 619 13
+hh_data  64x64x10   112+  34.7  28.4    152  b=97 c=96 p=1              1769 1878 314
++ grid {14,28,56,112} extended x2 outward until val accuracy stopped improving (hh_failure_ext.py)

@@ -1,0 +1,67 @@
+Exact McNemar tests on the same 1000 images (RTL results, B=8 unless noted).
+b = first right & second wrong, c = first wrong & second right; diff = first - second (pts), 95% CI; TOST: 90% CI inside +-1 pt.
+
+== SNN vs ANN (same weights)
+lif_10 vs ANN-rate                             86.5   86.2  b=  5 c=  2  p=0.453  diff  +0.3 [ -0.2, +0.8]  TOST(+-1) equivalent
+lif_10 vs ANN-analog                           86.5   87.5  b=  7 c= 17  p=0.0639  diff  -1.0 [ -2.0, -0.0]  TOST(+-1) not shown
+lif_64x10 vs ANN-rate                          92.7   93.0  b=  7 c= 10  p=0.629  diff  -0.3 [ -1.1, +0.5]  TOST(+-1) equivalent
+lif_64x10 vs ANN-analog                        92.7   94.5  b= 10 c= 28  p=0.0051  diff  -1.8 [ -3.0, -0.6]  TOST(+-1) not shown
+lif_64x64x10 vs ANN-rate                       93.7   94.6  b=  2 c= 11  p=0.0225  diff  -0.9 [ -1.6, -0.2]  TOST(+-1) not shown
+lif_64x64x10 vs ANN-analog                     93.7   95.5  b=  7 c= 25  p=0.0021  diff  -1.8 [ -2.9, -0.7]  TOST(+-1) not shown
+izh_10 vs ANN-rate                             86.1   86.2  b=  4 c=  5  p=1  diff  -0.1 [ -0.7, +0.5]  TOST(+-1) equivalent
+izh_10 vs ANN-analog                           86.1   87.5  b=  7 c= 21  p=0.0125  diff  -1.4 [ -2.4, -0.4]  TOST(+-1) not shown
+izh_64x10 vs ANN-rate                          90.0   93.0  b= 16 c= 46  p=0.000176  diff  -3.0 [ -4.5, -1.5]  TOST(+-1) not shown
+izh_64x10 vs ANN-analog                        90.0   94.5  b= 13 c= 58  p=6.27e-08  diff  -4.5 [ -6.1, -2.9]  TOST(+-1) not shown
+izh_64x64x10 vs ANN-rate                       88.3   94.6  b=  9 c= 72  p=2.46e-13  diff  -6.3 [ -8.0, -4.6]  TOST(+-1) not shown
+izh_64x64x10 vs ANN-analog                     88.3   95.5  b=  9 c= 81  p=1.28e-15  diff  -7.2 [ -9.0, -5.4]  TOST(+-1) not shown
+hh_10 vs ANN-rate                              83.1   86.2  b= 26 c= 57  p=0.000878  diff  -3.1 [ -4.9, -1.3]  TOST(+-1) not shown
+hh_10 vs ANN-analog                            83.1   87.5  b= 22 c= 66  p=2.88e-06  diff  -4.4 [ -6.2, -2.6]  TOST(+-1) not shown
+hh_64x10 vs ANN-rate                           30.4   93.0  b= 10 c=636  p=2.26e-173  diff -62.6 [-65.7,-59.5]  TOST(+-1) not shown
+hh_64x10 vs ANN-analog                         30.4   94.5  b=  9 c=650  p=5.18e-179  diff -64.1 [-67.2,-61.0]  TOST(+-1) not shown
+hh_64x64x10 vs ANN-rate                        18.8   94.6  b=  2 c=760  p=2.4e-224  diff -75.8 [-78.5,-73.1]  TOST(+-1) not shown
+hh_64x64x10 vs ANN-analog                      18.8   95.5  b=  2 c=769  p=4.79e-227  diff -76.7 [-79.3,-74.1]  TOST(+-1) not shown
+
+== neuron model, same topology
+lif_10 vs izh_10                               86.5   86.1  b=  7 c=  3  p=0.344  diff  +0.4 [ -0.2, +1.0]  TOST(+-1) equivalent
+lif_10 vs hh_10                                86.5   83.1  b= 57 c= 23  p=0.000183  diff  +3.4 [ +1.7, +5.1]  TOST(+-1) not shown
+izh_10 vs hh_10                                86.1   83.1  b= 52 c= 22  p=0.000643  diff  +3.0 [ +1.3, +4.7]  TOST(+-1) not shown
+lif_64x10 vs izh_64x10                         92.7   90.0  b= 43 c= 16  p=0.000584  diff  +2.7 [ +1.2, +4.2]  TOST(+-1) not shown
+lif_64x10 vs hh_64x10                          92.7   30.4  b=633 c= 10  p=1.73e-172  diff +62.3 [+59.2,+65.4]  TOST(+-1) not shown
+izh_64x10 vs hh_64x10                          90.0   30.4  b=603 c=  7  p=2.87e-168  diff +59.6 [+56.5,+62.7]  TOST(+-1) not shown
+lif_64x64x10 vs izh_64x64x10                   93.7   88.3  b= 64 c= 10  p=8.96e-11  diff  +5.4 [ +3.7, +7.1]  TOST(+-1) not shown
+lif_64x64x10 vs hh_64x64x10                    93.7   18.8  b=752 c=  3  p=7.57e-220  diff +74.9 [+72.2,+77.6]  TOST(+-1) not shown
+izh_64x64x10 vs hh_64x64x10                    88.3   18.8  b=699 c=  4  p=4.82e-202  diff +69.5 [+66.6,+72.4]  TOST(+-1) not shown
+
+== depth, same model
+lif_10 vs lif_64x10                            86.5   92.7  b= 10 c= 72  p=1.02e-12  diff  -6.2 [ -7.9, -4.5]  TOST(+-1) not shown
+lif_64x10 vs lif_64x64x10                      92.7   93.7  b= 13 c= 23  p=0.132  diff  -1.0 [ -2.2, +0.2]  TOST(+-1) not shown
+izh_10 vs izh_64x10                            86.1   90.0  b= 28 c= 67  p=7.8e-05  diff  -3.9 [ -5.8, -2.0]  TOST(+-1) not shown
+izh_64x10 vs izh_64x64x10                      90.0   88.3  b= 47 c= 30  p=0.0675  diff  +1.7 [ -0.0, +3.4]  TOST(+-1) not shown
+hh_10 vs hh_64x10                              83.1   30.4  b=553 c= 26  p=1e-129  diff +52.7 [+49.3,+56.1]  TOST(+-1) not shown
+hh_64x10 vs hh_64x64x10                        30.4   18.8  b=172 c= 56  p=6.62e-15  diff +11.6 [ +8.7,+14.5]  TOST(+-1) not shown
+
+== weight precision (vs B=8)
+lif_64x10_b4 vs lif_64x10                      89.5   92.7  b= 17 c= 49  p=0.000101  diff  -3.2 [ -4.8, -1.6]  TOST(+-1) not shown
+lif_64x10_b16 vs lif_64x10                     92.6   92.7  b=  2 c=  3  p=1  diff  -0.1 [ -0.5, +0.3]  TOST(+-1) equivalent
+izh_64x10_b4 vs izh_64x10                      85.1   90.0  b= 25 c= 74  p=8.51e-07  diff  -4.9 [ -6.8, -3.0]  TOST(+-1) not shown
+izh_64x10_b16 vs izh_64x10                     90.8   90.0  b= 17 c=  9  p=0.169  diff  +0.8 [ -0.2, +1.8]  TOST(+-1) not shown
+hh_10_b4 vs hh_10                              84.3   83.1  b= 30 c= 18  p=0.111  diff  +1.2 [ -0.2, +2.6]  TOST(+-1) not shown
+hh_10_b16 vs hh_10                             82.8   83.1  b=  1 c=  4  p=0.375  diff  -0.3 [ -0.7, +0.1]  TOST(+-1) equivalent
+
+== fixed-point (RTL) vs float reference model, same network
+hh_10 RTL vs float                             83.1   83.8  b= 18 c= 25  p=0.36  diff  -0.7 [ -2.0, +0.6]  TOST(+-1) not shown
+hh_10_b16 RTL vs float                         82.8   83.8  b= 16 c= 26  p=0.164  diff  -1.0 [ -2.3, +0.3]  TOST(+-1) not shown
+hh_10_b4 RTL vs float                          84.3   83.8  b= 27 c= 22  p=0.568  diff  +0.5 [ -0.9, +1.9]  TOST(+-1) not shown
+hh_64x10 RTL vs float                          30.4   30.2  b= 77 c= 75  p=0.935  diff  +0.2 [ -2.2, +2.6]  TOST(+-1) not shown
+hh_64x64x10 RTL vs float                       18.8   17.0  b= 83 c= 65  p=0.162  diff  +1.8 [ -0.6, +4.2]  TOST(+-1) not shown
+izh_10 RTL vs float                            86.1   86.4  b=  2 c=  5  p=0.453  diff  -0.3 [ -0.8, +0.2]  TOST(+-1) equivalent
+izh_64x10 RTL vs float                         90.0   90.4  b= 11 c= 15  p=0.557  diff  -0.4 [ -1.4, +0.6]  TOST(+-1) not shown
+izh_64x10_b16 RTL vs float                     90.8   90.4  b=  8 c=  4  p=0.388  diff  +0.4 [ -0.3, +1.1]  TOST(+-1) equivalent
+izh_64x10_b4 RTL vs float                      85.1   90.4  b= 22 c= 75  p=6.07e-08  diff  -5.3 [ -7.2, -3.4]  TOST(+-1) not shown
+izh_64x64x10 RTL vs float                      88.3   87.6  b= 23 c= 16  p=0.337  diff  +0.7 [ -0.5, +1.9]  TOST(+-1) not shown
+lif_10 RTL vs float                            86.5   86.4  b=  1 c=  0  p=1  diff  +0.1 [ -0.1, +0.3]  TOST(+-1) equivalent
+lif_64x10 RTL vs float                         92.7   92.7  b=  3 c=  3  p=1  diff  +0.0 [ -0.5, +0.5]  TOST(+-1) equivalent
+lif_64x10_b16 RTL vs float                     92.6   92.7  b=  0 c=  1  p=1  diff  -0.1 [ -0.3, +0.1]  TOST(+-1) equivalent
+lif_64x10_b4 RTL vs float                      89.5   92.7  b= 17 c= 49  p=0.000101  diff  -3.2 [ -4.8, -1.6]  TOST(+-1) not shown
+lif_64x64x10 RTL vs float                      93.7   93.7  b=  4 c=  4  p=1  diff  +0.0 [ -0.6, +0.6]  TOST(+-1) equivalent
+lif_cnn RTL vs float                           88.3   88.0  b=  9 c=  6  p=0.607  diff  +0.3 [ -0.5, +1.1]  TOST(+-1) equivalent

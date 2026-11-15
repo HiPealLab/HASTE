@@ -1,0 +1,6 @@
+ANN baselines on the 1000 hardware test images (same weights as the SNNs)
+topology   analog pixels  spike rates    McNemar analog vs rate
+10          87.5 [85.3,89.4]  86.2 [83.9,88.2]  b=17 c=4 p=0.0072
+64x10       94.5 [92.9,95.8]  93.0 [91.2,94.4]  b=23 c=8 p=0.0107
+64x64x10    95.5 [94.0,96.6]  94.6 [93.0,95.8]  b=17 c=8 p=0.108
+CI = Wilson 95%; the test-subset sampling error alone is about +-1.9 pts at 90% accuracy

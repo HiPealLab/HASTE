@@ -1,0 +1,17 @@
+ann 10 LUTcells=1621 FF=683 LUTRAMcells=15 BRAM36=0 BRAM18=0 (BRAM=0.0) DSP=0 WNS=6.256ns Fmax=72.8MHz P_total=0.101W P_dyn=0.011W P_static=0.090W power_src=vectorless confidence=Medium
+10 P_total=0.0980W P_dyn=0.0080W P_static=0.0900W nets_matched=100%   (2572/2576) confidence=High check="10 images == Verilator"
+ann 64x10 LUTcells=2191 FF=686 LUTRAMcells=15 BRAM36=0 BRAM18=0 (BRAM=0.0) DSP=2 WNS=6.324ns Fmax=73.1MHz P_total=0.102W P_dyn=0.012W P_static=0.090W power_src=vectorless confidence=Medium
+64x10 P_total=0.1030W P_dyn=0.0130W P_static=0.0900W nets_matched=100%   (3559/3563) confidence=High check="10 images == Verilator"
+ann 64x64x10 LUTcells=2836 FF=721 LUTRAMcells=15 BRAM36=0 BRAM18=0 (BRAM=0.0) DSP=2 WNS=5.366ns Fmax=68.3MHz P_total=0.104W P_dyn=0.014W P_static=0.090W power_src=vectorless confidence=Medium
+64x64x10 P_total=0.1090W P_dyn=0.0190W P_static=0.0900W nets_matched=100%   (4555/4559) confidence=High check="10 images == Verilator"
+lif_10 P_total=0.0920W P_dyn=0.0020W P_static=0.0900W nets_matched=99%   (697/705) confidence=High check="10 images == Verilator"
+lif_64x10 P_total=0.0940W P_dyn=0.0050W P_static=0.0900W nets_matched=99%   (1587/1603) confidence=High check="10 images == Verilator"
+lif_64x64x10 P_total=0.0960W P_dyn=0.0060W P_static=0.0900W nets_matched=99%   (2506/2522) confidence=High check="10 images == Verilator"
+izh_10 P_total=0.0960W P_dyn=0.0060W P_static=0.0900W nets_matched=100%   (2295/2303) confidence=High check="10 images == Verilator"
+izh_64x10 P_total=0.0970W P_dyn=0.0070W P_static=0.0900W nets_matched=99%   (3163/3179) confidence=High check="3 images == Verilator"
+izh_64x64x10 P_total=0.0980W P_dyn=0.0080W P_static=0.0900W nets_matched=100%   (3965/3981) confidence=High check="2 images == Verilator"
+hh_10 P_total=0.0940W P_dyn=0.0040W P_static=0.0900W nets_matched=99%   (1574/1582) confidence=High check="1 images == Verilator"
+hh_64x10 P_total=0.0940W P_dyn=0.0040W P_static=0.0900W nets_matched=99%   (2431/2447) confidence=High check="prefix: 7 SPK lines == Verilator"
+hh_64x64x10 P_total=0.0940W P_dyn=0.0040W P_static=0.0900W nets_matched=99%   (3361/3379) confidence=High check="prefix: 11 SPK lines == Verilator"
+lif_cnn P_total=0.1550W P_dyn=0.0640W P_static=0.0900W nets_matched=100%   (12540/12552) confidence=High check="prefix: 2 SPK lines == Verilator"
+failed: 

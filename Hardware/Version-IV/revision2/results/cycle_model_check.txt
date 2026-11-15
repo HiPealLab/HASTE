@@ -1,0 +1,6 @@
+lif_64x64x10 1000 mismatches 0
+izh_64x10 300 mismatches 0
+hh_10 24 mismatches 0
+hh_64x64x10 24 mismatches 0
+lif_cnn 24 mismatches 0
+lif_64x10_b4 300 mismatches 0

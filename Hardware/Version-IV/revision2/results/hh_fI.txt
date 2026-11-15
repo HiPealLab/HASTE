@@ -1,0 +1,8 @@
+# single-neuron transfer curve: output spikes per step vs input spikes per step
+# jump J = 14 mV (half the largest jump, G_SCALE=28), T = 200 steps, float models
+lif      r=0.25:0.07 r=0.5:0.10 r=1:0.23 r=2:0.48 r=4:0.97 r=8:1.99 r=16:4.00
+izh      r=0.25:0.06 r=0.5:0.11 r=1:0.21 r=2:0.34 r=4:0.62 r=8:1.11 r=16:2.06
+hh       r=0.25:0.10 r=0.5:0.15 r=1:0.17 r=2:0.23 r=4:0.33 r=8:0.71 r=16:0.99
+wb       r=0.25:0.21 r=0.5:0.27 r=1:0.41 r=2:0.64 r=4:0.92 r=8:0.99 r=16:1.00
+hh_cur   r=0.25:0.10 r=0.5:0.12 r=1:0.14 r=2:0.18 r=4:0.22 r=8:0.14 r=16:0.01
+wb_cur   r=0.25:0.21 r=0.5:0.26 r=1:0.47 r=2:0.65 r=4:0.53 r=8:0.01 r=16:0.01
