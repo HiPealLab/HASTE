@@ -4,7 +4,9 @@ title: "HASTE: A Hardware-Aware End-to-End ANN-to-SNN Toolchain With HDL Co-Simu
 type: software
 license: MIT
 repository-code: "https://github.com/HiPealLab/HASTE"
-doi: "10.5281/zenodo.23575095"
+doi: "10.5281/zenodo.24304386"
+version: "1.1.0"
+date-released: "2026-11-17"
 authors:
   - family-names: "Reyhani Showkatabad"
     given-names: "Amirhosein"
