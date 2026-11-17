@@ -1,0 +1,6 @@
+cfg=hh_64x64x10 board_part=none part=xc7z010clg400-1 base=0x43C00000
+FCLK_CLK0 requested=50MHz actual=50.000000MHz
+timing: WNS=0.578ns WHS=0.022ns MET
+utilization: SliceLUTs=2773 FF=1465 BRAM_tiles=7 DSP=2
+power vectorless: total=1.405W dynamic=1.292W static=0.113W confidence=Medium
+core instance: design_1_i/snn_0/inst/u_board/u_core   (its share: power_*.rpt section 'By Hierarchy'; LUT/FF/BRAM: utilization_hier.rpt)

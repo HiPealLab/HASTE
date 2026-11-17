@@ -1,0 +1,6 @@
+cfg=lif_10 board_part=none part=xc7z010clg400-1 base=0x43C00000
+FCLK_CLK0 requested=50MHz actual=50.000000MHz
+timing: WNS=8.267ns WHS=0.056ns MET
+utilization: SliceLUTs=1208 FF=1281 BRAM_tiles=4.5 DSP=1
+power vectorless: total=1.401W dynamic=1.289W static=0.112W confidence=Medium
+core instance: design_1_i/snn_0/inst/u_board/u_core

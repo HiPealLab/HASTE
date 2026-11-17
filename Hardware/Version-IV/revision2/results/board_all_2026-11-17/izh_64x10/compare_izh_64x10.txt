@@ -1,0 +1,6 @@
+compared 1000 images (0..999): 1000 identical, 0 different; CYCLES offsets board-gold: [0]; spike trains compared
+/tmp/tmpadp_onhl/board.txt: n=1000  acc=90.00%  (no-spike=0, ties=31, acc excl. no-spike=90.00%)  hid/img=773.1  ovf=0  cycles/img mean=1069065 (21.38 ms @50MHz)
+/tmp/tmpadp_onhl/board.txt (common): n=1000  acc=90.00%  (no-spike=0, ties=31, acc excl. no-spike=90.00%)  hid/img=773.1  ovf=0  cycles/img mean=1069065 (21.38 ms @50MHz)
+/tmp/tmpadp_onhl/golden.txt (common): n=1000  acc=90.00%  (no-spike=0, ties=31, acc excl. no-spike=90.00%)  hid/img=773.1  ovf=0  cycles/img mean=1069065 (21.38 ms @50MHz)
+agreement on 1000 images: class 100.00%, exact spike trains 100.00%
+RESULT: PASS (identical counts, HID, OVF, CYCLES, spike trains)

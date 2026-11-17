@@ -222,7 +222,8 @@ static void phase_latency(void) {
   print_us(" mean_xtime_us=", sum_ns / n_img);
   print_us(" min_xtime_us=", min_ns);
   print_us(" max_xtime_us=", max_ns);
-  print_us(" mean_hw_us=", sum_cyc * 1000000000ull / fclk_hz / n_img);
+  /* mean cycles in milli-cycles first: sum_cyc * 1e9 overflows u64 for HH deep (~4.7e19) */
+  print_us(" mean_hw_us=", (sum_cyc * 1000ull / n_img) * 1000000ull / fclk_hz);
   printf(" fclk_hz=%lu\r\n", (unsigned long)fclk_hz);
   printf(">>> PHASE LATENCY END\r\n");
 }

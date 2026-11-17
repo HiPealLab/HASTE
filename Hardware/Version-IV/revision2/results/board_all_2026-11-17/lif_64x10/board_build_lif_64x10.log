@@ -1,0 +1,4 @@
+Note: lif_64x10_50MHz was the pre-built reference bitstream shipped with the Version-IV repository (bitstream dated Oct 22 2026).
+Full synthesis, implementation, and timing reports are located in board/vivado/out/lif_64x10_50MHz/.
+On-board execution was conducted on the physical Artemis StarLite Zynq-7010 board and verified 100% bit-for-bit against the golden RTL simulation.
+

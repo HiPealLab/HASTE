@@ -1,0 +1,44 @@
+# Our re-run of board/tools/compare_results.py (2026-11-17) vs build/<cfg>/rtl_results.txt
+## lif_10
+compared 1000 images (0..999): 1000 identical, 0 different; CYCLES offsets board-gold: [0]; spike trains compared
+RESULT: PASS (identical counts, HID, OVF, CYCLES, spike trains)
+## lif_64x10
+compared 1000 images (0..999): 1000 identical, 0 different; CYCLES offsets board-gold: [0]; spike trains compared
+RESULT: PASS (identical counts, HID, OVF, CYCLES, spike trains)
+## lif_64x64x10
+compared 1000 images (0..999): 1000 identical, 0 different; CYCLES offsets board-gold: [0]; spike trains compared
+RESULT: PASS (identical counts, HID, OVF, CYCLES, spike trains)
+## izh_10
+compared 1000 images (0..999): 1000 identical, 0 different; CYCLES offsets board-gold: [0]; spike trains compared
+RESULT: PASS (identical counts, HID, OVF, CYCLES, spike trains)
+## izh_64x10
+compared 1000 images (0..999): 1000 identical, 0 different; CYCLES offsets board-gold: [0]; spike trains compared
+RESULT: PASS (identical counts, HID, OVF, CYCLES, spike trains)
+## izh_64x64x10
+compared 1000 images (0..999): 1000 identical, 0 different; CYCLES offsets board-gold: [0]; spike trains compared
+RESULT: PASS (identical counts, HID, OVF, CYCLES, spike trains)
+## hh_10
+compared 1000 images (0..999): 1000 identical, 0 different; CYCLES offsets board-gold: [0]; spike trains compared
+RESULT: PASS (identical counts, HID, OVF, CYCLES, spike trains)
+## hh_64x10
+compared 1000 images (0..999): 1000 identical, 0 different; CYCLES offsets board-gold: [0]; spike trains compared
+RESULT: PASS (identical counts, HID, OVF, CYCLES, spike trains)
+## hh_64x64x10
+compared 1000 images (0..999): 1000 identical, 0 different; CYCLES offsets board-gold: [0]; spike trains compared
+RESULT: PASS (identical counts, HID, OVF, CYCLES, spike trains)
+## lif_cnn
+compared 1000 images (0..999): 1000 identical, 0 different; CYCLES offsets board-gold: [0]; spike trains compared
+RESULT: PASS (identical counts, HID, OVF, CYCLES, spike trains)
+
+# revision2/scripts/board_stats.py
+cfg acc mean_cyc lat_cyc_ms xt_mean_ms xt_min xt_max ovh_ns_mean ovh_min ovh_max | WNS LUT FF BRAM DSP Ptot
+lif_10 86.5 1000 1000 22348 0.447 0.447 0.186 0.923 444 319 568 | 8.267 1208 1281 4.5 1 1.401
+lif_64x10 92.7 1000 1000 149648 2.993 2.993 1.254 6.078 443 317 567 | 6.973 1756 1280 5.5 1 1.402
+lif_64x64x10 93.7 1000 1000 293615 5.872 5.873 2.444 11.775 443 317 566 | 5.296 2321 1296 5.5 1 1.404
+izh_10 86.1 1000 1000 149348 2.987 2.987 2.726 3.463 442 318 568 | 6.748 1751 1453 4.5 5 1.406
+izh_64x10 90.0 1000 1000 1069065 21.381 21.382 19.695 24.325 446 318 567 | 5.983 2284 1425 5.5 5 1.406
+izh_64x64x10 88.3 1000 1000 1993192 39.864 39.864 36.949 44.452 441 317 567 | 4.260 2847 1444 5.5 5 1.406
+hh_10 83.1 1000 1000 6348148 126.963 126.963 126.702 127.439 442 319 567 | 1.794 1675 1472 5 2 1.404
+hh_64x10 30.4 1000 1000 46772748 935.455 935.455 933.847 938.237 435 308 558 | 0.499 2212 1446 7 2 1.404
+hh_64x64x10 18.8 1000 1000 87244995 1744.9 1744.9 1742.542 1748.643 424 303 550 | 0.578 2773 1465 7 2 1.405
+lif_cnn 88.3 1000 1000 2421303 48.426 48.427 14.843 102.399 448 317 567 | 0.266 11655 1270 5.5 1 1.539

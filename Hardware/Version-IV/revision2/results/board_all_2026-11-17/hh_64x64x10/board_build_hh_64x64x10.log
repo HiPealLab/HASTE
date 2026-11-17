@@ -1,0 +1,1864 @@
+#-----------------------------------------------------------
+# Vivado v2022.2 (64-bit)
+# SW Build 3671981 on Fri Oct 14 04:59:54 MDT 2022
+# IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+# Start of session at: Tue Nov 17 05:59:55 2026
+# Process ID: 66874
+# Current directory: /home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV
+# Command line: vivado -mode batch -nojournal -log board_build_hh_64x64x10.log -source board/vivado/build_board.tcl -tclargs cfg=hh_64x64x10 board_part=none ps7_preset=board/vivado/artemis_ps7_preset.tcl
+# Log file: /home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board_build_hh_64x64x10.log
+# Journal file: 
+# Running On: ASUS, OS: Linux, CPU Frequency: 3458.061 MHz, CPU Physical cores: 4, Host memory: 16450 MB
+#-----------------------------------------------------------
+source board/vivado/build_board.tcl
+# set CFG        lif_64x10
+# set FCLK_MHZ   50
+# set BOARD_PART digilentinc.com:zybo-z7-10:part0:1.2
+# set BOARD_REPO ""
+# set PART       xc7z010clg400-1
+# set PS7_PRESET ""
+# set SAIF       ""
+# set JOBS       4
+# set BASE_ADDR  0x43C00000
+# foreach a $argv {
+#   if {![regexp {^([a-z_0-9]+)=(.*)$} $a -> k v]} { error "bad argument '$a' (use key=value)" }
+#   switch -- $k {
+#     cfg        { set CFG $v }
+#     fclk       { set FCLK_MHZ $v }
+#     board_part { set BOARD_PART $v }
+#     board_repo { set BOARD_REPO $v }
+#     part       { set PART $v }
+#     ps7_preset { set PS7_PRESET $v }
+#     saif       { set SAIF $v }
+#     jobs       { set JOBS $v }
+#     base       { set BASE_ADDR $v }
+#     default    { error "unknown option '$k'" }
+#   }
+# }
+# set V4   [file normalize [file join [file dirname [info script]] .. ..]]
+# set B    [file join $V4 build $CFG]
+# set OUT  [file join $V4 board vivado out ${CFG}_${FCLK_MHZ}MHz]
+# set PROJ [file join $OUT proj]
+# set model [lindex [split $CFG _] 0]
+# if {$SAIF eq "auto"} {
+#   set SAIF [file join $V4 vivado out $CFG activity.saif]
+#   if {![file exists $SAIF]} { puts "WARNING: saif=auto but $SAIF does not exist -- vectorless power only"; set SAIF "" }
+# }
+# if {$SAIF ne "" && ![file exists $SAIF]} { error "SAIF file not found: $SAIF (run vivado/saif.tcl first)" }
+# foreach bak [glob -nocomplain [file join $B *.mem.bak]] {
+#   set orig [string range $bak 0 end-4]
+#   if {![file exists $orig]} { file copy -force $bak $orig }
+# }
+# foreach f [list params.svh syn.mem layer.mem] {
+#   if {![file exists [file join $B $f]]} { error "missing $B/$f -- the shipped build/ folder is incomplete" }
+# }
+# file mkdir $OUT
+# if {$BOARD_REPO ne ""} { set_param board.repoPaths [list [file normalize $BOARD_REPO]] }
+# if {$BOARD_PART ne "none"} {
+#   set bp [get_board_parts -quiet $BOARD_PART]
+#   if {$bp eq ""} {
+#     set base [join [lrange [split $BOARD_PART :] 0 2] :]
+#     set bp [lindex [lsort -dictionary [get_board_parts -quiet ${base}:*]] end]
+#     if {$bp eq ""} {
+#       error "board part $BOARD_PART is not installed. Install the Digilent board files\
+#              (git clone https://github.com/Digilent/vivado-boards) and pass\
+#              board_repo=<clone>/new/board_files, or see board/MANUAL_BOARD.md."
+#     }
+#     puts "NOTE: $BOARD_PART not found, using $bp"
+#   }
+#   set BOARD_PART $bp
+#   set PART [get_property PART_NAME [get_board_parts $BOARD_PART]]
+# }
+# if {![string match xc7z010* $PART]} { puts "WARNING: part $PART is not an xc7z010" }
+# puts "board_part=$BOARD_PART part=$PART cfg=$CFG fclk=${FCLK_MHZ}MHz out=$OUT"
+board_part=none part=xc7z010clg400-1 cfg=hh_64x64x10 fclk=50MHz out=/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz
+# catch {close_project}
+# create_project -force snn_board $PROJ -part $PART
+# if {$BOARD_PART ne "none"} { set_property board_part $BOARD_PART [current_project] }
+# set_property target_language Verilog [current_project]
+# set_msg_config -id {Synth 8-4445} -new_severity {ERROR}
+# set srcs [list [file join $V4 rtl snn_fifo.sv] [file join $V4 rtl snn_${model}.sv] \
+#                [file join $V4 board rtl snn_board.sv] [file join $V4 board rtl snn_board_top.v] \
+#                [file join $B params.svh]]
+# add_files -norecurse -fileset sources_1 $srcs
+# set_property FILE_TYPE {Verilog Header} [get_files [file join $B params.svh]]
+# foreach m [list [file join $B syn.mem] [file join $B layer.mem]] {
+#   add_files -norecurse -fileset sources_1 $m
+#   set_property FILE_TYPE {Memory File} [get_files $m]
+# }
+# set_property include_dirs [list $B] [get_filesets sources_1]
+# set defs [list MODEL_[string toupper $model]]
+# set_property verilog_define $defs [get_filesets sources_1]
+# add_files -fileset constrs_1 -norecurse [file join $V4 board vivado board.xdc]
+# update_compile_order -fileset sources_1
+# create_bd_design design_1
+Wrote  : </home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.srcs/sources_1/bd/design_1/design_1.bd> 
+# set ps [create_bd_cell -type ip -vlnv xilinx.com:ip:processing_system7:5.5 processing_system7_0]
+# if {$BOARD_PART ne "none"} {
+#   # board preset = DDR timing, MIO (UART1 on the Zybo USB-UART), clocks of the board
+#   apply_bd_automation -rule xilinx.com:bd_rule:processing_system7 \
+#     -config {make_external "FIXED_IO, DDR" apply_board_preset "1" Master "Disable" Slave "Disable"} $ps
+# } else {
+#   if {$PS7_PRESET eq ""} { error "board_part=none needs ps7_preset=<file.tcl> (DDR/MIO settings of your board)" }
+#   apply_bd_automation -rule xilinx.com:bd_rule:processing_system7 \
+#     -config {make_external "FIXED_IO, DDR" apply_board_preset "0" Master "Disable" Slave "Disable"} $ps
+#   source $PS7_PRESET
+# }
+WARNING: [Boardtcl 53-1] No current board_part set.
+## set_property -dict [list \
+##   CONFIG.PCW_CRYSTAL_PERIPHERAL_FREQMHZ {33.333333} \
+##   CONFIG.PCW_APU_PERIPHERAL_FREQMHZ {666.666666} \
+##   CONFIG.PCW_PRESET_BANK0_VOLTAGE {LVCMOS 3.3V} \
+##   CONFIG.PCW_PRESET_BANK1_VOLTAGE {LVCMOS 1.8V} \
+##   CONFIG.PCW_UIPARAM_DDR_ENABLE {1} \
+##   CONFIG.PCW_UIPARAM_DDR_MEMORY_TYPE {DDR3} \
+##   CONFIG.PCW_UIPARAM_DDR_PARTNO {MT41K256M16 RE-125} \
+##   CONFIG.PCW_UIPARAM_DDR_BUS_WIDTH {16 Bit} \
+##   CONFIG.PCW_UIPARAM_DDR_FREQ_MHZ {533.333333} \
+##   CONFIG.PCW_UIPARAM_DDR_USE_INTERNAL_VREF {0} \
+##   CONFIG.PCW_UIPARAM_DDR_TRAIN_WRITE_LEVEL {1} \
+##   CONFIG.PCW_UIPARAM_DDR_TRAIN_READ_GATE {1} \
+##   CONFIG.PCW_UIPARAM_DDR_TRAIN_DATA_EYE {1} \
+##   CONFIG.PCW_UIPARAM_DDR_BOARD_DELAY0 {0.080} \
+##   CONFIG.PCW_UIPARAM_DDR_BOARD_DELAY1 {0.080} \
+##   CONFIG.PCW_UIPARAM_DDR_BOARD_DELAY2 {0.080} \
+##   CONFIG.PCW_UIPARAM_DDR_BOARD_DELAY3 {0.080} \
+##   CONFIG.PCW_UIPARAM_DDR_DQS_TO_CLK_DELAY_0 {0.000} \
+##   CONFIG.PCW_UIPARAM_DDR_DQS_TO_CLK_DELAY_1 {0.000} \
+##   CONFIG.PCW_UART0_PERIPHERAL_ENABLE {1} \
+##   CONFIG.PCW_UART0_UART0_IO {MIO 10 .. 11} \
+##   CONFIG.PCW_UART0_GRP_FULL_ENABLE {0} \
+##   CONFIG.PCW_UART1_PERIPHERAL_ENABLE {0} \
+##   CONFIG.PCW_QSPI_PERIPHERAL_ENABLE {1} \
+##   CONFIG.PCW_QSPI_QSPI_IO {MIO 1 .. 6} \
+##   CONFIG.PCW_QSPI_GRP_SINGLE_SS_ENABLE {1} \
+##   CONFIG.PCW_USE_M_AXI_GP0 {1} \
+##   CONFIG.PCW_EN_CLK0_PORT {1} \
+##   CONFIG.PCW_EN_RST0_PORT {1} \
+## ] [get_bd_cells processing_system7_0]
+# set_property -dict [list CONFIG.PCW_USE_M_AXI_GP0 {1} CONFIG.PCW_EN_CLK0_PORT {1} CONFIG.PCW_EN_RST0_PORT {1} \
+#   CONFIG.PCW_FPGA0_PERIPHERAL_FREQMHZ $FCLK_MHZ] $ps
+# set fclk_act [get_property CONFIG.PCW_ACT_FPGA0_PERIPHERAL_FREQMHZ $ps]
+# puts "FCLK_CLK0 requested ${FCLK_MHZ} MHz, actual $fclk_act MHz"
+FCLK_CLK0 requested 50 MHz, actual 50.000000 MHz
+# create_bd_cell -type module -reference snn_board_top snn_0
+INFO: [IP_Flow 19-5107] Inferred bus interface 's_axi_aclk' of definition 'xilinx.com:signal:clock:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 's_axi_aclk' of definition 'xilinx.com:signal:clock:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-5107] Inferred bus interface 's_axi_aresetn' of definition 'xilinx.com:signal:reset:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 's_axi_aresetn' of definition 'xilinx.com:signal:reset:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-5107] Inferred bus interface 's_axi' of definition 'xilinx.com:interface:aximm:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 's_axi' of definition 'xilinx.com:interface:aximm:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-4728] Bus Interface 's_axi_aclk': Added interface parameter 'ASSOCIATED_BUSIF' with value 's_axi'.
+INFO: [IP_Flow 19-4728] Bus Interface 's_axi_aclk': Added interface parameter 'ASSOCIATED_RESET' with value 's_axi_aresetn'.
+INFO: [IP_Flow 19-4728] Bus Interface 's_axi_aresetn': Added interface parameter 'POLARITY' with value 'ACTIVE_LOW'.
+INFO: [IP_Flow 19-4728] Bus Interface 's_axi': Added interface parameter 'PROTOCOL' with value 'AXI4LITE'.
+INFO: [IP_Flow 19-4728] Bus Interface 's_axi': Added interface parameter 'DATA_WIDTH' with value '32'.
+INFO: [IP_Flow 19-4728] Bus Interface 's_axi': Added interface parameter 'ADDR_WIDTH' with value '16'.
+INFO: [IP_Flow 19-4728] Bus Interface 's_axi': Added interface parameter 'READ_WRITE_MODE' with value 'READ_WRITE'.
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+# apply_bd_automation -rule xilinx.com:bd_rule:axi4 -config [list Clk_master {Auto} Clk_slave {Auto} Clk_xbar {Auto} \
+#   Master {/processing_system7_0/M_AXI_GP0} Slave {/snn_0/s_axi} ddr_seg {Auto} intc_ip {New AXI Interconnect} \
+#   master_apm {0}] [get_bd_intf_pins snn_0/s_axi]
+Slave segment '/snn_0/s_axi/reg0' is being assigned into address space '/processing_system7_0/Data' at <0x4000_0000 [ 64K ]>.
+# set segs [get_bd_addr_segs -of_objects [get_bd_addr_spaces processing_system7_0/Data] -filter {NAME =~ *snn_0*}]
+# if {[llength $segs] != 1} { error "could not find the address segment of snn_0 ($segs)" }
+# set_property range 64K $segs
+# set_property offset $BASE_ADDR $segs
+# validate_bd_design
+# save_bd_design
+Wrote  : </home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.srcs/sources_1/bd/design_1/design_1.bd> 
+# set bdf [get_files design_1.bd]
+# set_property synth_checkpoint_mode None $bdf
+# generate_target all $bdf
+INFO: [BD 41-1662] The design 'design_1.bd' is already validated. Therefore parameter propagation will not be re-run.
+Verilog Output written to : /home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/synth/design_1.v
+Verilog Output written to : /home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/sim/design_1.v
+Verilog Output written to : /home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/hdl/design_1_wrapper.v
+INFO: [IP_Flow 19-5611] Unable to find an associated reset port for the interface 'M_AXI_GP0'. A default connection has been created.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block processing_system7_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block snn_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps7_0_axi_periph/s00_couplers/auto_pc .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block rst_ps7_0_50M .
+Exporting to file /home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/hw_handoff/design_1.hwh
+Generated Hardware Definition File /home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/synth/design_1.hwdef
+generate_target: Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1655.941 ; gain = 212.594 ; free physical = 2039 ; free virtual = 25163
+# set wrapper [make_wrapper -files $bdf -top]
+# add_files -norecurse $wrapper
+# set_property top design_1_wrapper [get_filesets sources_1]
+# update_compile_order -fileset sources_1
+# launch_runs synth_1 -jobs $JOBS
+WARNING: [Vivado 12-7122] Auto Incremental Compile:: No reference checkpoint was found in run synth_1. Auto-incremental flow will not be run, the standard flow will be run instead.
+[Tue Nov 17 06:00:22 2026] Launched synth_1...
+Run output will be captured here: /home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.runs/synth_1/runme.log
+# wait_on_run synth_1
+[Tue Nov 17 06:00:22 2026] Waiting for synth_1 to finish...
+
+*** Running vivado
+    with args -log design_1_wrapper.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_1_wrapper.tcl
+
+
+****** Vivado v2022.2 (64-bit)
+  **** SW Build 3671981 on Fri Oct 14 04:59:54 MDT 2022
+  **** IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+
+source design_1_wrapper.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2022.2/data/ip'.
+INFO: [IP_Flow 19-5107] Inferred bus interface 's_axi_aclk' of definition 'xilinx.com:signal:clock:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 's_axi_aclk' of definition 'xilinx.com:signal:clock:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-5107] Inferred bus interface 's_axi_aresetn' of definition 'xilinx.com:signal:reset:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 's_axi_aresetn' of definition 'xilinx.com:signal:reset:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-5107] Inferred bus interface 's_axi' of definition 'xilinx.com:interface:aximm:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 's_axi' of definition 'xilinx.com:interface:aximm:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-4728] Bus Interface 's_axi_aclk': Added interface parameter 'ASSOCIATED_BUSIF' with value 's_axi'.
+INFO: [IP_Flow 19-4728] Bus Interface 's_axi_aclk': Added interface parameter 'ASSOCIATED_RESET' with value 's_axi_aresetn'.
+INFO: [IP_Flow 19-4728] Bus Interface 's_axi_aresetn': Added interface parameter 'POLARITY' with value 'ACTIVE_LOW'.
+INFO: [IP_Flow 19-4728] Bus Interface 's_axi': Added interface parameter 'PROTOCOL' with value 'AXI4LITE'.
+INFO: [IP_Flow 19-4728] Bus Interface 's_axi': Added interface parameter 'DATA_WIDTH' with value '32'.
+INFO: [IP_Flow 19-4728] Bus Interface 's_axi': Added interface parameter 'ADDR_WIDTH' with value '16'.
+INFO: [IP_Flow 19-4728] Bus Interface 's_axi': Added interface parameter 'READ_WRITE_MODE' with value 'READ_WRITE'.
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+Command: synth_design -top design_1_wrapper -part xc7z010clg400-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z010'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z010'
+INFO: [Device 21-403] Loading part xc7z010clg400-1
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 67114
+INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [/tools/Xilinx/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1987.047 ; gain = 360.797 ; free physical = 842 ; free virtual = 23959
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1396.054; parent = 1191.490; children = 204.563
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 2978.492; parent = 1996.957; children = 981.535
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'design_1_wrapper' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/hdl/design_1_wrapper.v:12]
+INFO: [Synth 8-6157] synthesizing module 'design_1' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/synth/design_1.v:12]
+INFO: [Synth 8-6157] synthesizing module 'design_1_processing_system7_0_0' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ip/design_1_processing_system7_0_0/synth/design_1_processing_system7_0_0.v:53]
+INFO: [Synth 8-6157] synthesizing module 'processing_system7_v5_5_processing_system7' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ip/design_1_processing_system7_0_0/hdl/verilog/processing_system7_v5_5_processing_system7.v:152]
+INFO: [Synth 8-6157] synthesizing module 'BUFG' [/tools/Xilinx/Vivado/2022.2/scripts/rt/data/unisim_comp.v:1082]
+INFO: [Synth 8-6155] done synthesizing module 'BUFG' (0#1) [/tools/Xilinx/Vivado/2022.2/scripts/rt/data/unisim_comp.v:1082]
+INFO: [Synth 8-6157] synthesizing module 'BIBUF' [/tools/Xilinx/Vivado/2022.2/scripts/rt/data/unisim_comp.v:729]
+INFO: [Synth 8-6155] done synthesizing module 'BIBUF' (0#1) [/tools/Xilinx/Vivado/2022.2/scripts/rt/data/unisim_comp.v:729]
+INFO: [Synth 8-6157] synthesizing module 'PS7' [/tools/Xilinx/Vivado/2022.2/scripts/rt/data/unisim_comp.v:109424]
+INFO: [Synth 8-6155] done synthesizing module 'PS7' (0#1) [/tools/Xilinx/Vivado/2022.2/scripts/rt/data/unisim_comp.v:109424]
+INFO: [Synth 8-6155] done synthesizing module 'processing_system7_v5_5_processing_system7' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ip/design_1_processing_system7_0_0/hdl/verilog/processing_system7_v5_5_processing_system7.v:152]
+WARNING: [Synth 8-7071] port 'M_AXI_GP0_ARESETN' of module 'processing_system7_v5_5_processing_system7' is unconnected for instance 'inst' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ip/design_1_processing_system7_0_0/synth/design_1_processing_system7_0_0.v:314]
+WARNING: [Synth 8-7071] port 'M_AXI_GP1_ARESETN' of module 'processing_system7_v5_5_processing_system7' is unconnected for instance 'inst' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ip/design_1_processing_system7_0_0/synth/design_1_processing_system7_0_0.v:314]
+WARNING: [Synth 8-7071] port 'S_AXI_GP0_ARESETN' of module 'processing_system7_v5_5_processing_system7' is unconnected for instance 'inst' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ip/design_1_processing_system7_0_0/synth/design_1_processing_system7_0_0.v:314]
+WARNING: [Synth 8-7071] port 'S_AXI_GP1_ARESETN' of module 'processing_system7_v5_5_processing_system7' is unconnected for instance 'inst' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ip/design_1_processing_system7_0_0/synth/design_1_processing_system7_0_0.v:314]
+WARNING: [Synth 8-7071] port 'S_AXI_ACP_ARESETN' of module 'processing_system7_v5_5_processing_system7' is unconnected for instance 'inst' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ip/design_1_processing_system7_0_0/synth/design_1_processing_system7_0_0.v:314]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_ARESETN' of module 'processing_system7_v5_5_processing_system7' is unconnected for instance 'inst' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ip/design_1_processing_system7_0_0/synth/design_1_processing_system7_0_0.v:314]
+WARNING: [Synth 8-7071] port 'S_AXI_HP1_ARESETN' of module 'processing_system7_v5_5_processing_system7' is unconnected for instance 'inst' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ip/design_1_processing_system7_0_0/synth/design_1_processing_system7_0_0.v:314]
+WARNING: [Synth 8-7071] port 'S_AXI_HP2_ARESETN' of module 'processing_system7_v5_5_processing_system7' is unconnected for instance 'inst' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ip/design_1_processing_system7_0_0/synth/design_1_processing_system7_0_0.v:314]
+WARNING: [Synth 8-7071] port 'S_AXI_HP3_ARESETN' of module 'processing_system7_v5_5_processing_system7' is unconnected for instance 'inst' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ip/design_1_processing_system7_0_0/synth/design_1_processing_system7_0_0.v:314]
+WARNING: [Synth 8-7071] port 'DMA0_RSTN' of module 'processing_system7_v5_5_processing_system7' is unconnected for instance 'inst' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ip/design_1_processing_system7_0_0/synth/design_1_processing_system7_0_0.v:314]
+WARNING: [Synth 8-7071] port 'DMA1_RSTN' of module 'processing_system7_v5_5_processing_system7' is unconnected for instance 'inst' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ip/design_1_processing_system7_0_0/synth/design_1_processing_system7_0_0.v:314]
+WARNING: [Synth 8-7071] port 'DMA2_RSTN' of module 'processing_system7_v5_5_processing_system7' is unconnected for instance 'inst' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ip/design_1_processing_system7_0_0/synth/design_1_processing_system7_0_0.v:314]
+WARNING: [Synth 8-7071] port 'DMA3_RSTN' of module 'processing_system7_v5_5_processing_system7' is unconnected for instance 'inst' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ip/design_1_processing_system7_0_0/synth/design_1_processing_system7_0_0.v:314]
+WARNING: [Synth 8-7023] instance 'inst' of module 'processing_system7_v5_5_processing_system7' has 685 connections declared, but only 672 given [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ip/design_1_processing_system7_0_0/synth/design_1_processing_system7_0_0.v:314]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_processing_system7_0_0' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ip/design_1_processing_system7_0_0/synth/design_1_processing_system7_0_0.v:53]
+INFO: [Synth 8-6157] synthesizing module 'design_1_ps7_0_axi_periph_0' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/synth/design_1.v:297]
+INFO: [Synth 8-6157] synthesizing module 's00_couplers_imp_UYSKKA' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/synth/design_1.v:612]
+INFO: [Synth 8-6157] synthesizing module 'design_1_auto_pc_0' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ip/design_1_auto_pc_0/synth/design_1_auto_pc_0.v:53]
+INFO: [Synth 8-6157] synthesizing module 'axi_protocol_converter_v2_1_27_axi_protocol_converter' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/aeb3/hdl/axi_protocol_converter_v2_1_vl_rfs.v:4807]
+INFO: [Synth 8-6157] synthesizing module 'axi_protocol_converter_v2_1_27_b2s' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/aeb3/hdl/axi_protocol_converter_v2_1_vl_rfs.v:4225]
+INFO: [Synth 8-6157] synthesizing module 'axi_protocol_converter_v2_1_27_b2s_aw_channel' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/aeb3/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3970]
+INFO: [Synth 8-6157] synthesizing module 'axi_protocol_converter_v2_1_27_b2s_cmd_translator' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/aeb3/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3463]
+INFO: [Synth 8-6157] synthesizing module 'axi_protocol_converter_v2_1_27_b2s_incr_cmd' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/aeb3/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3091]
+INFO: [Synth 8-6155] done synthesizing module 'axi_protocol_converter_v2_1_27_b2s_incr_cmd' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/aeb3/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3091]
+INFO: [Synth 8-6157] synthesizing module 'axi_protocol_converter_v2_1_27_b2s_wrap_cmd' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/aeb3/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2901]
+INFO: [Synth 8-6155] done synthesizing module 'axi_protocol_converter_v2_1_27_b2s_wrap_cmd' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/aeb3/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2901]
+INFO: [Synth 8-6155] done synthesizing module 'axi_protocol_converter_v2_1_27_b2s_cmd_translator' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/aeb3/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3463]
+INFO: [Synth 8-6157] synthesizing module 'axi_protocol_converter_v2_1_27_b2s_wr_cmd_fsm' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/aeb3/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3223]
+INFO: [Synth 8-226] default block is never used [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/aeb3/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3277]
+INFO: [Synth 8-6155] done synthesizing module 'axi_protocol_converter_v2_1_27_b2s_wr_cmd_fsm' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/aeb3/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3223]
+INFO: [Synth 8-6155] done synthesizing module 'axi_protocol_converter_v2_1_27_b2s_aw_channel' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/aeb3/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3970]
+INFO: [Synth 8-6157] synthesizing module 'axi_protocol_converter_v2_1_27_b2s_b_channel' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/aeb3/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3605]
+INFO: [Synth 8-6157] synthesizing module 'axi_protocol_converter_v2_1_27_b2s_simple_fifo' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/aeb3/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2815]
+INFO: [Synth 8-6155] done synthesizing module 'axi_protocol_converter_v2_1_27_b2s_simple_fifo' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/aeb3/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2815]
+INFO: [Synth 8-6157] synthesizing module 'axi_protocol_converter_v2_1_27_b2s_simple_fifo__parameterized0' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/aeb3/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2815]
+INFO: [Synth 8-6155] done synthesizing module 'axi_protocol_converter_v2_1_27_b2s_simple_fifo__parameterized0' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/aeb3/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2815]
+INFO: [Synth 8-6155] done synthesizing module 'axi_protocol_converter_v2_1_27_b2s_b_channel' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/aeb3/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3605]
+INFO: [Synth 8-6157] synthesizing module 'axi_protocol_converter_v2_1_27_b2s_ar_channel' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/aeb3/hdl/axi_protocol_converter_v2_1_vl_rfs.v:4081]
+INFO: [Synth 8-6157] synthesizing module 'axi_protocol_converter_v2_1_27_b2s_rd_cmd_fsm' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/aeb3/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3333]
+INFO: [Synth 8-226] default block is never used [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/aeb3/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3395]
+INFO: [Synth 8-6155] done synthesizing module 'axi_protocol_converter_v2_1_27_b2s_rd_cmd_fsm' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/aeb3/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3333]
+INFO: [Synth 8-6155] done synthesizing module 'axi_protocol_converter_v2_1_27_b2s_ar_channel' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/aeb3/hdl/axi_protocol_converter_v2_1_vl_rfs.v:4081]
+INFO: [Synth 8-6157] synthesizing module 'axi_protocol_converter_v2_1_27_b2s_r_channel' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/aeb3/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3810]
+INFO: [Synth 8-6157] synthesizing module 'axi_protocol_converter_v2_1_27_b2s_simple_fifo__parameterized1' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/aeb3/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2815]
+INFO: [Synth 8-6155] done synthesizing module 'axi_protocol_converter_v2_1_27_b2s_simple_fifo__parameterized1' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/aeb3/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2815]
+INFO: [Synth 8-6157] synthesizing module 'axi_protocol_converter_v2_1_27_b2s_simple_fifo__parameterized2' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/aeb3/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2815]
+INFO: [Synth 8-6155] done synthesizing module 'axi_protocol_converter_v2_1_27_b2s_simple_fifo__parameterized2' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/aeb3/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2815]
+INFO: [Synth 8-6155] done synthesizing module 'axi_protocol_converter_v2_1_27_b2s_r_channel' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/aeb3/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3810]
+INFO: [Synth 8-6157] synthesizing module 'axi_register_slice_v2_1_27_axi_register_slice' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/f0b4/hdl/axi_register_slice_v2_1_vl_rfs.v:3725]
+INFO: [Synth 8-6157] synthesizing module 'axi_infrastructure_v1_1_0_axi2vector' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/ec67/hdl/axi_infrastructure_v1_1_vl_rfs.v:59]
+INFO: [Synth 8-6155] done synthesizing module 'axi_infrastructure_v1_1_0_axi2vector' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/ec67/hdl/axi_infrastructure_v1_1_vl_rfs.v:59]
+INFO: [Synth 8-6157] synthesizing module 'axi_infrastructure_v1_1_0_vector2axi' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/ec67/hdl/axi_infrastructure_v1_1_vl_rfs.v:473]
+INFO: [Synth 8-6155] done synthesizing module 'axi_infrastructure_v1_1_0_vector2axi' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/ec67/hdl/axi_infrastructure_v1_1_vl_rfs.v:473]
+INFO: [Synth 8-6157] synthesizing module 'axi_register_slice_v2_1_27_axic_register_slice' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/f0b4/hdl/axi_register_slice_v2_1_vl_rfs.v:1497]
+INFO: [Synth 8-6155] done synthesizing module 'axi_register_slice_v2_1_27_axic_register_slice' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/f0b4/hdl/axi_register_slice_v2_1_vl_rfs.v:1497]
+INFO: [Synth 8-6157] synthesizing module 'axi_register_slice_v2_1_27_axic_register_slice__parameterized0' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/f0b4/hdl/axi_register_slice_v2_1_vl_rfs.v:1497]
+INFO: [Synth 8-6155] done synthesizing module 'axi_register_slice_v2_1_27_axic_register_slice__parameterized0' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/f0b4/hdl/axi_register_slice_v2_1_vl_rfs.v:1497]
+INFO: [Synth 8-6157] synthesizing module 'axi_register_slice_v2_1_27_axic_register_slice__parameterized1' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/f0b4/hdl/axi_register_slice_v2_1_vl_rfs.v:1497]
+INFO: [Synth 8-6155] done synthesizing module 'axi_register_slice_v2_1_27_axic_register_slice__parameterized1' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/f0b4/hdl/axi_register_slice_v2_1_vl_rfs.v:1497]
+INFO: [Synth 8-6157] synthesizing module 'axi_register_slice_v2_1_27_axic_register_slice__parameterized2' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/f0b4/hdl/axi_register_slice_v2_1_vl_rfs.v:1497]
+INFO: [Synth 8-6155] done synthesizing module 'axi_register_slice_v2_1_27_axic_register_slice__parameterized2' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/f0b4/hdl/axi_register_slice_v2_1_vl_rfs.v:1497]
+INFO: [Synth 8-6155] done synthesizing module 'axi_register_slice_v2_1_27_axi_register_slice' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/f0b4/hdl/axi_register_slice_v2_1_vl_rfs.v:3725]
+WARNING: [Synth 8-7071] port 'aclk2x' of module 'axi_register_slice_v2_1_27_axi_register_slice' is unconnected for instance 'SI_REG' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/aeb3/hdl/axi_protocol_converter_v2_1_vl_rfs.v:4392]
+WARNING: [Synth 8-7023] instance 'SI_REG' of module 'axi_register_slice_v2_1_27_axi_register_slice' has 93 connections declared, but only 92 given [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/aeb3/hdl/axi_protocol_converter_v2_1_vl_rfs.v:4392]
+INFO: [Synth 8-6157] synthesizing module 'axi_register_slice_v2_1_27_axi_register_slice__parameterized0' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/f0b4/hdl/axi_register_slice_v2_1_vl_rfs.v:3725]
+INFO: [Synth 8-6157] synthesizing module 'axi_infrastructure_v1_1_0_axi2vector__parameterized0' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/ec67/hdl/axi_infrastructure_v1_1_vl_rfs.v:59]
+INFO: [Synth 8-6155] done synthesizing module 'axi_infrastructure_v1_1_0_axi2vector__parameterized0' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/ec67/hdl/axi_infrastructure_v1_1_vl_rfs.v:59]
+INFO: [Synth 8-6157] synthesizing module 'axi_infrastructure_v1_1_0_vector2axi__parameterized0' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/ec67/hdl/axi_infrastructure_v1_1_vl_rfs.v:473]
+INFO: [Synth 8-6155] done synthesizing module 'axi_infrastructure_v1_1_0_vector2axi__parameterized0' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/ec67/hdl/axi_infrastructure_v1_1_vl_rfs.v:473]
+INFO: [Synth 8-6157] synthesizing module 'axi_register_slice_v2_1_27_axic_register_slice__parameterized3' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/f0b4/hdl/axi_register_slice_v2_1_vl_rfs.v:1497]
+INFO: [Synth 8-6155] done synthesizing module 'axi_register_slice_v2_1_27_axic_register_slice__parameterized3' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/f0b4/hdl/axi_register_slice_v2_1_vl_rfs.v:1497]
+INFO: [Synth 8-6157] synthesizing module 'axi_register_slice_v2_1_27_axic_register_slice__parameterized4' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/f0b4/hdl/axi_register_slice_v2_1_vl_rfs.v:1497]
+INFO: [Synth 8-6155] done synthesizing module 'axi_register_slice_v2_1_27_axic_register_slice__parameterized4' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/f0b4/hdl/axi_register_slice_v2_1_vl_rfs.v:1497]
+INFO: [Synth 8-6157] synthesizing module 'axi_register_slice_v2_1_27_axic_register_slice__parameterized5' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/f0b4/hdl/axi_register_slice_v2_1_vl_rfs.v:1497]
+INFO: [Synth 8-6155] done synthesizing module 'axi_register_slice_v2_1_27_axic_register_slice__parameterized5' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/f0b4/hdl/axi_register_slice_v2_1_vl_rfs.v:1497]
+INFO: [Synth 8-6157] synthesizing module 'axi_register_slice_v2_1_27_axic_register_slice__parameterized6' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/f0b4/hdl/axi_register_slice_v2_1_vl_rfs.v:1497]
+INFO: [Synth 8-6155] done synthesizing module 'axi_register_slice_v2_1_27_axic_register_slice__parameterized6' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/f0b4/hdl/axi_register_slice_v2_1_vl_rfs.v:1497]
+INFO: [Synth 8-6155] done synthesizing module 'axi_register_slice_v2_1_27_axi_register_slice__parameterized0' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/f0b4/hdl/axi_register_slice_v2_1_vl_rfs.v:3725]
+WARNING: [Synth 8-7071] port 'aclk2x' of module 'axi_register_slice_v2_1_27_axi_register_slice' is unconnected for instance 'MI_REG' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/aeb3/hdl/axi_protocol_converter_v2_1_vl_rfs.v:4647]
+WARNING: [Synth 8-7023] instance 'MI_REG' of module 'axi_register_slice_v2_1_27_axi_register_slice' has 93 connections declared, but only 92 given [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/aeb3/hdl/axi_protocol_converter_v2_1_vl_rfs.v:4647]
+INFO: [Synth 8-6155] done synthesizing module 'axi_protocol_converter_v2_1_27_b2s' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/aeb3/hdl/axi_protocol_converter_v2_1_vl_rfs.v:4225]
+INFO: [Synth 8-6155] done synthesizing module 'axi_protocol_converter_v2_1_27_axi_protocol_converter' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/aeb3/hdl/axi_protocol_converter_v2_1_vl_rfs.v:4807]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_auto_pc_0' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ip/design_1_auto_pc_0/synth/design_1_auto_pc_0.v:53]
+INFO: [Synth 8-6155] done synthesizing module 's00_couplers_imp_UYSKKA' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/synth/design_1.v:612]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_ps7_0_axi_periph_0' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/synth/design_1.v:297]
+INFO: [Synth 8-638] synthesizing module 'design_1_rst_ps7_0_50M_0' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ip/design_1_rst_ps7_0_50M_0/synth/design_1_rst_ps7_0_50M_0.vhd:74]
+	Parameter C_FAMILY bound to: zynq - type: string 
+	Parameter C_EXT_RST_WIDTH bound to: 4 - type: integer 
+	Parameter C_AUX_RST_WIDTH bound to: 4 - type: integer 
+	Parameter C_EXT_RESET_HIGH bound to: 1'b0 
+	Parameter C_AUX_RESET_HIGH bound to: 1'b0 
+	Parameter C_NUM_BUS_RST bound to: 1 - type: integer 
+	Parameter C_NUM_PERP_RST bound to: 1 - type: integer 
+	Parameter C_NUM_INTERCONNECT_ARESETN bound to: 1 - type: integer 
+	Parameter C_NUM_PERP_ARESETN bound to: 1 - type: integer 
+INFO: [Synth 8-3491] module 'proc_sys_reset' declared at '/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/8842/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:1264' bound to instance 'U0' of component 'proc_sys_reset' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ip/design_1_rst_ps7_0_50M_0/synth/design_1_rst_ps7_0_50M_0.vhd:129]
+INFO: [Synth 8-638] synthesizing module 'proc_sys_reset' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/8842/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:1323]
+	Parameter INIT bound to: 1'b1 
+INFO: [Synth 8-113] binding component instance 'FDRE_inst' to cell 'FDRE' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/8842/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:1392]
+	Parameter INIT bound to: 1'b1 
+INFO: [Synth 8-113] binding component instance 'FDRE_BSR' to cell 'FDRE' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/8842/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:1408]
+	Parameter INIT bound to: 1'b0 
+INFO: [Synth 8-113] binding component instance 'FDRE_BSR_N' to cell 'FDRE' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/8842/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:1434]
+	Parameter INIT bound to: 1'b1 
+INFO: [Synth 8-113] binding component instance 'FDRE_PER' to cell 'FDRE' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/8842/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:1457]
+	Parameter INIT bound to: 1'b0 
+INFO: [Synth 8-113] binding component instance 'FDRE_PER_N' to cell 'FDRE' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/8842/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:1481]
+INFO: [Synth 8-638] synthesizing module 'lpf' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/8842/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:816]
+INFO: [Synth 8-3491] module 'SRL16' declared at '/tools/Xilinx/Vivado/2022.2/scripts/rt/data/unisim_comp.v:131628' bound to instance 'POR_SRL_I' of component 'SRL16' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/8842/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:868]
+INFO: [Synth 8-6157] synthesizing module 'SRL16' [/tools/Xilinx/Vivado/2022.2/scripts/rt/data/unisim_comp.v:131628]
+INFO: [Synth 8-6155] done synthesizing module 'SRL16' (0#1) [/tools/Xilinx/Vivado/2022.2/scripts/rt/data/unisim_comp.v:131628]
+INFO: [Synth 8-638] synthesizing module 'cdc_sync' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:106]
+	Parameter INIT bound to: 1'b0 
+INFO: [Synth 8-113] binding component instance 'CROSS_PLEVEL_IN2SCNDRY_IN_cdc_to' to cell 'FDR' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:514]
+	Parameter INIT bound to: 1'b0 
+INFO: [Synth 8-113] binding component instance 'CROSS_PLEVEL_IN2SCNDRY_s_level_out_d2' to cell 'FDR' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:545]
+	Parameter INIT bound to: 1'b0 
+INFO: [Synth 8-113] binding component instance 'CROSS_PLEVEL_IN2SCNDRY_s_level_out_d3' to cell 'FDR' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:554]
+	Parameter INIT bound to: 1'b0 
+INFO: [Synth 8-113] binding component instance 'CROSS_PLEVEL_IN2SCNDRY_s_level_out_d4' to cell 'FDR' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:564]
+	Parameter INIT bound to: 1'b0 
+INFO: [Synth 8-113] binding component instance 'CROSS_PLEVEL_IN2SCNDRY_s_level_out_d5' to cell 'FDR' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:574]
+	Parameter INIT bound to: 1'b0 
+INFO: [Synth 8-113] binding component instance 'CROSS_PLEVEL_IN2SCNDRY_s_level_out_d6' to cell 'FDR' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:584]
+INFO: [Synth 8-256] done synthesizing module 'cdc_sync' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:106]
+INFO: [Synth 8-256] done synthesizing module 'lpf' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/8842/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:816]
+INFO: [Synth 8-638] synthesizing module 'sequence_psr' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/8842/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:301]
+INFO: [Synth 8-638] synthesizing module 'upcnt_n' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/8842/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:125]
+INFO: [Synth 8-256] done synthesizing module 'upcnt_n' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/8842/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:125]
+INFO: [Synth 8-256] done synthesizing module 'sequence_psr' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/8842/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:301]
+INFO: [Synth 8-256] done synthesizing module 'proc_sys_reset' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/8842/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:1323]
+INFO: [Synth 8-256] done synthesizing module 'design_1_rst_ps7_0_50M_0' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ip/design_1_rst_ps7_0_50M_0/synth/design_1_rst_ps7_0_50M_0.vhd:74]
+WARNING: [Synth 8-7071] port 'mb_reset' of module 'design_1_rst_ps7_0_50M_0' is unconnected for instance 'rst_ps7_0_50M' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/synth/design_1.v:266]
+WARNING: [Synth 8-7071] port 'bus_struct_reset' of module 'design_1_rst_ps7_0_50M_0' is unconnected for instance 'rst_ps7_0_50M' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/synth/design_1.v:266]
+WARNING: [Synth 8-7071] port 'peripheral_reset' of module 'design_1_rst_ps7_0_50M_0' is unconnected for instance 'rst_ps7_0_50M' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/synth/design_1.v:266]
+WARNING: [Synth 8-7071] port 'interconnect_aresetn' of module 'design_1_rst_ps7_0_50M_0' is unconnected for instance 'rst_ps7_0_50M' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/synth/design_1.v:266]
+WARNING: [Synth 8-7023] instance 'rst_ps7_0_50M' of module 'design_1_rst_ps7_0_50M_0' has 10 connections declared, but only 6 given [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/synth/design_1.v:266]
+INFO: [Synth 8-6157] synthesizing module 'design_1_snn_0_0' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ip/design_1_snn_0_0/synth/design_1_snn_0_0.v:53]
+INFO: [Synth 8-6157] synthesizing module 'snn_board_top' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/rtl/snn_board_top.v:6]
+INFO: [Synth 8-6157] synthesizing module 'snn_board' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/rtl/snn_board.sv:31]
+INFO: [Synth 8-6157] synthesizing module 'snn_hh' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/rtl/snn_hh.sv:17]
+INFO: [Synth 8-3876] $readmem data file 'syn.mem' is read successfully [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/rtl/snn_hh.sv:44]
+INFO: [Synth 8-3876] $readmem data file 'lut_an.mem' is read successfully [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/rtl/snn_hh.sv:45]
+INFO: [Synth 8-3876] $readmem data file 'lut_bn.mem' is read successfully [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/rtl/snn_hh.sv:46]
+INFO: [Synth 8-3876] $readmem data file 'lut_am.mem' is read successfully [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/rtl/snn_hh.sv:47]
+INFO: [Synth 8-3876] $readmem data file 'lut_bm.mem' is read successfully [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/rtl/snn_hh.sv:48]
+INFO: [Synth 8-3876] $readmem data file 'lut_ah.mem' is read successfully [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/rtl/snn_hh.sv:49]
+INFO: [Synth 8-3876] $readmem data file 'lut_bh.mem' is read successfully [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/rtl/snn_hh.sv:50]
+INFO: [Synth 8-6157] synthesizing module 'snn_fifo' [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/rtl/snn_fifo.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'snn_fifo' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/rtl/snn_fifo.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'snn_hh' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/rtl/snn_hh.sv:17]
+INFO: [Synth 8-6155] done synthesizing module 'snn_board' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/rtl/snn_board.sv:31]
+INFO: [Synth 8-6155] done synthesizing module 'snn_board_top' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/rtl/snn_board_top.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_snn_0_0' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ip/design_1_snn_0_0/synth/design_1_snn_0_0.v:53]
+INFO: [Synth 8-6155] done synthesizing module 'design_1' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/synth/design_1.v:12]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_wrapper' (0#1) [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/hdl/design_1_wrapper.v:12]
+WARNING: [Synth 8-6014] Unused sequential element state_r1_reg was removed.  [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/aeb3/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3383]
+WARNING: [Synth 8-6014] Unused sequential element s_arlen_r_reg was removed.  [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/aeb3/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3384]
+WARNING: [Synth 8-7129] Port op_arg[7] in module snn_hh is either unconnected or has no load
+WARNING: [Synth 8-7129] Port op_arg[6] in module snn_hh is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awaddr[1] in module snn_board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awaddr[0] in module snn_board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_wstrb[3] in module snn_board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_wstrb[2] in module snn_board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_wstrb[1] in module snn_board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_wstrb[0] in module snn_board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_araddr[1] in module snn_board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_araddr[0] in module snn_board is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awprot[2] in module snn_board_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awprot[1] in module snn_board_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awprot[0] in module snn_board_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arprot[2] in module snn_board_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arprot[1] in module snn_board_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arprot[0] in module snn_board_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prmry_aclk in module cdc_sync is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prmry_resetn in module cdc_sync is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prmry_vect_in[1] in module cdc_sync is either unconnected or has no load
+WARNING: [Synth 8-7129] Port prmry_vect_in[0] in module cdc_sync is either unconnected or has no load
+WARNING: [Synth 8-7129] Port scndry_resetn in module cdc_sync is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ACLK in module axi_register_slice_v2_1_27_axic_register_slice__parameterized6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ARESET in module axi_register_slice_v2_1_27_axic_register_slice__parameterized6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ACLK in module axi_register_slice_v2_1_27_axic_register_slice__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ARESET in module axi_register_slice_v2_1_27_axic_register_slice__parameterized3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ACLK in module axi_register_slice_v2_1_27_axic_register_slice__parameterized5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ARESET in module axi_register_slice_v2_1_27_axic_register_slice__parameterized5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ACLK in module axi_register_slice_v2_1_27_axic_register_slice__parameterized4 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ARESET in module axi_register_slice_v2_1_27_axic_register_slice__parameterized4 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_bid[0] in module axi_infrastructure_v1_1_0_vector2axi__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_buser[0] in module axi_infrastructure_v1_1_0_vector2axi__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_rid[0] in module axi_infrastructure_v1_1_0_vector2axi__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_rlast in module axi_infrastructure_v1_1_0_vector2axi__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_ruser[0] in module axi_infrastructure_v1_1_0_vector2axi__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awid[0] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awlen[7] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awlen[6] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awlen[5] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awlen[4] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awlen[3] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awlen[2] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awlen[1] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awlen[0] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awsize[2] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awsize[1] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awsize[0] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awburst[1] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awburst[0] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awlock[0] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awcache[3] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awcache[2] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awcache[1] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awcache[0] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awregion[3] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awregion[2] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awregion[1] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awregion[0] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awqos[3] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awqos[2] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awqos[1] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awqos[0] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awuser[0] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_wid[0] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_wlast in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_wuser[0] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arid[0] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arlen[7] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arlen[6] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arlen[5] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arlen[4] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arlen[3] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arlen[2] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arlen[1] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arlen[0] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arsize[2] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arsize[1] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arsize[0] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arburst[1] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arburst[0] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arlock[0] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arcache[3] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arcache[2] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arcache[1] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arcache[0] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arregion[3] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arregion[2] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arregion[1] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arregion[0] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arqos[3] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arqos[2] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arqos[1] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arqos[0] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_aruser[0] in module axi_infrastructure_v1_1_0_axi2vector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port aclk2x in module axi_register_slice_v2_1_27_axi_register_slice__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ACLK in module axi_register_slice_v2_1_27_axic_register_slice__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ARESET in module axi_register_slice_v2_1_27_axic_register_slice__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_buser[0] in module axi_infrastructure_v1_1_0_vector2axi is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_ruser[0] in module axi_infrastructure_v1_1_0_vector2axi is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awregion[3] in module axi_infrastructure_v1_1_0_axi2vector is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awregion[2] in module axi_infrastructure_v1_1_0_axi2vector is either unconnected or has no load
+INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 2191.922 ; gain = 565.672 ; free physical = 911 ; free virtual = 24027
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1396.054; parent = 1191.490; children = 204.563
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3173.461; parent = 2191.926; children = 981.535
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 2209.734 ; gain = 583.484 ; free physical = 915 ; free virtual = 24032
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1396.054; parent = 1191.490; children = 204.563
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3191.273; parent = 2209.738; children = 981.535
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 2209.734 ; gain = 583.484 ; free physical = 915 ; free virtual = 24032
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1396.054; parent = 1191.490; children = 204.563
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3191.273; parent = 2209.738; children = 981.535
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00.05 ; elapsed = 00:00:00.05 . Memory (MB): peak = 2215.672 ; gain = 0.000 ; free physical = 907 ; free virtual = 24024
+INFO: [Netlist 29-17] Analyzing 13 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ip/design_1_processing_system7_0_0/design_1_processing_system7_0_0.xdc] for cell 'design_1_i/processing_system7_0/inst'
+Finished Parsing XDC File [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ip/design_1_processing_system7_0_0/design_1_processing_system7_0_0.xdc] for cell 'design_1_i/processing_system7_0/inst'
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ip/design_1_processing_system7_0_0/design_1_processing_system7_0_0.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/design_1_wrapper_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/design_1_wrapper_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Parsing XDC File [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ip/design_1_rst_ps7_0_50M_0/design_1_rst_ps7_0_50M_0_board.xdc] for cell 'design_1_i/rst_ps7_0_50M/U0'
+Finished Parsing XDC File [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ip/design_1_rst_ps7_0_50M_0/design_1_rst_ps7_0_50M_0_board.xdc] for cell 'design_1_i/rst_ps7_0_50M/U0'
+Parsing XDC File [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ip/design_1_rst_ps7_0_50M_0/design_1_rst_ps7_0_50M_0.xdc] for cell 'design_1_i/rst_ps7_0_50M/U0'
+Finished Parsing XDC File [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ip/design_1_rst_ps7_0_50M_0/design_1_rst_ps7_0_50M_0.xdc] for cell 'design_1_i/rst_ps7_0_50M/U0'
+Parsing XDC File [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/board.xdc]
+Finished Parsing XDC File [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/board.xdc]
+Parsing XDC File [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.runs/synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.runs/synth_1/dont_touch.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.runs/synth_1/dont_touch.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/design_1_wrapper_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/design_1_wrapper_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2303.473 ; gain = 0.000 ; free physical = 816 ; free virtual = 23933
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 13 instances were transformed.
+  FDR => FDRE: 12 instances
+  SRL16 => SRL16E: 1 instance 
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2303.473 ; gain = 0.000 ; free physical = 816 ; free virtual = 23933
+INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [/tools/Xilinx/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 2303.473 ; gain = 677.223 ; free physical = 776 ; free virtual = 23894
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1431.024; parent = 1226.492; children = 204.563
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3285.012; parent = 2303.477; children = 981.535
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z010clg400-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 2303.473 ; gain = 677.223 ; free physical = 776 ; free virtual = 23894
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1431.024; parent = 1226.492; children = 204.563
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3285.012; parent = 2303.477; children = 981.535
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property KEEP_HIERARCHY = SOFT for design_1_i/processing_system7_0/inst. (constraint file  /home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.runs/synth_1/dont_touch.xdc, line 25).
+Applied set_property KEEP_HIERARCHY = SOFT for design_1_i/rst_ps7_0_50M/U0. (constraint file  /home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.runs/synth_1/dont_touch.xdc, line 30).
+Applied set_property KEEP_HIERARCHY = SOFT for design_1_i. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for design_1_i/processing_system7_0. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for design_1_i/snn_0. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for design_1_i/ps7_0_axi_periph/s00_couplers/auto_pc. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for design_1_i/ps7_0_axi_periph. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for design_1_i/rst_ps7_0_50M. (constraint file  auto generated constraint).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 2303.473 ; gain = 677.223 ; free physical = 776 ; free virtual = 23894
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1431.024; parent = 1226.492; children = 204.563
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3285.012; parent = 2303.477; children = 981.535
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'axi_protocol_converter_v2_1_27_b2s_wr_cmd_fsm'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'axi_protocol_converter_v2_1_27_b2s_rd_cmd_fsm'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                 SM_IDLE |                               01 |                               00
+               SM_CMD_EN |                               11 |                               01
+         SM_CMD_ACCEPTED |                               10 |                               10
+            SM_DONE_WAIT |                               00 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'axi_protocol_converter_v2_1_27_b2s_wr_cmd_fsm'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                 SM_IDLE |                               01 |                               00
+               SM_CMD_EN |                               11 |                               01
+         SM_CMD_ACCEPTED |                               10 |                               10
+                 SM_DONE |                               00 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'axi_protocol_converter_v2_1_27_b2s_rd_cmd_fsm'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 2303.473 ; gain = 677.223 ; free physical = 884 ; free virtual = 24002
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1431.024; parent = 1226.492; children = 204.563
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3285.012; parent = 2303.477; children = 981.535
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   32 Bit       Adders := 2     
+	   2 Input   16 Bit       Adders := 8     
+	   3 Input   16 Bit       Adders := 3     
+	   2 Input   14 Bit       Adders := 1     
+	   2 Input   12 Bit       Adders := 8     
+	   2 Input    9 Bit       Adders := 2     
+	   4 Input    9 Bit       Adders := 1     
+	   2 Input    8 Bit       Adders := 9     
+	   3 Input    8 Bit       Adders := 1     
+	   2 Input    7 Bit       Adders := 2     
+	   2 Input    6 Bit       Adders := 1     
+	   2 Input    5 Bit       Adders := 5     
+	   2 Input    4 Bit       Adders := 4     
+	   2 Input    2 Bit       Adders := 3     
++---XORs : 
+	   3 Input      1 Bit         XORs := 1     
++---Registers : 
+	               66 Bit    Registers := 4     
+	               47 Bit    Registers := 2     
+	               32 Bit    Registers := 14    
+	               16 Bit    Registers := 20    
+	               14 Bit    Registers := 2     
+	               12 Bit    Registers := 9     
+	                9 Bit    Registers := 3     
+	                8 Bit    Registers := 14    
+	                7 Bit    Registers := 1     
+	                6 Bit    Registers := 2     
+	                5 Bit    Registers := 5     
+	                4 Bit    Registers := 7     
+	                3 Bit    Registers := 3     
+	                2 Bit    Registers := 11    
+	                1 Bit    Registers := 53    
++---Multipliers : 
+	               8x33  Multipliers := 1     
++---RAMs : 
+	             100K Bit	(3200 X 32 bit)          RAMs := 1     
+	              16K Bit	(1024 X 16 bit)          RAMs := 1     
+	               2K Bit	(256 X 8 bit)          RAMs := 1     
+	               2K Bit	(138 X 16 bit)          RAMs := 4     
+	              138 Bit	(138 X 1 bit)          RAMs := 1     
++---ROMs : 
+	                    ROMs := 1     
++---Muxes : 
+	   2 Input   66 Bit        Muxes := 4     
+	   3 Input   48 Bit        Muxes := 3     
+	   2 Input   48 Bit        Muxes := 1     
+	   2 Input   47 Bit        Muxes := 2     
+	   2 Input   32 Bit        Muxes := 11    
+	   7 Input   32 Bit        Muxes := 1     
+	   3 Input   32 Bit        Muxes := 1     
+	  11 Input   16 Bit        Muxes := 1     
+	   2 Input   16 Bit        Muxes := 25    
+	   6 Input   16 Bit        Muxes := 1     
+	 205 Input   16 Bit        Muxes := 5     
+	   4 Input   16 Bit        Muxes := 1     
+	   3 Input   16 Bit        Muxes := 1     
+	   2 Input   15 Bit        Muxes := 2     
+	   2 Input   14 Bit        Muxes := 2     
+	   2 Input   12 Bit        Muxes := 6     
+	   2 Input    9 Bit        Muxes := 4     
+	   2 Input    8 Bit        Muxes := 6     
+	  11 Input    8 Bit        Muxes := 1     
+	   4 Input    8 Bit        Muxes := 1     
+	   2 Input    7 Bit        Muxes := 2     
+	   2 Input    6 Bit        Muxes := 1     
+	  11 Input    6 Bit        Muxes := 1     
+	   2 Input    5 Bit        Muxes := 4     
+	  11 Input    5 Bit        Muxes := 1     
+	   2 Input    4 Bit        Muxes := 18    
+	   4 Input    4 Bit        Muxes := 2     
+	   2 Input    3 Bit        Muxes := 1     
+	   2 Input    2 Bit        Muxes := 27    
+	   4 Input    2 Bit        Muxes := 5     
+	  11 Input    2 Bit        Muxes := 2     
+	   6 Input    2 Bit        Muxes := 1     
+	   3 Input    2 Bit        Muxes := 1     
+	   2 Input    1 Bit        Muxes := 94    
+	  11 Input    1 Bit        Muxes := 5     
+	   4 Input    1 Bit        Muxes := 5     
+	   3 Input    1 Bit        Muxes := 8     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 80 (col length:40)
+BRAMs: 120 (col length: RAMB18 40 RAMB36 20)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+INFO: [Synth 8-3936] Found unconnected internal register 'inst/gen_axilite.gen_b2s_conv.axilite_b2s/SI_REG/aw.aw_pipe/m_payload_i_reg' and it is trimmed from '66' to '62' bits. [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/f0b4/hdl/axi_register_slice_v2_1_vl_rfs.v:1731]
+INFO: [Synth 8-3936] Found unconnected internal register 'inst/gen_axilite.gen_b2s_conv.axilite_b2s/SI_REG/ar.ar_pipe/m_payload_i_reg' and it is trimmed from '66' to '62' bits. [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ipshared/f0b4/hdl/axi_register_slice_v2_1_vl_rfs.v:1731]
+DSP Report: Generating DSP prod, operation Mode is: A*B.
+DSP Report: operator prod is absorbed into DSP prod.
+DSP Report: Generating DSP inc, operation Mode is: A*B2.
+DSP Report: register syn_q_reg is absorbed into DSP inc.
+DSP Report: operator inc is absorbed into DSP inc.
+WARNING: [Synth 8-3332] Sequential element (EXT_LPF/ACTIVE_LOW_EXT.ACT_LO_EXT/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d5) is unused and will be removed from module proc_sys_reset.
+WARNING: [Synth 8-3332] Sequential element (EXT_LPF/ACTIVE_LOW_EXT.ACT_LO_EXT/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d6) is unused and will be removed from module proc_sys_reset.
+WARNING: [Synth 8-3332] Sequential element (EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_IN_cdc_to) is unused and will be removed from module proc_sys_reset.
+WARNING: [Synth 8-3332] Sequential element (EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d2) is unused and will be removed from module proc_sys_reset.
+WARNING: [Synth 8-3332] Sequential element (EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d3) is unused and will be removed from module proc_sys_reset.
+WARNING: [Synth 8-3332] Sequential element (EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d4) is unused and will be removed from module proc_sys_reset.
+WARNING: [Synth 8-3332] Sequential element (EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d5) is unused and will be removed from module proc_sys_reset.
+WARNING: [Synth 8-3332] Sequential element (EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_s_level_out_d6) is unused and will be removed from module proc_sys_reset.
+WARNING: [Synth 8-3332] Sequential element (FDRE_inst) is unused and will be removed from module proc_sys_reset.
+WARNING: [Synth 8-3332] Sequential element (BSR_OUT_DFF[0].FDRE_BSR) is unused and will be removed from module proc_sys_reset.
+WARNING: [Synth 8-3332] Sequential element (ACTIVE_LOW_BSR_OUT_DFF[0].FDRE_BSR_N) is unused and will be removed from module proc_sys_reset.
+WARNING: [Synth 8-3332] Sequential element (PR_OUT_DFF[0].FDRE_PER) is unused and will be removed from module proc_sys_reset.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:00 ; elapsed = 00:01:02 . Memory (MB): peak = 2321.457 ; gain = 695.207 ; free physical = 826 ; free virtual = 23953
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1524.248; parent = 1319.748; children = 204.563
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3302.996; parent = 2321.461; children = 981.535
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+ROM: Preliminary Mapping Report
++------------+------------+---------------+----------------+
+|Module Name | RTL Object | Depth x Width | Implemented As | 
++------------+------------+---------------+----------------+
+|snn_hh      | syn_mem    | 16384x8       | LUT            | 
+|snn_hh      | bm_q_reg   | 256x16        | Block RAM      | 
+|snn_hh      | p_0_out    | 16384x8       | LUT            | 
++------------+------------+---------------+----------------+
+
+
+Block RAM: Preliminary Mapping Report (see note below)
++---------------------------------------+--------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name                            | RTL Object               | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++---------------------------------------+--------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|design_1_i/snn_0/\inst/u_board/u_core  | n_mem_reg                | 138 x 16(READ_FIRST)   | W |   | 138 x 16(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      | 
+|design_1_i/snn_0/\inst/u_board/u_core  | h_mem_reg                | 138 x 16(READ_FIRST)   | W |   | 138 x 16(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      | 
+|design_1_i/snn_0/\inst/u_board/u_core  | m_mem_reg                | 138 x 16(READ_FIRST)   | W |   | 138 x 16(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      | 
+|design_1_i/snn_0/\inst/u_board/u_core  | v_mem_reg                | 138 x 16(READ_FIRST)   | W |   | 138 x 16(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      | 
+|design_1_i/snn_0                       | inst/u_board/sbuf_reg    | 3 K x 32(READ_FIRST)   | W |   | 3 K x 32(WRITE_FIRST)  |   | R | Port A and B     | 0      | 4      | 
+|design_1_i/snn_0                       | inst/u_board/log_mem_reg | 1 K x 16(READ_FIRST)   | W |   | 1 K x 16(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      | 
++---------------------------------------+--------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+
+Note: The table above is a preliminary report that shows the Block RAMs at the current stage of the synthesis flow. Some Block RAMs may be reimplemented as non Block RAM primitives later in the synthesis flow. Multiple instantiated Block RAMs are reported only once. 
+
+Distributed RAM: Preliminary Mapping Report (see note below)
++--------------------------------------------+-------------+-----------+----------------------+-----------------------------+
+|Module Name                                 | RTL Object  | Inference | Size (Depth x Width) | Primitives                  | 
++--------------------------------------------+-------------+-----------+----------------------+-----------------------------+
+|design_1_i/snn_0/\inst/u_board/u_core /fifo | mem_reg     | Implied   | 256 x 8              | RAM64M x 12                 | 
+|design_1_i/snn_0/\inst/u_board/u_core       | spk_mem_reg | Implied   | 256 x 1              | RAM16X1S x 1 RAM128X1S x 1  | 
++--------------------------------------------+-------------+-----------+----------------------+-----------------------------+
+
+Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
+
+DSP: Preliminary Mapping Report (see note below. The ' indicates corresponding REG is set)
++------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name | DSP Mapping | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|snn_hh      | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|snn_hh      | A*B2        | 24     | 8      | -      | -      | 32     | 0    | 1    | -    | -    | -     | 0    | 0    | 
++------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+Note: The table above is a preliminary report that shows the DSPs inferred at the current stage of the synthesis flow. Some DSP may be reimplemented as non DSP primitives later in the synthesis flow. Multiple instantiated DSPs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:05 ; elapsed = 00:01:07 . Memory (MB): peak = 2321.457 ; gain = 695.207 ; free physical = 531 ; free virtual = 23659
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1721.514; parent = 1517.014; children = 204.563
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3302.996; parent = 2321.461; children = 981.535
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:01:07 ; elapsed = 00:01:10 . Memory (MB): peak = 2358.730 ; gain = 732.480 ; free physical = 464 ; free virtual = 23593
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1766.260; parent = 1561.760; children = 204.563
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3340.270; parent = 2358.734; children = 981.535
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Final Mapping Report
++---------------------------------------+--------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name                            | RTL Object               | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++---------------------------------------+--------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|design_1_i/snn_0/\inst/u_board/u_core  | n_mem_reg                | 138 x 16(READ_FIRST)   | W |   | 138 x 16(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      | 
+|design_1_i/snn_0/\inst/u_board/u_core  | h_mem_reg                | 138 x 16(READ_FIRST)   | W |   | 138 x 16(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      | 
+|design_1_i/snn_0/\inst/u_board/u_core  | m_mem_reg                | 138 x 16(READ_FIRST)   | W |   | 138 x 16(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      | 
+|design_1_i/snn_0/\inst/u_board/u_core  | v_mem_reg                | 138 x 16(READ_FIRST)   | W |   | 138 x 16(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      | 
+|design_1_i/snn_0                       | inst/u_board/sbuf_reg    | 3 K x 32(READ_FIRST)   | W |   | 3 K x 32(WRITE_FIRST)  |   | R | Port A and B     | 0      | 4      | 
+|design_1_i/snn_0                       | inst/u_board/log_mem_reg | 1 K x 16(READ_FIRST)   | W |   | 1 K x 16(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      | 
++---------------------------------------+--------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+
+
+Distributed RAM: Final Mapping Report
++--------------------------------------------+-------------+-----------+----------------------+-----------------------------+
+|Module Name                                 | RTL Object  | Inference | Size (Depth x Width) | Primitives                  | 
++--------------------------------------------+-------------+-----------+----------------------+-----------------------------+
+|design_1_i/snn_0/\inst/u_board/u_core /fifo | mem_reg     | Implied   | 256 x 8              | RAM64M x 12                 | 
+|design_1_i/snn_0/\inst/u_board/u_core       | spk_mem_reg | Implied   | 256 x 1              | RAM16X1S x 1 RAM128X1S x 1  | 
++--------------------------------------------+-------------+-----------+----------------------+-----------------------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+INFO: [Synth 8-7052] The timing for the instance design_1_i/snn_0/inst/u_board/u_core/n_mem_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance design_1_i/snn_0/inst/u_board/u_core/h_mem_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance design_1_i/snn_0/inst/u_board/u_core/m_mem_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance design_1_i/snn_0/inst/u_board/u_core/v_mem_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance design_1_i/snn_0/inst/u_board/u_core/bm_q_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance design_1_i/snn_0/inst/u_board/sbuf_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance design_1_i/snn_0/inst/u_board/sbuf_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance design_1_i/snn_0/inst/u_board/sbuf_reg_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance design_1_i/snn_0/inst/u_board/sbuf_reg_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance design_1_i/snn_0/inst/u_board/log_mem_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:01:09 ; elapsed = 00:01:11 . Memory (MB): peak = 2374.746 ; gain = 748.496 ; free physical = 466 ; free virtual = 23593
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1766.541; parent = 1562.041; children = 204.563
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3356.285; parent = 2374.750; children = 981.535
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:01:12 ; elapsed = 00:01:15 . Memory (MB): peak = 2374.746 ; gain = 748.496 ; free physical = 469 ; free virtual = 23597
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1766.541; parent = 1562.041; children = 204.563
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3356.285; parent = 2374.750; children = 981.535
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:12 ; elapsed = 00:01:15 . Memory (MB): peak = 2374.746 ; gain = 748.496 ; free physical = 469 ; free virtual = 23597
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1766.541; parent = 1562.041; children = 204.563
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3356.285; parent = 2374.750; children = 981.535
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:13 ; elapsed = 00:01:15 . Memory (MB): peak = 2374.746 ; gain = 748.496 ; free physical = 470 ; free virtual = 23598
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1766.541; parent = 1562.041; children = 204.563
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3356.285; parent = 2374.750; children = 981.535
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:13 ; elapsed = 00:01:15 . Memory (MB): peak = 2374.746 ; gain = 748.496 ; free physical = 470 ; free virtual = 23598
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1766.541; parent = 1562.041; children = 204.563
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3356.285; parent = 2374.750; children = 981.535
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:13 ; elapsed = 00:01:15 . Memory (MB): peak = 2374.746 ; gain = 748.496 ; free physical = 470 ; free virtual = 23598
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1766.541; parent = 1562.041; children = 204.563
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3356.285; parent = 2374.750; children = 981.535
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:13 ; elapsed = 00:01:15 . Memory (MB): peak = 2374.746 ; gain = 748.496 ; free physical = 470 ; free virtual = 23598
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1766.541; parent = 1562.041; children = 204.563
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3356.285; parent = 2374.750; children = 981.535
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Dynamic Shift Register Report:
++------------+----------------+--------+------------+--------+---------+--------+--------+--------+
+|Module Name | RTL Name       | Length | Data Width | SRL16E | SRLC32E | Mux F7 | Mux F8 | Mux F9 | 
++------------+----------------+--------+------------+--------+---------+--------+--------+--------+
+|dsrl        | memory_reg[3]  | 20     | 20         | 20     | 0       | 0      | 0      | 0      | 
+|dsrl__1     | memory_reg[3]  | 2      | 2          | 2      | 0       | 0      | 0      | 0      | 
+|dsrl__2     | memory_reg[31] | 34     | 34         | 0      | 34      | 0      | 0      | 0      | 
+|dsrl__3     | memory_reg[31] | 13     | 13         | 0      | 13      | 0      | 0      | 0      | 
++------------+----------------+--------+------------+--------+---------+--------+--------+--------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+DSP Final Report (the ' indicates corresponding REG is set)
++------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name | DSP Mapping | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|snn_hh      | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|snn_hh      | A*B'        | 23     | 18     | -      | -      | 32     | 0    | 1    | -    | -    | -     | 0    | 0    | 
++------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+----------+------+
+|      |Cell      |Count |
++------+----------+------+
+|1     |BIBUF     |   130|
+|2     |BUFG      |     1|
+|3     |CARRY4    |   129|
+|4     |DSP48E1   |     2|
+|6     |LUT1      |    62|
+|7     |LUT2      |   102|
+|8     |LUT3      |   347|
+|9     |LUT4      |   157|
+|10    |LUT5      |   314|
+|11    |LUT6      |  1956|
+|12    |MUXF7     |   492|
+|13    |MUXF8     |   217|
+|14    |PS7       |     1|
+|15    |RAM128X1S |     1|
+|16    |RAM16X1S  |     1|
+|17    |RAM64M    |    12|
+|18    |RAMB18E1  |     6|
+|20    |RAMB36E1  |     4|
+|21    |SRL16     |     1|
+|22    |SRL16E    |    16|
+|23    |SRLC32E   |    45|
+|24    |FDCE      |   124|
+|25    |FDR       |     4|
+|26    |FDRE      |  1316|
+|27    |FDSE      |    19|
++------+----------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:13 ; elapsed = 00:01:15 . Memory (MB): peak = 2374.746 ; gain = 748.496 ; free physical = 470 ; free virtual = 23598
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1766.541; parent = 1562.041; children = 204.563
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3356.285; parent = 2374.750; children = 981.535
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 145 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:11 ; elapsed = 00:01:14 . Memory (MB): peak = 2374.746 ; gain = 654.758 ; free physical = 538 ; free virtual = 23666
+Synthesis Optimization Complete : Time (s): cpu = 00:01:13 ; elapsed = 00:01:16 . Memory (MB): peak = 2374.754 ; gain = 748.496 ; free physical = 538 ; free virtual = 23666
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.05 . Memory (MB): peak = 2374.754 ; gain = 0.000 ; free physical = 643 ; free virtual = 23771
+INFO: [Netlist 29-17] Analyzing 869 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2404.695 ; gain = 0.000 ; free physical = 579 ; free virtual = 23706
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 19 instances were transformed.
+  FDR => FDRE: 4 instances
+  RAM128X1S => RAM128X1S (MUXF7, RAMS64E(x2)): 1 instance 
+  RAM16X1S => RAM32X1S (RAMS32): 1 instance 
+  RAM64M => RAM64M (RAMD64E(x4)): 12 instances
+  SRL16 => SRL16E: 1 instance 
+
+Synth Design complete, checksum: e4f2e9f3
+INFO: [Common 17-83] Releasing license: Synthesis
+179 Infos, 138 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:01:20 ; elapsed = 00:01:20 . Memory (MB): peak = 2404.695 ; gain = 1015.742 ; free physical = 952 ; free virtual = 24080
+INFO: [Common 17-1381] The checkpoint '/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.runs/synth_1/design_1_wrapper.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file design_1_wrapper_utilization_synth.rpt -pb design_1_wrapper_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Tue Nov 17 06:01:56 2026...
+[Tue Nov 17 06:02:06 2026] synth_1 finished
+wait_on_runs: Time (s): cpu = 00:01:34 ; elapsed = 00:01:44 . Memory (MB): peak = 1743.984 ; gain = 0.000 ; free physical = 1997 ; free virtual = 25114
+# if {[get_property PROGRESS [get_runs synth_1]] ne "100%"} { error "synthesis failed, see $PROJ/snn_board.runs/synth_1/runme.log" }
+# set slog [file join $PROJ snn_board.runs synth_1 runme.log]
+# if {[file exists $slog]} {
+#   set fh [open $slog r]; set txt [read $fh]; close $fh
+#   if {[regexp {Synth 8-4445} $txt]} { error "a memory image could not be read (Synth 8-4445), see $slog" }
+#   foreach line [split $txt "\n"] {
+#     if {[regexp {readmem|\.mem} $line] && [regexp {INFO|WARNING} $line]} { puts "synth: $line" }
+#   }
+# }
+synth: INFO: [Synth 8-3876] $readmem data file 'syn.mem' is read successfully [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/rtl/snn_hh.sv:44]
+synth: INFO: [Synth 8-3876] $readmem data file 'lut_an.mem' is read successfully [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/rtl/snn_hh.sv:45]
+synth: INFO: [Synth 8-3876] $readmem data file 'lut_bn.mem' is read successfully [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/rtl/snn_hh.sv:46]
+synth: INFO: [Synth 8-3876] $readmem data file 'lut_am.mem' is read successfully [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/rtl/snn_hh.sv:47]
+synth: INFO: [Synth 8-3876] $readmem data file 'lut_bm.mem' is read successfully [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/rtl/snn_hh.sv:48]
+synth: INFO: [Synth 8-3876] $readmem data file 'lut_ah.mem' is read successfully [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/rtl/snn_hh.sv:49]
+synth: INFO: [Synth 8-3876] $readmem data file 'lut_bh.mem' is read successfully [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/rtl/snn_hh.sv:50]
+# launch_runs impl_1 -to_step write_bitstream -jobs $JOBS
+[Tue Nov 17 06:02:10 2026] Launched impl_1...
+Run output will be captured here: /home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.runs/impl_1/runme.log
+# wait_on_run impl_1
+[Tue Nov 17 06:02:10 2026] Waiting for impl_1 to finish...
+
+*** Running vivado
+    with args -log design_1_wrapper.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source design_1_wrapper.tcl -notrace
+
+
+****** Vivado v2022.2 (64-bit)
+  **** SW Build 3671981 on Fri Oct 14 04:59:54 MDT 2022
+  **** IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+
+source design_1_wrapper.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2022.2/data/ip'.
+Command: link_design -top design_1_wrapper -part xc7z010clg400-1
+Design is defaulting to srcset: sources_1
+Design is defaulting to constrset: constrs_1
+INFO: [Device 21-403] Loading part xc7z010clg400-1
+Netlist sorting complete. Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.03 . Memory (MB): peak = 1624.219 ; gain = 0.000 ; free physical = 1270 ; free virtual = 24389
+INFO: [Netlist 29-17] Analyzing 864 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2022.2
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Parsing XDC File [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ip/design_1_processing_system7_0_0/design_1_processing_system7_0_0.xdc] for cell 'design_1_i/processing_system7_0/inst'
+Finished Parsing XDC File [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ip/design_1_processing_system7_0_0/design_1_processing_system7_0_0.xdc] for cell 'design_1_i/processing_system7_0/inst'
+Parsing XDC File [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ip/design_1_rst_ps7_0_50M_0/design_1_rst_ps7_0_50M_0_board.xdc] for cell 'design_1_i/rst_ps7_0_50M/U0'
+Finished Parsing XDC File [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ip/design_1_rst_ps7_0_50M_0/design_1_rst_ps7_0_50M_0_board.xdc] for cell 'design_1_i/rst_ps7_0_50M/U0'
+Parsing XDC File [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ip/design_1_rst_ps7_0_50M_0/design_1_rst_ps7_0_50M_0.xdc] for cell 'design_1_i/rst_ps7_0_50M/U0'
+Finished Parsing XDC File [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.gen/sources_1/bd/design_1/ip/design_1_rst_ps7_0_50M_0/design_1_rst_ps7_0_50M_0.xdc] for cell 'design_1_i/rst_ps7_0_50M/U0'
+Parsing XDC File [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/board.xdc]
+Finished Parsing XDC File [/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/board.xdc]
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1865.688 ; gain = 0.000 ; free physical = 1029 ; free virtual = 24151
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 14 instances were transformed.
+  RAM128X1S => RAM128X1S (MUXF7, RAMS64E(x2)): 1 instance 
+  RAM16X1S => RAM32X1S (RAMS32): 1 instance 
+  RAM64M => RAM64M (RAMD64E(x4)): 12 instances
+
+10 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+link_design completed successfully
+link_design: Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1865.688 ; gain = 485.738 ; free physical = 1029 ; free virtual = 24151
+Command: opt_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7z010'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7z010'
+Running DRC as a precondition to command opt_design
+
+Starting DRC Task
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Project 1-461] DRC finished with 0 Errors
+INFO: [Project 1-462] Please refer to the DRC report (report_drc) for more information.
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.64 . Memory (MB): peak = 1865.688 ; gain = 0.000 ; free physical = 1027 ; free virtual = 24148
+
+Starting Cache Timing Information Task
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Ending Cache Timing Information Task | Checksum: 20f1ad8bc
+
+Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2238.270 ; gain = 372.582 ; free physical = 779 ; free virtual = 23901
+
+Starting Logic Optimization Task
+
+Phase 1 Retarget
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Opt 31-49] Retargeted 0 cell(s).
+Phase 1 Retarget | Checksum: 224ee2e05
+
+Time (s): cpu = 00:00:00.25 ; elapsed = 00:00:00.11 . Memory (MB): peak = 2518.160 ; gain = 0.000 ; free physical = 404 ; free virtual = 23526
+INFO: [Opt 31-389] Phase Retarget created 0 cells and removed 24 cells
+
+Phase 2 Constant propagation
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Phase 2 Constant propagation | Checksum: 141a428c3
+
+Time (s): cpu = 00:00:00.27 ; elapsed = 00:00:00.14 . Memory (MB): peak = 2518.160 ; gain = 0.000 ; free physical = 404 ; free virtual = 23526
+INFO: [Opt 31-389] Phase Constant propagation created 0 cells and removed 0 cells
+
+Phase 3 Sweep
+Phase 3 Sweep | Checksum: 1a7d94465
+
+Time (s): cpu = 00:00:00.36 ; elapsed = 00:00:00.23 . Memory (MB): peak = 2518.160 ; gain = 0.000 ; free physical = 404 ; free virtual = 23526
+INFO: [Opt 31-389] Phase Sweep created 0 cells and removed 0 cells
+
+Phase 4 BUFG optimization
+Phase 4 BUFG optimization | Checksum: 1a7d94465
+
+Time (s): cpu = 00:00:00.42 ; elapsed = 00:00:00.26 . Memory (MB): peak = 2550.176 ; gain = 32.016 ; free physical = 403 ; free virtual = 23525
+INFO: [Opt 31-662] Phase BUFG optimization created 0 cells of which 0 are BUFGs and removed 0 cells.
+
+Phase 5 Shift Register Optimization
+INFO: [Opt 31-1064] SRL Remap converted 0 SRLs to 0 registers and converted 0 registers of register chains to 0 SRLs
+Phase 5 Shift Register Optimization | Checksum: 1a7d94465
+
+Time (s): cpu = 00:00:00.43 ; elapsed = 00:00:00.27 . Memory (MB): peak = 2550.176 ; gain = 32.016 ; free physical = 403 ; free virtual = 23525
+INFO: [Opt 31-389] Phase Shift Register Optimization created 0 cells and removed 0 cells
+
+Phase 6 Post Processing Netlist
+Phase 6 Post Processing Netlist | Checksum: 1a7d94465
+
+Time (s): cpu = 00:00:00.44 ; elapsed = 00:00:00.28 . Memory (MB): peak = 2550.176 ; gain = 32.016 ; free physical = 403 ; free virtual = 23525
+INFO: [Opt 31-389] Phase Post Processing Netlist created 0 cells and removed 0 cells
+Opt_design Change Summary
+=========================
+
+
+-------------------------------------------------------------------------------------------------------------------------
+|  Phase                        |  #Cells created  |  #Cells Removed  |  #Constrained objects preventing optimizations  |
+-------------------------------------------------------------------------------------------------------------------------
+|  Retarget                     |               0  |              24  |                                              0  |
+|  Constant propagation         |               0  |               0  |                                              0  |
+|  Sweep                        |               0  |               0  |                                              0  |
+|  BUFG optimization            |               0  |               0  |                                              0  |
+|  Shift Register Optimization  |               0  |               0  |                                              0  |
+|  Post Processing Netlist      |               0  |               0  |                                              0  |
+-------------------------------------------------------------------------------------------------------------------------
+
+
+
+Starting Connectivity Check Task
+
+Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 2550.176 ; gain = 0.000 ; free physical = 403 ; free virtual = 23525
+Ending Logic Optimization Task | Checksum: 1a402564a
+
+Time (s): cpu = 00:00:00.63 ; elapsed = 00:00:00.35 . Memory (MB): peak = 2550.176 ; gain = 32.016 ; free physical = 403 ; free virtual = 23525
+
+Starting Power Optimization Task
+INFO: [Pwropt 34-132] Skipping clock gating for clocks with a period < 2.00 ns.
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Running Vector-less Activity Propagation...
+INFO: [Pwropt 34-9] Applying IDT optimizations ...
+INFO: [Pwropt 34-10] Applying ODC optimizations ...
+
+Finished Running Vector-less Activity Propagation
+
+
+Starting PowerOpt Patch Enables Task
+INFO: [Pwropt 34-162] WRITE_MODE attribute of 0 BRAM(s) out of a total of 10 has been updated to save power. Run report_power_opt to get a complete listing of the BRAMs updated.
+INFO: [Pwropt 34-201] Structural ODC has moved 0 WE to EN ports
+Number of BRAM Ports augmented: 5 newly gated: 0 Total Ports: 20
+Number of Flops added for Enable Generation: 2
+
+Ending PowerOpt Patch Enables Task | Checksum: 1057c90d7
+
+Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.03 . Memory (MB): peak = 2868.246 ; gain = 0.000 ; free physical = 383 ; free virtual = 23506
+Ending Power Optimization Task | Checksum: 1057c90d7
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:00.88 . Memory (MB): peak = 2868.246 ; gain = 318.070 ; free physical = 388 ; free virtual = 23512
+
+Starting Final Cleanup Task
+
+Starting Logic Optimization Task
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Ending Logic Optimization Task | Checksum: ec061271
+
+Time (s): cpu = 00:00:00.52 ; elapsed = 00:00:00.25 . Memory (MB): peak = 2868.246 ; gain = 0.000 ; free physical = 401 ; free virtual = 23523
+Ending Final Cleanup Task | Checksum: ec061271
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 2868.246 ; gain = 0.000 ; free physical = 401 ; free virtual = 23523
+
+Starting Netlist Obfuscation Task
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2868.246 ; gain = 0.000 ; free physical = 401 ; free virtual = 23523
+Ending Netlist Obfuscation Task | Checksum: ec061271
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2868.246 ; gain = 0.000 ; free physical = 401 ; free virtual = 23523
+INFO: [Common 17-83] Releasing license: Implementation
+33 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+opt_design completed successfully
+opt_design: Time (s): cpu = 00:00:12 ; elapsed = 00:00:11 . Memory (MB): peak = 2868.246 ; gain = 1002.559 ; free physical = 401 ; free virtual = 23523
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:00.21 ; elapsed = 00:00:00.05 . Memory (MB): peak = 2868.246 ; gain = 0.000 ; free physical = 385 ; free virtual = 23509
+INFO: [Common 17-1381] The checkpoint '/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.runs/impl_1/design_1_wrapper_opt.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_drc -file design_1_wrapper_drc_opted.rpt -pb design_1_wrapper_drc_opted.pb -rpx design_1_wrapper_drc_opted.rpx
+Command: report_drc -file design_1_wrapper_drc_opted.rpt -pb design_1_wrapper_drc_opted.pb -rpx design_1_wrapper_drc_opted.rpx
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Vivado_Tcl 2-168] The results of DRC are in file /home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.runs/impl_1/design_1_wrapper_drc_opted.rpt.
+report_drc completed successfully
+Command: place_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7z010'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7z010'
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+Running DRC as a precondition to command place_design
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors, 21 Warnings
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+
+Starting Placer Task
+INFO: [Place 30-611] Multithreading enabled for place_design using a maximum of 8 CPUs
+
+Phase 1 Placer Initialization
+
+Phase 1.1 Placer Initialization Netlist Sorting
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 353 ; free virtual = 23477
+Phase 1.1 Placer Initialization Netlist Sorting | Checksum: e0bfd390
+
+Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 353 ; free virtual = 23477
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 353 ; free virtual = 23477
+
+Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device | Checksum: 118333389
+
+Time (s): cpu = 00:00:00.86 ; elapsed = 00:00:00.4 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 351 ; free virtual = 23477
+
+Phase 1.3 Build Placer Netlist Model
+Phase 1.3 Build Placer Netlist Model | Checksum: a5dcb66d
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:00.98 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 351 ; free virtual = 23476
+
+Phase 1.4 Constrain Clocks/Macros
+Phase 1.4 Constrain Clocks/Macros | Checksum: a5dcb66d
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:00.99 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 350 ; free virtual = 23476
+Phase 1 Placer Initialization | Checksum: a5dcb66d
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 350 ; free virtual = 23476
+
+Phase 2 Global Placement
+
+Phase 2.1 Floorplanning
+Phase 2.1 Floorplanning | Checksum: cdc4fb80
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:01 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 393 ; free virtual = 23518
+
+Phase 2.2 Update Timing before SLR Path Opt
+Phase 2.2 Update Timing before SLR Path Opt | Checksum: ca0021f0
+
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:01 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 392 ; free virtual = 23518
+
+Phase 2.3 Post-Processing in Floorplanning
+Phase 2.3 Post-Processing in Floorplanning | Checksum: ca0021f0
+
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:01 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 392 ; free virtual = 23518
+
+Phase 2.4 Global Placement Core
+
+Phase 2.4.1 UpdateTiming Before Physical Synthesis
+Phase 2.4.1 UpdateTiming Before Physical Synthesis | Checksum: 12f8dbbde
+
+Time (s): cpu = 00:00:13 ; elapsed = 00:00:03 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 424 ; free virtual = 23548
+
+Phase 2.4.2 Physical Synthesis In Placer
+INFO: [Physopt 32-1035] Found 0 LUTNM shape to break, 153 LUT instances to create LUTNM shape
+INFO: [Physopt 32-1044] Break lutnm for timing: one critical 0, two critical 0, total 0, new lutff created 0
+INFO: [Physopt 32-1138] End 1 Pass. Optimized 50 nets or LUTs. Breaked 0 LUT, combined 50 existing LUTs and moved 0 existing LUT
+INFO: [Physopt 32-65] No nets found for high-fanout optimization.
+INFO: [Physopt 32-232] Optimized 0 net. Created 0 new instance.
+INFO: [Physopt 32-775] End 1 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+INFO: [Physopt 32-670] No setup violation found.  DSP Register Optimization was not performed.
+INFO: [Physopt 32-670] No setup violation found.  Shift Register to Pipeline Optimization was not performed.
+INFO: [Physopt 32-670] No setup violation found.  Shift Register Optimization was not performed.
+INFO: [Physopt 32-670] No setup violation found.  BRAM Register Optimization was not performed.
+INFO: [Physopt 32-670] No setup violation found.  URAM Register Optimization was not performed.
+INFO: [Physopt 32-949] No candidate nets found for dynamic/static region interface net replication
+INFO: [Physopt 32-775] End 1 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 422 ; free virtual = 23547
+
+Summary of Physical Synthesis Optimizations
+============================================
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+|  Optimization                                     |  Added Cells  |  Removed Cells  |  Optimized Cells/Nets  |  Dont Touch  |  Iterations  |  Elapsed   |
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+|  LUT Combining                                    |            0  |             50  |                    50  |           0  |           1  |  00:00:00  |
+|  Retime                                           |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  Very High Fanout                                 |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  DSP Register                                     |            0  |              0  |                     0  |           0  |           0  |  00:00:00  |
+|  Shift Register to Pipeline                       |            0  |              0  |                     0  |           0  |           0  |  00:00:00  |
+|  Shift Register                                   |            0  |              0  |                     0  |           0  |           0  |  00:00:00  |
+|  BRAM Register                                    |            0  |              0  |                     0  |           0  |           0  |  00:00:00  |
+|  URAM Register                                    |            0  |              0  |                     0  |           0  |           0  |  00:00:00  |
+|  Dynamic/Static Region Interface Net Replication  |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  Total                                            |            0  |             50  |                    50  |           0  |           4  |  00:00:00  |
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Phase 2.4.2 Physical Synthesis In Placer | Checksum: 12814ecfa
+
+Time (s): cpu = 00:00:14 ; elapsed = 00:00:04 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 420 ; free virtual = 23544
+Phase 2.4 Global Placement Core | Checksum: 13a04fa4f
+
+Time (s): cpu = 00:00:15 ; elapsed = 00:00:04 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 420 ; free virtual = 23544
+Phase 2 Global Placement | Checksum: 13a04fa4f
+
+Time (s): cpu = 00:00:15 ; elapsed = 00:00:04 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 420 ; free virtual = 23544
+
+Phase 3 Detail Placement
+
+Phase 3.1 Commit Multi Column Macros
+Phase 3.1 Commit Multi Column Macros | Checksum: c21a0bab
+
+Time (s): cpu = 00:00:16 ; elapsed = 00:00:04 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 415 ; free virtual = 23540
+
+Phase 3.2 Commit Most Macros & LUTRAMs
+Phase 3.2 Commit Most Macros & LUTRAMs | Checksum: 1815d66ba
+
+Time (s): cpu = 00:00:17 ; elapsed = 00:00:04 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 414 ; free virtual = 23539
+
+Phase 3.3 Area Swap Optimization
+Phase 3.3 Area Swap Optimization | Checksum: 19577ec7f
+
+Time (s): cpu = 00:00:17 ; elapsed = 00:00:04 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 414 ; free virtual = 23539
+
+Phase 3.4 Pipeline Register Optimization
+Phase 3.4 Pipeline Register Optimization | Checksum: 17f40e34e
+
+Time (s): cpu = 00:00:17 ; elapsed = 00:00:04 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 414 ; free virtual = 23539
+
+Phase 3.5 Fast Optimization
+Phase 3.5 Fast Optimization | Checksum: ff87b0f3
+
+Time (s): cpu = 00:00:18 ; elapsed = 00:00:05 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 415 ; free virtual = 23539
+
+Phase 3.6 Small Shape Detail Placement
+Phase 3.6 Small Shape Detail Placement | Checksum: 1592714f1
+
+Time (s): cpu = 00:00:19 ; elapsed = 00:00:05 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 551 ; free virtual = 23669
+
+Phase 3.7 Re-assign LUT pins
+Phase 3.7 Re-assign LUT pins | Checksum: 1138f68da
+
+Time (s): cpu = 00:00:20 ; elapsed = 00:00:06 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 551 ; free virtual = 23669
+
+Phase 3.8 Pipeline Register Optimization
+Phase 3.8 Pipeline Register Optimization | Checksum: 116c1f91c
+
+Time (s): cpu = 00:00:20 ; elapsed = 00:00:06 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 551 ; free virtual = 23669
+Phase 3 Detail Placement | Checksum: 116c1f91c
+
+Time (s): cpu = 00:00:20 ; elapsed = 00:00:06 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 551 ; free virtual = 23669
+
+Phase 4 Post Placement Optimization and Clean-Up
+
+Phase 4.1 Post Commit Optimization
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+
+Phase 4.1.1 Post Placement Optimization
+Post Placement Optimization Initialization | Checksum: 14c2cac8d
+
+Phase 4.1.1.1 BUFG Insertion
+
+Starting Physical Synthesis Task
+
+Phase 1 Physical Synthesis Initialization
+INFO: [Physopt 32-721] Multithreading enabled for phys_opt_design using a maximum of 8 CPUs
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=0.229 | TNS=0.000 |
+Phase 1 Physical Synthesis Initialization | Checksum: 118365e48
+
+Time (s): cpu = 00:00:00.26 ; elapsed = 00:00:00.06 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 538 ; free virtual = 23663
+INFO: [Place 46-56] BUFG insertion identified 0 candidate nets. Inserted BUFG: 0, Replicated BUFG Driver: 0, Skipped due to Placement/Routing Conflicts: 0, Skipped due to Timing Degradation: 0, Skipped due to Illegal Netlist: 0.
+Ending Physical Synthesis Task | Checksum: c470a9e3
+
+Time (s): cpu = 00:00:00.29 ; elapsed = 00:00:00.09 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 538 ; free virtual = 23663
+Phase 4.1.1.1 BUFG Insertion | Checksum: 14c2cac8d
+
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:06 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 538 ; free virtual = 23663
+
+Phase 4.1.1.2 Post Placement Timing Optimization
+INFO: [Place 30-746] Post Placement Timing Summary WNS=0.591. For the most accurate timing information please run report_timing.
+Phase 4.1.1.2 Post Placement Timing Optimization | Checksum: 145120d13
+
+Time (s): cpu = 00:00:22 ; elapsed = 00:00:06 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 538 ; free virtual = 23663
+
+Time (s): cpu = 00:00:22 ; elapsed = 00:00:06 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 538 ; free virtual = 23663
+Phase 4.1 Post Commit Optimization | Checksum: 145120d13
+
+Time (s): cpu = 00:00:22 ; elapsed = 00:00:06 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 538 ; free virtual = 23663
+
+Phase 4.2 Post Placement Cleanup
+Phase 4.2 Post Placement Cleanup | Checksum: 145120d13
+
+Time (s): cpu = 00:00:22 ; elapsed = 00:00:06 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 538 ; free virtual = 23663
+
+Phase 4.3 Placer Reporting
+
+Phase 4.3.1 Print Estimated Congestion
+INFO: [Place 30-612] Post-Placement Estimated Congestion 
+ ____________________________________________________
+|           | Global Congestion | Short Congestion  |
+| Direction | Region Size       | Region Size       |
+|___________|___________________|___________________|
+|      North|                1x1|                1x1|
+|___________|___________________|___________________|
+|      South|                1x1|                1x1|
+|___________|___________________|___________________|
+|       East|                1x1|                1x1|
+|___________|___________________|___________________|
+|       West|                1x1|                1x1|
+|___________|___________________|___________________|
+
+Phase 4.3.1 Print Estimated Congestion | Checksum: 145120d13
+
+Time (s): cpu = 00:00:22 ; elapsed = 00:00:06 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 538 ; free virtual = 23663
+Phase 4.3 Placer Reporting | Checksum: 145120d13
+
+Time (s): cpu = 00:00:22 ; elapsed = 00:00:06 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 538 ; free virtual = 23663
+
+Phase 4.4 Final Placement Cleanup
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 538 ; free virtual = 23663
+
+Time (s): cpu = 00:00:22 ; elapsed = 00:00:06 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 538 ; free virtual = 23663
+Phase 4 Post Placement Optimization and Clean-Up | Checksum: 13d26ac29
+
+Time (s): cpu = 00:00:22 ; elapsed = 00:00:06 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 537 ; free virtual = 23663
+Ending Placer Task | Checksum: 7a12f47c
+
+Time (s): cpu = 00:00:22 ; elapsed = 00:00:06 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 537 ; free virtual = 23663
+INFO: [Common 17-83] Releasing license: Implementation
+68 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+place_design completed successfully
+place_design: Time (s): cpu = 00:00:23 ; elapsed = 00:00:07 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 540 ; free virtual = 23666
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:00.81 ; elapsed = 00:00:00.33 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 513 ; free virtual = 23644
+INFO: [Common 17-1381] The checkpoint '/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.runs/impl_1/design_1_wrapper_placed.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_io -file design_1_wrapper_io_placed.rpt
+report_io: Time (s): cpu = 00:00:00.1 ; elapsed = 00:00:00.15 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 452 ; free virtual = 23574
+INFO: [runtcl-4] Executing : report_utilization -file design_1_wrapper_utilization_placed.rpt -pb design_1_wrapper_utilization_placed.pb
+INFO: [runtcl-4] Executing : report_control_sets -verbose -file design_1_wrapper_control_sets_placed.rpt
+report_control_sets: Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.09 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 452 ; free virtual = 23574
+Command: phys_opt_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7z010'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7z010'
+
+Starting Initial Update Timing Task
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.3 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 476 ; free virtual = 23598
+INFO: [Vivado_Tcl 4-383] Design worst setup slack (WNS) is greater than or equal to 0.000 ns. Skipping all physical synthesis optimizations.
+INFO: [Vivado_Tcl 4-232] No setup violation found. The netlist was not modified.
+INFO: [Common 17-83] Releasing license: Implementation
+77 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+phys_opt_design completed successfully
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:00.88 ; elapsed = 00:00:00.33 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 473 ; free virtual = 23602
+INFO: [Common 17-1381] The checkpoint '/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.runs/impl_1/design_1_wrapper_physopt.dcp' has been generated.
+Command: route_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7z010'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7z010'
+Running DRC as a precondition to command route_design
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+
+
+Starting Routing Task
+INFO: [Route 35-254] Multithreading enabled for route_design using a maximum of 8 CPUs
+
+Phase 1 Build RT Design
+Checksum: PlaceDB: 810778a ConstDB: 0 ShapeSum: 72027cf2 RouteDB: 0
+Post Restoration Checksum: NetGraph: b2f2bbcf NumContArr: f4ad165 Constraints: 0 Timing: 0
+Phase 1 Build RT Design | Checksum: c23d8d34
+
+Time (s): cpu = 00:00:09 ; elapsed = 00:00:07 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 391 ; free virtual = 23516
+
+Phase 2 Router Initialization
+
+Phase 2.1 Fix Topology Constraints
+Phase 2.1 Fix Topology Constraints | Checksum: c23d8d34
+
+Time (s): cpu = 00:00:09 ; elapsed = 00:00:07 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 360 ; free virtual = 23484
+
+Phase 2.2 Pre Route Cleanup
+Phase 2.2 Pre Route Cleanup | Checksum: c23d8d34
+
+Time (s): cpu = 00:00:09 ; elapsed = 00:00:07 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 360 ; free virtual = 23484
+ Number of Nodes with overlaps = 0
+
+Phase 2.3 Update Timing
+Phase 2.3 Update Timing | Checksum: 1cf57b5bd
+
+Time (s): cpu = 00:00:10 ; elapsed = 00:00:07 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 337 ; free virtual = 23461
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.628  | TNS=0.000  | WHS=-0.201 | THS=-27.200|
+
+
+Router Utilization Summary
+  Global Vertical Routing Utilization    = 0 %
+  Global Horizontal Routing Utilization  = 0 %
+  Routable Net Status*
+  *Does not include unroutable nets such as driverless and loadless.
+  Run report_route_status for detailed report.
+  Number of Failed Nets               = 3808
+    (Failed Nets is the sum of unrouted and partially routed nets)
+  Number of Unrouted Nets             = 3808
+  Number of Partially Routed Nets     = 0
+  Number of Node Overlaps             = 0
+
+Phase 2 Router Initialization | Checksum: 19081791d
+
+Time (s): cpu = 00:00:12 ; elapsed = 00:00:08 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 339 ; free virtual = 23463
+
+Phase 3 Initial Routing
+
+Phase 3.1 Global Routing
+Phase 3.1 Global Routing | Checksum: 19081791d
+
+Time (s): cpu = 00:00:12 ; elapsed = 00:00:08 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 339 ; free virtual = 23463
+Phase 3 Initial Routing | Checksum: e54531f4
+
+Time (s): cpu = 00:00:13 ; elapsed = 00:00:08 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 338 ; free virtual = 23462
+
+Phase 4 Rip-up And Reroute
+
+Phase 4.1 Global Iteration 0
+ Number of Nodes with overlaps = 807
+ Number of Nodes with overlaps = 156
+ Number of Nodes with overlaps = 53
+ Number of Nodes with overlaps = 16
+ Number of Nodes with overlaps = 3
+ Number of Nodes with overlaps = 0
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.430  | TNS=0.000  | WHS=N/A    | THS=N/A    |
+
+Phase 4.1 Global Iteration 0 | Checksum: 18ed4b111
+
+Time (s): cpu = 00:00:18 ; elapsed = 00:00:12 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 338 ; free virtual = 23464
+Phase 4 Rip-up And Reroute | Checksum: 18ed4b111
+
+Time (s): cpu = 00:00:18 ; elapsed = 00:00:12 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 338 ; free virtual = 23464
+
+Phase 5 Delay and Skew Optimization
+
+Phase 5.1 Delay CleanUp
+
+Phase 5.1.1 Update Timing
+Phase 5.1.1 Update Timing | Checksum: 15a6506e3
+
+Time (s): cpu = 00:00:18 ; elapsed = 00:00:12 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 338 ; free virtual = 23464
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.580  | TNS=0.000  | WHS=N/A    | THS=N/A    |
+
+Phase 5.1 Delay CleanUp | Checksum: 15a6506e3
+
+Time (s): cpu = 00:00:18 ; elapsed = 00:00:12 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 338 ; free virtual = 23464
+
+Phase 5.2 Clock Skew Optimization
+Phase 5.2 Clock Skew Optimization | Checksum: 15a6506e3
+
+Time (s): cpu = 00:00:18 ; elapsed = 00:00:12 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 338 ; free virtual = 23464
+Phase 5 Delay and Skew Optimization | Checksum: 15a6506e3
+
+Time (s): cpu = 00:00:18 ; elapsed = 00:00:12 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 338 ; free virtual = 23464
+
+Phase 6 Post Hold Fix
+
+Phase 6.1 Hold Fix Iter
+
+Phase 6.1.1 Update Timing
+Phase 6.1.1 Update Timing | Checksum: 1c62b6b5e
+
+Time (s): cpu = 00:00:19 ; elapsed = 00:00:12 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 338 ; free virtual = 23464
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.580  | TNS=0.000  | WHS=0.023  | THS=0.000  |
+
+Phase 6.1 Hold Fix Iter | Checksum: 1493ab2c3
+
+Time (s): cpu = 00:00:19 ; elapsed = 00:00:12 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 338 ; free virtual = 23464
+Phase 6 Post Hold Fix | Checksum: 1493ab2c3
+
+Time (s): cpu = 00:00:19 ; elapsed = 00:00:12 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 338 ; free virtual = 23464
+
+Phase 7 Route finalize
+
+Router Utilization Summary
+  Global Vertical Routing Utilization    = 1.79026 %
+  Global Horizontal Routing Utilization  = 2.4784 %
+  Routable Net Status*
+  *Does not include unroutable nets such as driverless and loadless.
+  Run report_route_status for detailed report.
+  Number of Failed Nets               = 0
+    (Failed Nets is the sum of unrouted and partially routed nets)
+  Number of Unrouted Nets             = 0
+  Number of Partially Routed Nets     = 0
+  Number of Node Overlaps             = 0
+
+Phase 7 Route finalize | Checksum: 18bbd2278
+
+Time (s): cpu = 00:00:19 ; elapsed = 00:00:12 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 338 ; free virtual = 23464
+
+Phase 8 Verifying routed nets
+
+ Verification completed successfully
+Phase 8 Verifying routed nets | Checksum: 18bbd2278
+
+Time (s): cpu = 00:00:19 ; elapsed = 00:00:12 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 334 ; free virtual = 23460
+
+Phase 9 Depositing Routes
+Phase 9 Depositing Routes | Checksum: 17ec0b7b5
+
+Time (s): cpu = 00:00:19 ; elapsed = 00:00:12 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 334 ; free virtual = 23460
+
+Phase 10 Post Router Timing
+INFO: [Route 35-57] Estimated Timing Summary | WNS=0.580  | TNS=0.000  | WHS=0.023  | THS=0.000  |
+
+INFO: [Route 35-327] The final timing numbers are based on the router estimated timing analysis. For a complete and accurate timing signoff, please run report_timing_summary.
+Phase 10 Post Router Timing | Checksum: 17ec0b7b5
+
+Time (s): cpu = 00:00:20 ; elapsed = 00:00:13 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 336 ; free virtual = 23461
+INFO: [Route 35-16] Router Completed Successfully
+
+Time (s): cpu = 00:00:20 ; elapsed = 00:00:13 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 364 ; free virtual = 23490
+
+Routing Is Done.
+INFO: [Common 17-83] Releasing license: Implementation
+92 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+route_design completed successfully
+route_design: Time (s): cpu = 00:00:21 ; elapsed = 00:00:13 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 364 ; free virtual = 23490
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:00.89 ; elapsed = 00:00:00.38 . Memory (MB): peak = 2883.277 ; gain = 0.000 ; free physical = 349 ; free virtual = 23481
+INFO: [Common 17-1381] The checkpoint '/home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.runs/impl_1/design_1_wrapper_routed.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_drc -file design_1_wrapper_drc_routed.rpt -pb design_1_wrapper_drc_routed.pb -rpx design_1_wrapper_drc_routed.rpx
+Command: report_drc -file design_1_wrapper_drc_routed.rpt -pb design_1_wrapper_drc_routed.pb -rpx design_1_wrapper_drc_routed.rpx
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Vivado_Tcl 2-168] The results of DRC are in file /home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.runs/impl_1/design_1_wrapper_drc_routed.rpt.
+report_drc completed successfully
+INFO: [runtcl-4] Executing : report_methodology -file design_1_wrapper_methodology_drc_routed.rpt -pb design_1_wrapper_methodology_drc_routed.pb -rpx design_1_wrapper_methodology_drc_routed.rpx
+Command: report_methodology -file design_1_wrapper_methodology_drc_routed.rpt -pb design_1_wrapper_methodology_drc_routed.pb -rpx design_1_wrapper_methodology_drc_routed.rpx
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [DRC 23-133] Running Methodology with 8 threads
+INFO: [Vivado_Tcl 2-1520] The results of Report Methodology are in file /home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/proj/snn_board.runs/impl_1/design_1_wrapper_methodology_drc_routed.rpt.
+report_methodology completed successfully
+INFO: [runtcl-4] Executing : report_power -file design_1_wrapper_power_routed.rpt -pb design_1_wrapper_power_summary_routed.pb -rpx design_1_wrapper_power_routed.rpx
+Command: report_power -file design_1_wrapper_power_routed.rpt -pb design_1_wrapper_power_summary_routed.pb -rpx design_1_wrapper_power_routed.rpx
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Running Vector-less Activity Propagation...
+
+Finished Running Vector-less Activity Propagation
+WARNING: [Power 33-332] Found switching activity that implies high-fanout reset nets being asserted for excessive periods of time which may result in inaccurate power analysis.
+Resolution: To review and fix problems, please run Power Constraints Advisor in the GUI from Tools > Power Constraints Advisor or run report_power with the -advisory option to generate a text report.
+104 Infos, 1 Warnings, 0 Critical Warnings and 0 Errors encountered.
+report_power completed successfully
+INFO: [runtcl-4] Executing : report_route_status -file design_1_wrapper_route_status.rpt -pb design_1_wrapper_route_status.pb
+INFO: [runtcl-4] Executing : report_timing_summary -max_paths 10 -report_unconstrained -file design_1_wrapper_timing_summary_routed.rpt -pb design_1_wrapper_timing_summary_routed.pb -rpx design_1_wrapper_timing_summary_routed.rpx -warn_on_violation 
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 8 CPUs
+INFO: [runtcl-4] Executing : report_incremental_reuse -file design_1_wrapper_incremental_reuse_routed.rpt
+INFO: [Vivado_Tcl 4-1062] Incremental flow is disabled. No incremental reuse Info to report.
+INFO: [runtcl-4] Executing : report_clock_utilization -file design_1_wrapper_clock_utilization_routed.rpt
+INFO: [runtcl-4] Executing : report_bus_skew -warn_on_violation -file design_1_wrapper_bus_skew_routed.rpt -pb design_1_wrapper_bus_skew_routed.pb -rpx design_1_wrapper_bus_skew_routed.rpx
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 8 CPUs
+Command: write_bitstream -force design_1_wrapper.bit
+Attempting to get a license for feature 'Implementation' and/or device 'xc7z010'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7z010'
+Running DRC as a precondition to command write_bitstream
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+INFO: [DRC 23-27] Running DRC with 8 threads
+WARNING: [DRC CHECK-3] Report rule limit reached: REQP-1840 rule limit reached: 20 violations have been found.
+WARNING: [DRC DPIP-1] Input pipelining: DSP design_1_i/snn_0/inst/u_board/u_core/inc input design_1_i/snn_0/inst/u_board/u_core/inc/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC DPIP-1] Input pipelining: DSP design_1_i/snn_0/inst/u_board/u_core/prod input design_1_i/snn_0/inst/u_board/u_core/prod/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC DPIP-1] Input pipelining: DSP design_1_i/snn_0/inst/u_board/u_core/prod input design_1_i/snn_0/inst/u_board/u_core/prod/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC DPOP-1] PREG Output pipelining: DSP design_1_i/snn_0/inst/u_board/u_core/inc output design_1_i/snn_0/inst/u_board/u_core/inc/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+WARNING: [DRC DPOP-1] PREG Output pipelining: DSP design_1_i/snn_0/inst/u_board/u_core/prod output design_1_i/snn_0/inst/u_board/u_core/prod/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+WARNING: [DRC DPOP-2] MREG Output pipelining: DSP design_1_i/snn_0/inst/u_board/u_core/inc multiplier stage design_1_i/snn_0/inst/u_board/u_core/inc/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+WARNING: [DRC DPOP-2] MREG Output pipelining: DSP design_1_i/snn_0/inst/u_board/u_core/prod multiplier stage design_1_i/snn_0/inst/u_board/u_core/prod/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 design_1_i/snn_0/inst/u_board/u_core/bm_q_reg has an input control pin design_1_i/snn_0/inst/u_board/u_core/bm_q_reg/ENARDEN (net: design_1_i/snn_0/inst/u_board/u_core/bm_q_reg_ENARDEN_cooolgate_en_sig_7) which is driven by a register (design_1_i/snn_0/inst/u_board/u_core/st_reg[0]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 design_1_i/snn_0/inst/u_board/u_core/bm_q_reg has an input control pin design_1_i/snn_0/inst/u_board/u_core/bm_q_reg/ENARDEN (net: design_1_i/snn_0/inst/u_board/u_core/bm_q_reg_ENARDEN_cooolgate_en_sig_7) which is driven by a register (design_1_i/snn_0/inst/u_board/u_core/st_reg[1]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 design_1_i/snn_0/inst/u_board/u_core/bm_q_reg has an input control pin design_1_i/snn_0/inst/u_board/u_core/bm_q_reg/ENARDEN (net: design_1_i/snn_0/inst/u_board/u_core/bm_q_reg_ENARDEN_cooolgate_en_sig_7) which is driven by a register (design_1_i/snn_0/inst/u_board/u_core/st_reg[2]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 design_1_i/snn_0/inst/u_board/u_core/bm_q_reg has an input control pin design_1_i/snn_0/inst/u_board/u_core/bm_q_reg/ENARDEN (net: design_1_i/snn_0/inst/u_board/u_core/bm_q_reg_ENARDEN_cooolgate_en_sig_7) which is driven by a register (design_1_i/snn_0/inst/u_board/u_core/st_reg[3]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 design_1_i/snn_0/inst/u_board/u_core/h_mem_reg has an input control pin design_1_i/snn_0/inst/u_board/u_core/h_mem_reg/ADDRARDADDR[10] (net: design_1_i/snn_0/inst/u_board/u_core/i[6]) which is driven by a register (design_1_i/snn_0/inst/u_board/u_core/i_reg[6]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 design_1_i/snn_0/inst/u_board/u_core/h_mem_reg has an input control pin design_1_i/snn_0/inst/u_board/u_core/h_mem_reg/ADDRARDADDR[11] (net: design_1_i/snn_0/inst/u_board/u_core/i[7]) which is driven by a register (design_1_i/snn_0/inst/u_board/u_core/i_reg[7]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 design_1_i/snn_0/inst/u_board/u_core/h_mem_reg has an input control pin design_1_i/snn_0/inst/u_board/u_core/h_mem_reg/ADDRARDADDR[4] (net: design_1_i/snn_0/inst/u_board/u_core/i_reg[0]_rep__1_n_0) which is driven by a register (design_1_i/snn_0/inst/u_board/u_core/i_reg[0]_rep__1) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 design_1_i/snn_0/inst/u_board/u_core/h_mem_reg has an input control pin design_1_i/snn_0/inst/u_board/u_core/h_mem_reg/ADDRARDADDR[5] (net: design_1_i/snn_0/inst/u_board/u_core/i_reg[1]_rep__1_n_0) which is driven by a register (design_1_i/snn_0/inst/u_board/u_core/i_reg[1]_rep__1) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 design_1_i/snn_0/inst/u_board/u_core/h_mem_reg has an input control pin design_1_i/snn_0/inst/u_board/u_core/h_mem_reg/ADDRARDADDR[6] (net: design_1_i/snn_0/inst/u_board/u_core/out_idx[2]) which is driven by a register (design_1_i/snn_0/inst/u_board/u_core/i_reg[2]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 design_1_i/snn_0/inst/u_board/u_core/h_mem_reg has an input control pin design_1_i/snn_0/inst/u_board/u_core/h_mem_reg/ADDRARDADDR[7] (net: design_1_i/snn_0/inst/u_board/u_core/out_idx[3]) which is driven by a register (design_1_i/snn_0/inst/u_board/u_core/i_reg[3]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 design_1_i/snn_0/inst/u_board/u_core/h_mem_reg has an input control pin design_1_i/snn_0/inst/u_board/u_core/h_mem_reg/ADDRARDADDR[8] (net: design_1_i/snn_0/inst/u_board/u_core/out_idx[4]) which is driven by a register (design_1_i/snn_0/inst/u_board/u_core/i_reg[4]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 design_1_i/snn_0/inst/u_board/u_core/h_mem_reg has an input control pin design_1_i/snn_0/inst/u_board/u_core/h_mem_reg/ADDRARDADDR[9] (net: design_1_i/snn_0/inst/u_board/u_core/out_idx[5]) which is driven by a register (design_1_i/snn_0/inst/u_board/u_core/i_reg[5]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 design_1_i/snn_0/inst/u_board/u_core/h_mem_reg has an input control pin design_1_i/snn_0/inst/u_board/u_core/h_mem_reg/ADDRBWRADDR[10] (net: design_1_i/snn_0/inst/u_board/u_core/i[6]) which is driven by a register (design_1_i/snn_0/inst/u_board/u_core/i_reg[6]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 design_1_i/snn_0/inst/u_board/u_core/h_mem_reg has an input control pin design_1_i/snn_0/inst/u_board/u_core/h_mem_reg/ADDRBWRADDR[11] (net: design_1_i/snn_0/inst/u_board/u_core/i[7]) which is driven by a register (design_1_i/snn_0/inst/u_board/u_core/i_reg[7]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 design_1_i/snn_0/inst/u_board/u_core/h_mem_reg has an input control pin design_1_i/snn_0/inst/u_board/u_core/h_mem_reg/ADDRBWRADDR[4] (net: design_1_i/snn_0/inst/u_board/u_core/i_reg[0]_rep__1_n_0) which is driven by a register (design_1_i/snn_0/inst/u_board/u_core/i_reg[0]_rep__1) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 design_1_i/snn_0/inst/u_board/u_core/h_mem_reg has an input control pin design_1_i/snn_0/inst/u_board/u_core/h_mem_reg/ADDRBWRADDR[5] (net: design_1_i/snn_0/inst/u_board/u_core/i_reg[1]_rep__1_n_0) which is driven by a register (design_1_i/snn_0/inst/u_board/u_core/i_reg[1]_rep__1) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 design_1_i/snn_0/inst/u_board/u_core/h_mem_reg has an input control pin design_1_i/snn_0/inst/u_board/u_core/h_mem_reg/ADDRBWRADDR[6] (net: design_1_i/snn_0/inst/u_board/u_core/out_idx[2]) which is driven by a register (design_1_i/snn_0/inst/u_board/u_core/i_reg[2]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 design_1_i/snn_0/inst/u_board/u_core/h_mem_reg has an input control pin design_1_i/snn_0/inst/u_board/u_core/h_mem_reg/ADDRBWRADDR[7] (net: design_1_i/snn_0/inst/u_board/u_core/out_idx[3]) which is driven by a register (design_1_i/snn_0/inst/u_board/u_core/i_reg[3]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 design_1_i/snn_0/inst/u_board/u_core/h_mem_reg has an input control pin design_1_i/snn_0/inst/u_board/u_core/h_mem_reg/ADDRBWRADDR[8] (net: design_1_i/snn_0/inst/u_board/u_core/out_idx[4]) which is driven by a register (design_1_i/snn_0/inst/u_board/u_core/i_reg[4]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+WARNING: [DRC REQP-1840] RAMB18 async control check: The RAMB18E1 design_1_i/snn_0/inst/u_board/u_core/h_mem_reg has an input control pin design_1_i/snn_0/inst/u_board/u_core/h_mem_reg/ADDRBWRADDR[9] (net: design_1_i/snn_0/inst/u_board/u_core/out_idx[5]) which is driven by a register (design_1_i/snn_0/inst/u_board/u_core/i_reg[5]) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+INFO: [Vivado 12-3199] DRC finished with 0 Errors, 28 Warnings
+INFO: [Vivado 12-3200] Please refer to the DRC report (report_drc) for more information.
+INFO: [Designutils 20-2272] Running write_bitstream with 8 threads.
+Loading data files...
+Loading site data...
+Loading route data...
+Processing options...
+Creating bitmap...
+Creating bitstream...
+Writing bitstream ./design_1_wrapper.bit...
+INFO: [Vivado 12-1842] Bitgen Completed Successfully.
+INFO: [Project 1-1876] WebTalk data collection is mandatory when using a ULT device. To see the specific WebTalk data collected for your design, open the usage_statistics_webtalk.html or usage_statistics_webtalk.xml file in the implementation directory.
+INFO: [Common 17-83] Releasing license: Implementation
+12 Infos, 28 Warnings, 0 Critical Warnings and 0 Errors encountered.
+write_bitstream completed successfully
+write_bitstream: Time (s): cpu = 00:00:09 ; elapsed = 00:00:16 . Memory (MB): peak = 3089.418 ; gain = 206.141 ; free physical = 450 ; free virtual = 23456
+INFO: [Common 17-206] Exiting Vivado at Tue Nov 17 06:03:27 2026...
+[Tue Nov 17 06:03:32 2026] impl_1 finished
+wait_on_runs: Time (s): cpu = 00:00:01 ; elapsed = 00:01:22 . Memory (MB): peak = 1743.984 ; gain = 0.000 ; free physical = 1969 ; free virtual = 24974
+# if {[get_property PROGRESS [get_runs impl_1]] ne "100%"} { error "implementation failed, see $PROJ/snn_board.runs/impl_1/runme.log" }
+# open_run impl_1
+INFO: [Device 21-403] Loading part xc7z010clg400-1
+Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 1780.688 ; gain = 0.000 ; free physical = 1905 ; free virtual = 24910
+INFO: [Netlist 29-17] Analyzing 864 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2022.2
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Timing 38-478] Restoring timing data from binary archive.
+INFO: [Timing 38-479] Binary timing data restore complete.
+INFO: [Project 1-856] Restoring constraints from binary archive.
+INFO: [Project 1-853] Binary constraint restore complete.
+Reading XDEF placement.
+Reading placer database...
+Reading XDEF routing.
+Read XDEF Files: Time (s): cpu = 00:00:00.43 ; elapsed = 00:00:00.45 . Memory (MB): peak = 2335.906 ; gain = 7.938 ; free physical = 1458 ; free virtual = 24465
+Restored from archive | CPU: 0.440000 secs | Memory: 7.061569 MB |
+Finished XDEF File Restore: Time (s): cpu = 00:00:00.43 ; elapsed = 00:00:00.45 . Memory (MB): peak = 2335.906 ; gain = 7.938 ; free physical = 1458 ; free virtual = 24465
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2335.906 ; gain = 0.000 ; free physical = 1458 ; free virtual = 24465
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 14 instances were transformed.
+  RAM128X1S => RAM128X1S (MUXF7, RAMS64E(x2)): 1 instance 
+  RAM16X1S => RAM32X1S (RAMS32): 1 instance 
+  RAM64M => RAM64M (RAMD64E(x4)): 12 instances
+
+open_run: Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 2335.906 ; gain = 591.922 ; free physical = 1458 ; free virtual = 24465
+# report_utilization               -file [file join $OUT utilization.rpt]
+# report_utilization -hierarchical -file [file join $OUT utilization_hier.rpt]
+# report_timing_summary -max_paths 10 -report_unconstrained -file [file join $OUT timing_summary.rpt]
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 8 CPUs
+# proc power_report {f} {
+#   if {[catch {report_power -hierarchical_depth 8 -file $f} err]} {
+#     puts "report_power -hierarchical_depth not accepted ($err); plain report_power"
+#     report_power -file $f
+#   }
+# }
+# catch {reset_switching_activity -all}
+# power_report [file join $OUT power_vectorless.rpt]
+Command: report_power -hierarchical_depth 8 -file /home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/power_vectorless.rpt
+Running Vector-less Activity Propagation...
+
+Finished Running Vector-less Activity Propagation
+WARNING: [Power 33-332] Found switching activity that implies high-fanout reset nets being asserted for excessive periods of time which may result in inaccurate power analysis.
+Resolution: To review and fix problems, please run Power Constraints Advisor in the GUI from Tools > Power Constraints Advisor or run report_power with the -advisory option to generate a text report.
+0 Infos, 1 Warnings, 0 Critical Warnings and 0 Errors encountered.
+report_power completed successfully
+# set core [get_cells -hier -quiet -filter {NAME =~ *u_board/u_core}]
+# puts "core instance: $core"
+core instance: design_1_i/snn_0/inst/u_board/u_core
+# proc saif_for_core {src dst core_path} {
+#   # Re-root the activity of /tb_snn/dut (vivado/saif.tcl) onto the core instance of
+#   # this design: <header> (INSTANCE design_1_wrapper (INSTANCE design_1_i ... (INSTANCE u_core <dut>)))
+#   if {[file exists $dst]} { puts "using existing $dst"; return }
+#   set fh [open $src r]; set txt [read $fh]; close $fh
+#   if {![regexp -indices {\(INSTANCE\s+dut\M} $txt m]} { error "no (INSTANCE dut ...) in $src" }
+#   set s [lindex $m 0]
+#   set chars [split [string range $txt $s end] ""]
+#   set depth 0; set offset 0; set e -1
+#   foreach c $chars {
+#     if {$c eq "("} { incr depth } elseif {$c eq ")"} { incr depth -1; if {$depth == 0} { set e [expr {$s + $offset}]; break } }
+#     incr offset
+#   }
+#   if {$e < 0} { error "unbalanced SAIF $src" }
+#   set block [string range $txt $s $e]
+#   regexp -indices {\(INSTANCE} $txt h
+#   set header [string range $txt 0 [expr {[lindex $h 0] - 1}]]
+#   set parts [split $core_path /]
+#   set opens "(INSTANCE design_1_wrapper\n"
+#   foreach p [lrange $parts 0 end-1] { append opens "(INSTANCE $p\n" }
+#   regsub {^\(INSTANCE\s+dut} $block "(INSTANCE [lindex $parts end]" block
+#   set fo [open $dst w]
+#   puts $fo "$header$opens$block[string repeat ")" [expr {[llength $parts]}]]\n)"
+#   close $fo
+# }
+# set power_saif "n/a"
+# if {$SAIF ne ""} {
+#   if {$core eq ""} { error "core instance u_board/u_core not found in the netlist; cannot map the SAIF" }
+#   set rs [file join $OUT activity_board.saif]
+#   saif_for_core [file normalize $SAIF] $rs $core
+#   read_saif -strip_path design_1_wrapper $rs
+#   power_report [file join $OUT power_saif.rpt]
+#   set power_saif [file join $OUT power_saif.rpt]
+# }
+# set bits [glob -nocomplain [file join $PROJ snn_board.runs impl_1 *.bit]]
+# if {[llength $bits] != 1} { error "bitstream not found" }
+# file copy -force [lindex $bits 0] [file join $OUT snn_board.bit]
+# write_hw_platform -fixed -include_bit -force -file [file join $OUT snn_board.xsa]
+INFO: [Project 1-1918] Creating Hardware Platform: /home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/snn_board.xsa ...
+INFO: [Project 1-1943] The Hardware Platform can be used for Hardware
+INFO: [Project 1-1941] Successfully created Hardware Platform: /home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/snn_board.xsa
+INFO: [Hsi 55-2053] elapsed time for repository (/tools/Xilinx/Vivado/2022.2/data/embeddedsw) loading 0 seconds
+# proc rpt_val {file re} {
+#   set v "?"
+#   if {![file exists $file]} { return $v }
+#   set fh [open $file r]
+#   while {[gets $fh line] >= 0} { if {[regexp $re $line -> x]} { set v $x; break } }
+#   close $fh
+#   return $v
+# }
+# set wns [get_property SLACK [get_timing_paths -max_paths 1 -setup]]
+# set whs [get_property SLACK [get_timing_paths -max_paths 1 -hold]]
+# set pv  [file join $OUT power_vectorless.rpt]
+# set utl [file join $OUT utilization.rpt]
+# set fh [open [file join $OUT summary.txt] w]
+# puts $fh "cfg=$CFG board_part=$BOARD_PART part=$PART base=$BASE_ADDR"
+# puts $fh "FCLK_CLK0 requested=${FCLK_MHZ}MHz actual=${fclk_act}MHz"
+# puts $fh [format "timing: WNS=%.3fns WHS=%.3fns %s" $wns $whs [expr {($wns >= 0 && $whs >= 0) ? "MET" : "*** NOT MET -- do not use this bitstream for latency claims ***"}]]
+# puts $fh "utilization: SliceLUTs=[rpt_val $utl {^\|\s*Slice LUTs\*?\s*\|\s*(\d+)}] FF=[rpt_val $utl {^\|\s*Slice Registers\s*\|\s*(\d+)}] BRAM_tiles=[rpt_val $utl {^\|\s*Block RAM Tile\s*\|\s*([0-9.]+)}] DSP=[rpt_val $utl {^\|\s*DSPs\s*\|\s*(\d+)}]"
+# puts $fh "power vectorless: total=[rpt_val $pv {Total On-Chip Power \(W\)\s*\|\s*([0-9.]+)}]W dynamic=[rpt_val $pv {^\|\s*Dynamic \(W\)\s*\|\s*([0-9.]+)}]W static=[rpt_val $pv {Device Static \(W\)\s*\|\s*([0-9.]+)}]W confidence=[rpt_val $pv {Confidence Level\s*\|\s*(\S+)}]"
+# if {$SAIF ne ""} {
+#   puts $fh "power SAIF ($SAIF): total=[rpt_val $power_saif {Total On-Chip Power \(W\)\s*\|\s*([0-9.]+)}]W dynamic=[rpt_val $power_saif {^\|\s*Dynamic \(W\)\s*\|\s*([0-9.]+)}]W confidence=[rpt_val $power_saif {Confidence Level\s*\|\s*(\S+)}]"
+# }
+# puts $fh "core instance: $core   (its share: power_*.rpt section 'By Hierarchy'; LUT/FF/BRAM: utilization_hier.rpt)"
+# close $fh
+# set fh [open [file join $OUT summary.txt] r];
+# puts [read $fh];
+cfg=hh_64x64x10 board_part=none part=xc7z010clg400-1 base=0x43C00000
+FCLK_CLK0 requested=50MHz actual=50.000000MHz
+timing: WNS=0.578ns WHS=0.022ns MET
+utilization: SliceLUTs=2773 FF=1465 BRAM_tiles=7 DSP=2
+power vectorless: total=1.405W dynamic=1.292W static=0.113W confidence=Medium
+core instance: design_1_i/snn_0/inst/u_board/u_core   (its share: power_*.rpt section 'By Hierarchy'; LUT/FF/BRAM: utilization_hier.rpt)
+
+# close $fh
+# puts "bitstream: [file join $OUT snn_board.bit]"
+bitstream: /home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/snn_board.bit
+# puts "xsa      : [file join $OUT snn_board.xsa]"
+xsa      : /home/bardia/work_reyhani/HH/V2/HASTE_v41_Bardia_2026-10-11/Version-IV/board/vivado/out/hh_64x64x10_50MHz/snn_board.xsa
+INFO: [Common 17-206] Exiting Vivado at Tue Nov 17 06:03:44 2026...
